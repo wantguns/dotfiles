@@ -3,7 +3,7 @@
     name = Gunwant Jain
 
 [commit]
-    template = $XDG_CONFIG_HOME/git/message
+    template = "$XDG_CONFIG_HOME/git/message"
 
 [core]
     editor = nvim
