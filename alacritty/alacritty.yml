@@ -1,0 +1,71 @@
+#Colors (Ayu Dark)
+colors:
+  # Default colors
+  primary:
+    background: '#0A0E14'
+    foreground: '#B3B1AD'
+
+  # Normal colors
+  normal:
+    black: '#01060E'
+    red: '#EA6C73'
+    green: '#91B362'
+    yellow: '#F9AF4F'
+    blue: '#53BDFA'
+    magenta: '#FAE994'
+    cyan: '#90E1C6'
+    white: '#C7C7C7'
+
+  # Bright colors
+  bright:
+    black: '#686868'
+    red: '#F07178'
+    green: '#C2D94C'
+    yellow: '#FFB454'
+    blue: '#59C2FF'
+    magenta: '#FFEE99'
+    cyan: '#95E6CB'
+    white: '#FFFFFF'
+
+font:
+  normal:
+    family: FiraCode Nerd Font Mono
+    style: Retina
+  bold:
+    family: FiraCode Nerd Font Mono
+    style: Bold
+  italic:
+    family: FiraCode Nerd Font Mono
+    style: Italic
+  size: 11
+
+window:
+  dimensions:
+    columns: 100
+    lines: 85
+  
+  padding:
+    x: 0
+    y: 5
+  
+  decorations: full
+
+
+mouse_bindings:
+  - { mouse: Middle, action: PasteSelection }
+
+cursor:
+  style: Beam
+
+dynamic_title: true
+
+glyph_offset:
+  x: 0
+  y: -1
+
+visual_bell:
+  animation: EaseOutExpo
+  duration: 1 
+
+background_opacity: 0.9
+

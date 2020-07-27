@@ -1,0 +1,12 @@
+[user]
+    email = therealgunwant@gmail.com
+    name = Gunwant Jain
+
+[commit]
+    template = $XDG_CONFIG_HOME/git/message
+
+[core]
+    editor = nvim
+
+[color]
+    ui = auto
