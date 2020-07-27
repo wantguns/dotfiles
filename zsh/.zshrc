@@ -2,7 +2,7 @@ export ZSH="$HOME/.config/oh-my-zsh"
 
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
-plugins = (
+plugins=(
     git
     zsh-autosuggestions
     zsh-syntax-highlighting
@@ -29,6 +29,6 @@ mcd() {
     cd "$1"
 }
 
-# aliases 
-alias -g cat='bat'
-alias -g grep='rg'
+# aliases
+alias grep='rg'
+alias cat='batcat'
