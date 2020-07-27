@@ -36,6 +36,16 @@ source /etc/zsh/zshenv
 ln -s ~/.config/tmux/tmux.conf ~/.tmux.conf
 
 # oh-my-zsh
+## while installing oh-my-zsh, it will ask whether to make zsh your default shell. for that
+echo "Create superuser's password"
+sudo passwd
+echo "Create wantgun's password"
+sudo passwd wantguns
+
+## install oh-my-zsh
+export ZSH="/home/wantguns/.config/oh-my-zsh/"
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
 ## autosuggestions
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.config/oh-my-zsh/custom}/plugins/zsh-autosuggestions
 
@@ -44,11 +54,3 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:
 
 ## powershell10k
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-/home/wantguns/.config/oh-my-zsh/custom}/themes/powerlevel10k
-
-## while installing oh-my-zsh, it will ask whether to make zsh your default shell. for that
-sudo passwd
-sudo passwd wantguns
-
-## install oh-my-zsh
-export ZSH="/home/wantguns/.config/oh-my-zsh/"
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
