@@ -39,7 +39,7 @@ ln -s ~/.config/tmux/tmux.conf ~/.tmux.conf
 ## while installing oh-my-zsh, it will ask whether to make zsh your default shell. for that
 echo "Create superuser's password"
 sudo passwd
-echo "Create wantgun's password"
+echo "Create wantguns' password"
 sudo passwd wantguns
 
 ## install oh-my-zsh
