@@ -31,4 +31,10 @@ mcd() {
 
 # aliases
 alias grep='rg'
-alias cat='batcat'
+alias bat='batcat'
+alias vim='nvim'
+alias n='nvim'
+alias cfgz='nvim ~/.config/zsh/.zshrc'
+alias cfgt='nvim ~/.config/tmux/tmux.conf'
+alias cfgn='nvim ~/.config/nvim/init.vim'
+alias ixio='curl -F 'f:1=<-' ix.io'
