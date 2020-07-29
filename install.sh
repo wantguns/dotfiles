@@ -5,11 +5,11 @@ die () {
     exit
 }
 
-sudo apt update && sudo apt upgrade
+sudo apt update && sudo apt upgrade -y
 sudo add-apt-repository ppa:keithw/mosh-dev -y
 sudo apt update
 
-sudo apt install zsh tmux git neovim bat mosh -y    || die
+sudo apt install zsh tmux git neovim bat mosh make -y    || die
 
 # install ripgrep
 curl -LO https://github.com/BurntSushi/ripgrep/releases/download/11.0.2/ripgrep_11.0.2_amd64.deb
@@ -18,6 +18,7 @@ rm -rf ripgrep_11.0.2_amd64.deb
 
 # XDG
 sudo bash -c 'cat >> /etc/profile << EOF
+
 export XDG_CONFIG_HOME="/home/wantguns/.config"
 export XDG_CACHE_HOME="/home/wantguns/.cache"
 export XDG_DATA_HOME="/home/wantguns/.local/share"
@@ -37,14 +38,14 @@ ln -s ~/.config/tmux/tmux.conf ~/.tmux.conf
 
 # oh-my-zsh
 ## while installing oh-my-zsh, it will ask whether to make zsh your default shell. for that
-echo "Create superuser's password"
+echo "\n\033[1;33mCreate superuser's password\n"
 sudo passwd
-echo "Create wantguns' password"
+echo "\n\033[1;33mCreate wantguns' password\n"
 sudo passwd wantguns
 
 ## install oh-my-zsh
 export ZSH="/home/wantguns/.config/oh-my-zsh/"
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" --unattended
 
 ## autosuggestions
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.config/oh-my-zsh/custom}/plugins/zsh-autosuggestions
@@ -54,3 +55,6 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:
 
 ## powershell10k
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-/home/wantguns/.config/oh-my-zsh/custom}/themes/powerlevel10k
+
+## switch to zsh and configure it
+chsh -s $(which zsh)
