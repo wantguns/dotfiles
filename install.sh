@@ -53,7 +53,7 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:
 
 ## Typewritten
 git clone https://github.com/reobin/typewritten.git ${ZSH_CUSTOM:-~/.config/oh-my-zsh/custom}/themes/typewritten
-ln -s ${ZSH_CUSTOM:-~/.config/oh-my-zsh/custom}/themes/typewritten/typewritten.zsh-theme ${ZSH_CUSTOM:-~/.config/oh-my-zsh/custom}hemes/typewritten.zsh-theme
+ln -s ${ZSH_CUSTOM:-~/.config/oh-my-zsh/custom}/themes/typewritten/typewritten.zsh-theme ${ZSH_CUSTOM:-~/.config/oh-my-zsh/custom}/themes/typewritten.zsh-theme
 ln -s ${ZSH_CUSTOM:-~/.config/oh-my-zsh/custom}/themes/typewritten/async.zsh ${ZSH_CUSTOM:-~/.config/oh-my-zsh/custom}/themes/async
 
 ## switch to zsh and configure it
