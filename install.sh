@@ -6,10 +6,8 @@ die () {
 }
 
 sudo apt update && sudo apt upgrade -y
-sudo add-apt-repository ppa:keithw/mosh-dev -y
-sudo apt update
 
-sudo apt install zsh tmux git neovim bat mosh make -y    || die
+sudo apt install zsh tmux neovim bat make -y    || die
 
 # install ripgrep
 curl -LO https://github.com/BurntSushi/ripgrep/releases/download/11.0.2/ripgrep_11.0.2_amd64.deb
@@ -24,17 +22,17 @@ export XDG_CACHE_HOME="/home/wantguns/.cache"
 export XDG_DATA_HOME="/home/wantguns/.local/share"
 EOF'
 
-source /etc/profile
+source /etc/profile || die
 
 # zsh initialization
 sudo bash -c 'cat > /etc/zsh/zshenv << EOF
     export ZDOTDIR="/home/wantguns/.config/zsh"
 EOF'
 
-source /etc/zsh/zshenv
+source /etc/zsh/zshenv || die
 
 # tmux's team sucks ass for not using XDG base directories
-ln -s ~/.config/tmux/tmux.conf ~/.tmux.conf
+ln -s ~/.config/tmux/tmux.conf ~/.tmux.conf 
 
 # oh-my-zsh
 ## while installing oh-my-zsh, it will ask whether to make zsh your default shell. for that
