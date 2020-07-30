@@ -6,7 +6,7 @@ My workflow is heavily based on writing, tmux and nvim usually on random VPSs.
 
 ## Install
 
-This is tested only on __Ubuntu 20.04 LTS__. I would not recommend trying this on any other distro.
+This is tested only on __Ubuntu 20.04 LTS__. It should in theory work on other debian based distros but YMMV.
 
 ```bash
 sudo apt update && sudo apt install git mosh
