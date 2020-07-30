@@ -29,6 +29,7 @@ call plug#begin(expand('~/.config/nvim/plugged'))
 "*****************************************************************************
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'airblade/vim-gitgutter'
@@ -135,7 +136,7 @@ let mapleader=','
 set hidden
 
 "" Searching
-set hlsearch
+set nohlsearch
 set incsearch
 set ignorecase
 set smartcase
@@ -474,14 +475,12 @@ augroup END
 " Goyo
 map <leader>f :Goyo \| set linebreak<CR>
 
-" Setup goyo for markdown files
-autocmd Filetype markdown,md,mkd :Goyo    
-
-" Setup goyo for neomutt
-autocmd BufRead,BufNewFile /tmp/neomutt* let g:goyo_width=80
-autocmd BufRead,BufNewFile /tmp/neomutt* :Goyo 
-autocmd BufRead,BufNewFile /tmp/neomutt* map ZZ :Goyo\|x!<CR>
-autocmd BufRead,BufNewFile /tmp/neomutt* map ZQ :Goyo\|q!<CR>
+" Setup goyo for neomutt, markdown, and text
+autocmd BufRead,BufNewFile /tmp/neomutt*,*.md,*.mkd,*.txt let g:goyo_width=72
+autocmd BufRead,BufNewFile /tmp/neomutt*,*.md,*.mkd,*.txt :set tw=72
+autocmd BufRead,BufNewFile /tmp/neomutt*,*.md,*.mkd,*.txt :Goyo 
+autocmd BufRead,BufNewFile /tmp/neomutt*,*.md,*.mkd,*.txt map ZZ :Goyo\|x!<CR>
+autocmd BufRead,BufNewFile /tmp/neomutt*,*.md,*.mkd,*.txt map ZQ :Goyo\|q!<CR>
 
 augroup go
 
