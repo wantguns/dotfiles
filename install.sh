@@ -51,8 +51,10 @@ git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.conf
 ## syntax highlighting
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.config/oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 
-## powershell10k
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-/home/wantguns/.config/oh-my-zsh/custom}/themes/powerlevel10k
+## Typewritten
+git clone https://github.com/reobin/typewritten.git ${ZSH_CUSTOM:-~/.config/oh-my-zsh/custom}/themes/typewritten
+ln -s ${ZSH_CUSTOM:-~/.config/oh-my-zsh/custom}/themes/typewritten/typewritten.zsh-theme ${ZSH_CUSTOM:-~/.config/oh-my-zsh/custom}hemes/typewritten.zsh-theme
+ln -s ${ZSH_CUSTOM:-~/.config/oh-my-zsh/custom}/themes/typewritten/async.zsh ${ZSH_CUSTOM:-~/.config/oh-my-zsh/custom}/themes/async
 
 ## switch to zsh and configure it
 chsh -s $(which zsh)

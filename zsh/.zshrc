@@ -1,6 +1,6 @@
 export ZSH="$HOME/.config/oh-my-zsh"
 
-ZSH_THEME="powerlevel10k/powerlevel10k"
+ZSH_THEME="typewritten"
 
 plugins=(
     git
@@ -16,7 +16,10 @@ source $ZSH/oh-my-zsh.sh
 export EDITOR=nvim
 ## rootless docker
 export DOCKER_HOST=unix://$XDG_RUNTIME_DIR/docker.sock
-
+## typewritten
+export TYPEWRITTEN_PROMPT_LAYOUT="pure"
+export TYPEWRITTEN_SYMBOL="->"
+export TYPEWITTEN_CURSOR="underscore"
 
 # tmux at startups
 if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
