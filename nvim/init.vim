@@ -30,8 +30,7 @@ call plug#begin(expand('~/.config/nvim/plugged'))
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+Plug 'itchyny/lightline.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'vim-scripts/grep.vim'
 Plug 'vim-scripts/CSApprox'
@@ -220,13 +219,8 @@ if exists("*fugitive#statusline")
   set statusline+=%{fugitive#statusline()}
 endif
 
-" vim-airline
-let g:airline_theme = 'lucius'
-" let g:airline#extensions#branch#enabled = 0
-" let g:airline#extensions#ale#enabled = 0
-" let g:airline#extensions#tabline#enabled = 0
-" let g:airline#extensions#tagbar#enabled = 0
-" let g:airline_skip_empty_sections = 0
+" lightline
+let lightline = { 'colorscheme' : 'ayu_dark' }
 
 "*****************************************************************************
 "" Abbreviations
@@ -536,8 +530,6 @@ let g:jedi#smart_auto_mappings = 0
 :call extend(g:ale_linters, {
     \'python': ['flake8'], })
 
-" vim-airline
-let g:airline#extensions#virtualenv#enabled = 1
 
 " Syntax highlight
 " Default highlight is better than polyglot
@@ -552,8 +544,6 @@ au FileType rust nmap gs <Plug>(rust-def-split)
 au FileType rust nmap gx <Plug>(rust-def-vertical)
 au FileType rust nmap <leader>gd <Plug>(rust-doc)
 
-
-
 "*****************************************************************************
 "*****************************************************************************
 
@@ -565,5 +555,3 @@ endif
 "*****************************************************************************
 "" Convenience variables
 "*****************************************************************************
-
-let g:airline_powerline_fonts = 1
