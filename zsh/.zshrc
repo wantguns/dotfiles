@@ -32,6 +32,34 @@ mcd() {
     cd "$1"
 }
 
+sena() {
+    sudo systemctl enable "$1"
+}
+
+sdis() {
+    sudo systemctl disable "$1"
+}
+
+sres() {
+    sudo systemctl restart "$1"
+}
+
+srel() {
+    sudo systemctl reload "$1"
+}
+
+sstp() {
+    sudo systemctl stop "$1"
+}
+
+ssta() {
+    sudo systemctl start "$1"
+}
+
+sstt() {
+    sudo systemctl status "$1"
+}
+
 # aliases
 alias grep='rg'
 alias bat='batcat'
