@@ -70,3 +70,4 @@ alias cfgt='nvim ~/.config/tmux/tmux.conf'
 alias cfgn='nvim ~/.config/nvim/init.vim'
 alias srcz='source ~/.config/zsh/.zshrc'
 alias ixio="curl -F 'f:1=<-' ix.io"
+alias gsudo='sudo git -c "include.path='"${XDG_CONFIG_DIR:-$HOME/.config}/git/config\""
