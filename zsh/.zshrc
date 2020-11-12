@@ -1,25 +1,19 @@
-export ZSH="$HOME/.config/oh-my-zsh"
+# ABOUT: ZSHRC
+# AUTHOR: WantGuns <mail@wantguns.dev>
 
-ZSH_THEME="typewritten"
+# Prompt
+autoload -Uz promptinit
+promptinit
+PROMPT='%B%n%b%(?.. %F{red}%?): ' # boldface username
+RPROMPT='%F{white}%~' # current directory
 
-plugins=(
-    git
-    zsh-autosuggestions
-    zsh-syntax-highlighting
-    extract
-    sudo
-)
-
-source $ZSH/oh-my-zsh.sh
+# Plugins
+source $ZDOTDIR/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+source $ZDOTDIR/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $ZDOTDIR/plugins/zsh-sudo/sudo.plugin.zsh
 
 # exports
 export EDITOR=nvim
-## rootless docker
-export DOCKER_HOST=unix://$XDG_RUNTIME_DIR/docker.sock
-## typewritten
-export TYPEWRITTEN_PROMPT_LAYOUT="pure"
-export TYPEWRITTEN_SYMBOL="->"
-export TYPEWITTEN_CURSOR="underscore"
 
 # tmux at startups
 if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
@@ -32,42 +26,13 @@ mcd() {
     cd "$1"
 }
 
-sena() {
-    sudo systemctl enable "$1"
-}
-
-sdis() {
-    sudo systemctl disable "$1"
-}
-
-sres() {
-    sudo systemctl restart "$1"
-}
-
-srel() {
-    sudo systemctl reload "$1"
-}
-
-sstp() {
-    sudo systemctl stop "$1"
-}
-
-ssta() {
-    sudo systemctl start "$1"
-}
-
-sstt() {
-    sudo systemctl status "$1"
-}
-
 # aliases
 alias grep='rg'
-alias bat='batcat'
 alias vim='nvim'
-alias n='nvim'
 alias cfgz='nvim ~/.config/zsh/.zshrc'
 alias cfgt='nvim ~/.config/tmux/tmux.conf'
 alias cfgn='nvim ~/.config/nvim/init.vim'
 alias srcz='source ~/.config/zsh/.zshrc'
 alias ixio="curl -F 'f:1=<-' ix.io"
 alias gsudo='sudo git -c "include.path='"${XDG_CONFIG_DIR:-$HOME/.config}/git/config\""
+alias tmux='tmux -f "$XDG_CONFIG_HOME"/tmux/tmux.conf' # y u do dis tmux

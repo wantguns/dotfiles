@@ -1,3 +1,12 @@
 [submodule "tmux/cpu"]
 	path = tmux/cpu
 	url = https://github.com/tmux-plugins/tmux-cpu
+[submodule "zsh/plugins/zsh-autosuggestions"]
+	path = zsh/plugins/zsh-autosuggestions
+	url = https://github.com/zsh-users/zsh-autosuggestions
+[submodule "zsh/plugins/zsh-syntax-highlighting"]
+	path = zsh/plugins/zsh-syntax-highlighting
+	url = https://github.com/zsh-users/zsh-syntax-highlighting
+[submodule "zsh/plugins/zsh-sudo"]
+	path = zsh/plugins/zsh-sudo
+	url = https://github.com/hcgraf/zsh-sudo
