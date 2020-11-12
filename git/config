@@ -1,5 +1,5 @@
 [user]
-    email = therealgunwant@gmail.com
+    email = mail@wantguns.dev
     name = Gunwant Jain
 
 [commit]
@@ -10,3 +10,9 @@
 
 [color]
     ui = auto
+
+[merge]
+	tool = vimdiff
+
+[mergetool "vimdiff"]
+	path = nvim
