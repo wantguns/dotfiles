@@ -1,4 +1,4 @@
-# Ayu Dark, the Legacy Version 
+# Ayu Dark, inspired by its vim counterpart
 colors:
   # Default
   primary: 
@@ -30,42 +30,35 @@ colors:
 font:
   normal:
     family: FiraCode Nerd Font Mono
-    style: Retina
+    style: Medium
   bold:
     family: FiraCode Nerd Font Mono
     style: Bold
   italic:
     family: FiraCode Nerd Font Mono
     style: Italic
-  size: 11
+  size: 11.5
 
 window:
-  dimensions:
-    columns: 100
-    lines: 85
-  
   padding:
     x: 0
-    y: 5
+    y: 1
   
   decorations: full
 
+shell:
+  program: /usr/bin/zsh
 
 mouse_bindings:
   - { mouse: Middle, action: PasteSelection }
 
-cursor:
-  style: Beam
+window.dynamic_title: true
 
-dynamic_title: true
-
-glyph_offset:
-  x: 0
-  y: -1
-
-visual_bell:
+bell:
   animation: EaseOutExpo
   duration: 1 
 
-background_opacity: 0.9
+background_opacity: 1
 
+key_bindings:
+  - { key: F,        mods: Control,           action: SearchForward    }
