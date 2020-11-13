@@ -4,7 +4,7 @@
 # Prompt
 autoload -Uz promptinit
 promptinit
-PROMPT='%B%n%b%(?.. %F{red}%?): ' # boldface username
+PROMPT='%B%F{cyan}%n%b%(?.. %F{red}%?): ' # boldface username
 RPROMPT='%F{white}%~' # current directory
 
 # Plugins
