@@ -23,7 +23,7 @@ Checkout the repository at $HOME
 
 ```sh
 # This alias is already declared in the zshrc for future purposes
-alias config='/usr/bin/git --git-dir=$HOME/.dots/ --work-tree=$HOME'
+alias config='/usr/bin/git --git-dir=$HOME/.dots/ --work-tree=$HOME -b pc --recurse-submodules'
 config checkout
 config submodule update
 ```
@@ -40,3 +40,12 @@ Finally, change your shell
 ```sh
 chsh -S $(which zsh)
 ```
+
+Remove the install guide if you want
+```sh
+rm ~/readme.md
+```
+
+# References
+[HN comment](https://news.ycombinator.com/item?id=11071754)
+[Atlassian Guide](https://www.atlassian.com/git/tutorials/dotfiles)
