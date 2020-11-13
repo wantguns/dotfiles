@@ -29,5 +29,7 @@ alias cfgt='nvim ~/.config/tmux/tmux.conf'
 alias cfgn='nvim ~/.config/nvim/init.vim'
 alias srcz='source ~/.config/zsh/.zshrc'
 alias ixio="curl -F 'f:1=<-' ix.io"
+alias ls='ls --color=auto'
 alias gsudo='sudo git -c "include.path='"${XDG_CONFIG_DIR:-$HOME/.config}/git/config\""
 alias tmux='tmux -f "$XDG_CONFIG_HOME"/tmux/tmux.conf' # y u do dis tmux
+alias config='/usr/bin/git --git-dir=$HOME/.dots/ --work-tree=$HOME/.config'
