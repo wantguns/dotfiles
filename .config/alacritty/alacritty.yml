@@ -1,3 +1,6 @@
+# ABOUT: Alacritty Config
+# AUTHOR: Gunwant Jain <mail@wantguns.dev>
+
 # Ayu Dark, inspired by its vim counterpart
 colors:
   # Default
