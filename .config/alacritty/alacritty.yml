@@ -47,7 +47,10 @@ window:
     x: 0
     y: 1
   
-  decorations: full
+  # For Wayland on Gnome. 
+  # Know what you're doing if you copy this
+  decorations: "none"
+  startup_mode: Maximized
 
 shell:
   program: /usr/bin/zsh
