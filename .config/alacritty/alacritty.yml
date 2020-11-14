@@ -65,6 +65,3 @@ bell:
   duration: 1 
 
 background_opacity: 1
-
-key_bindings:
-  - { key: F,        mods: Control,           action: SearchForward    }
