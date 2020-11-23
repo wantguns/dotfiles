@@ -35,6 +35,14 @@ alias gsudo='sudo git -c "include.path='"${XDG_CONFIG_DIR:-$HOME/.config}/git/co
 alias tmux='tmux -f "$XDG_CONFIG_HOME"/tmux/tmux.conf' # y u do dis tmux
 alias config='/usr/bin/git --git-dir=$HOME/.dots/ --work-tree=$HOME'
 
+# Command completion
+autoload -Uz compinit
+compinit
+zstyle ':completion:*' menu select
+
+# Source Keybindings
+source $ZDOTDIR/keybindings.zsh
+
 # Prompt
 autoload -Uz promptinit
 promptinit
