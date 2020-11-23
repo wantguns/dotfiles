@@ -1,11 +1,11 @@
 # ABOUT: ZSHRC
 # AUTHOR: WantGuns <mail@wantguns.dev>
 
-# Prompt
-autoload -Uz promptinit
-promptinit
-PROMPT='%B%F{cyan}%n%b%(?.. %F{red}%?): ' # boldface username
-RPROMPT='%F{white}%~' # current directory
+# Persist History
+HISTFILE=~/.local/zsh/zsh_history
+HISTSIZE=10000
+SAVEHIST=10000
+setopt appendhistory
 
 # Plugins
 source $ZDOTDIR/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
@@ -14,6 +14,7 @@ source $ZDOTDIR/plugins/zsh-sudo/sudo.plugin.zsh
 
 # exports
 export EDITOR=nvim
+export PATH="$PATH:$HOME/.local/scripts"
 
 # helper functions
 mcd() {
@@ -33,3 +34,9 @@ alias ls='ls --color=auto'
 alias gsudo='sudo git -c "include.path='"${XDG_CONFIG_DIR:-$HOME/.config}/git/config\""
 alias tmux='tmux -f "$XDG_CONFIG_HOME"/tmux/tmux.conf' # y u do dis tmux
 alias config='/usr/bin/git --git-dir=$HOME/.dots/ --work-tree=$HOME'
+
+# Prompt
+autoload -Uz promptinit
+promptinit
+PROMPT='%B%F{cyan}%n%b%(?.. %F{red}%?): ' # boldface username
+RPROMPT='%F{white}%~' # current directory
