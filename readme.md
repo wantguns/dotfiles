@@ -35,10 +35,17 @@ controlling.
 config config --local status.showUntrackedFiles no
 ```
 
+create a new directory for caching your zsh command history. If this
+doesnt make the autosuggestions work checkout commit [2bcce29](https://github.com/WantGuns/dotfiles/commit/2bcce298b83a611ee108f563c7bc25867237b1d6)
+
+```sh
+mkdir -p ~/.local/zsh
+```
+
 Finally, change your shell
 
 ```sh
-chsh -S $(which zsh)
+chsh -s $(which zsh)
 ```
 
 Remove the install guide if you want
@@ -47,5 +54,5 @@ rm ~/readme.md
 ```
 
 # References
-[HN comment](https://news.ycombinator.com/item?id=11071754)
+[HN comment](https://news.ycombinator.com/item?id=11071754)  
 [Atlassian Guide](https://www.atlassian.com/git/tutorials/dotfiles)
