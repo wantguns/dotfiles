@@ -51,6 +51,8 @@ set encoding=utf-8
 set fileencoding=utf-8
 set fileencodings=utf-8
 
+" Relative Numbers gutter
+set relativenumber
 
 "" Fix backspace indent
 set backspace=indent,eol,start
@@ -71,6 +73,9 @@ set hidden
 set incsearch
 set ignorecase
 set smartcase
+
+"" C-Backspace deletes last word
+inoremap <C-H> <C-W>
 
 "*****************************************************************************
 "" Visual Settings
