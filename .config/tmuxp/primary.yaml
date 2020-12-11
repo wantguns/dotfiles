@@ -1,0 +1,19 @@
+session_name: primary
+start_directory: "/home/wantguns"
+windows:
+  - window_name: "mail"
+    panes:
+      - neomutt
+  - window_name: ""
+    focus: true
+    panes:
+      - zsh
+  - window_name: "dalek"
+    panes:
+      - mosh wantguns@dalek.wantguns.dev
+    window_index: 8
+  - window_name: "temp"
+    start_directory: "/tmp"
+    panes:
+      - zsh
+    window_index: 9

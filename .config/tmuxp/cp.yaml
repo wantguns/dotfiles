@@ -1,0 +1,20 @@
+session_name: cp
+start_directory: "$PWD"
+windows:
+  - window_name: ""
+    layout: main-vertical
+    options:
+      main-pane-width: 105
+    panes:
+      - shell_command:
+        - nvim ans.cpp
+        focus: true
+      - shell_command:
+        - sleep 1
+        - clear
+        - nvim input
+      - shell_command:
+        - sleep 1
+        - clear
+        - touch output 
+        - tail -f output
