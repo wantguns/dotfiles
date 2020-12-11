@@ -187,3 +187,11 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
+
+"*****************************************************************************
+"" Miscellaneous
+"*****************************************************************************
+
+"" Competitive Programming max
+nnoremap <leader>cp :-1read $HOME/.config/nvim/templates/compprog.cpp<CR>13ji<Tab>
+autocmd filetype cpp nnoremap <leader>r :!clang++ -std=c++17 % -o %:r<CR>:!./%:r<CR>
