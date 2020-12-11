@@ -8,6 +8,11 @@ colors:
     background: "#0F1419"
     foreground: "#E6E1CF"
 
+  # Cursor Color
+  cursor:
+    text: "#3E4B59"
+    cursor: "#5C6773"
+
   # Normal (0 - 7)
   normal:
     black: '#0F1419'
