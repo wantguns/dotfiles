@@ -45,6 +45,16 @@ source $ZDOTDIR/keybindings.zsh
 
 # Prompt
 autoload -Uz promptinit
+autoload -Uz vcs_info
+precmd_vcs_info() { vcs_info }
+precmd_functions+=( precmd_vcs_info )
+setopt prompt_subst
 promptinit
-PROMPT='%B%F{cyan}%n%b%(?.. %F{red}%?): ' # boldface username
+PROMPT='%B%F{cyan}%n%b% %F{magenta}${vcs_info_msg_0_}%(?.. %F{red}%?):%E ' # boldface username
 RPROMPT='%F{white}%~' # current directory
+
+# git prompt 
+zstyle ':vcs_info:*' check-for-changes true
+zstyle ':vcs_info:*' unstagedstr '!'
+zstyle ':vcs_info:*' stagedstr '+'
+zstyle ':vcs_info:*' formats ' %b%u%c'
