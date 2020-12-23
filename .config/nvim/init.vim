@@ -28,6 +28,7 @@ call plug#begin(expand('~/.config/nvim/plugged'))
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
+Plug 'preservim/nerdtree'
 Plug 'matze/vim-move'
 Plug 'itchyny/lightline.vim'
 Plug 'neoclide/coc.nvim'
@@ -161,6 +162,11 @@ endif
 
 nnoremap <silent> <leader>f :FZF -m<CR>
 nnoremap <silent> <Leader>/ :Find<CR>
+
+"" NERDTree
+nnoremap <leader>n :NERDTreeFocus<CR>
+nnoremap <C-n> :NERDTree<CR>
+nnoremap <C-t> :NERDTreeToggle<CR>
 
 "" Goyo
 map <C-f> :Goyo<CR>
