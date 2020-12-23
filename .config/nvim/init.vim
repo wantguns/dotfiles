@@ -26,17 +26,12 @@ call plug#begin(expand('~/.config/nvim/plugged'))
 "" Plug install packages
 "*****************************************************************************
 Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'preservim/nerdtree'
 Plug 'matze/vim-move'
 Plug 'itchyny/lightline.vim'
-Plug 'neoclide/coc.nvim'
-Plug 'psliwka/vim-smoothie'
 Plug 'Raimondi/delimitMate'
 Plug 'sheerun/vim-polyglot'
-Plug 'junegunn/goyo.vim'
-Plug 'matze/vim-move'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
@@ -137,17 +132,6 @@ augroup END
 noremap <Leader>h :<C-u>split<CR>
 noremap <Leader>v :<C-u>vsplit<CR>
 
-"" Git
-noremap <Leader>ga :Gwrite<CR>
-noremap <Leader>gc :Gcommit<CR>
-noremap <Leader>gsh :Gpush<CR>
-noremap <Leader>gll :Gpull<CR>
-noremap <Leader>gs :Gstatus<CR>
-noremap <Leader>gb :Gblame<CR>
-noremap <Leader>gd :Gvdiff<CR>
-noremap <Leader>gr :Gremove<CR>
-
-
 "" fzf.vim
 set wildmode=list:longest,list:full
 set wildignore+=*.o,*.obj,.git,*.rbc,*.pyc,__pycache__
@@ -168,36 +152,9 @@ nnoremap <leader>n :NERDTreeFocus<CR>
 nnoremap <C-n> :NERDTree<CR>
 nnoremap <C-t> :NERDTreeToggle<CR>
 
-"" Goyo
-map <C-f> :Goyo<CR>
-
-"" COC
-let g:coc_global_extensions = ['coc-rust-analyzer', 'coc-python', 'coc-clangd']
-
-" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
-" delays and poor user experience.
-set updatetime=300
-
-" Symbol renaming.
-nmap <leader>rn <Plug>(coc-rename)
-
-" Symbol renaming.
-nmap <leader>rn <Plug>(coc-rename)
-" Make <CR> auto-select the first completion item and notify coc.nvim to
-" format on enter, <cr> could be remapped by other vim plugin
-inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
-                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-
-" GoTo code navigation.
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-
 "*****************************************************************************
 "" Miscellaneous
 "*****************************************************************************
 
 "" Competitive Programming max
-nnoremap <leader>cp :-1read $HOME/.config/nvim/templates/compprog.cpp<CR>13ji<Tab>
 autocmd filetype cpp nnoremap <leader>r :!clang++ -std=c++17 % -o %:r<CR>:!./%:r<CR>
