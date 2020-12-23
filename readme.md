@@ -1,4 +1,4 @@
-# WantGuns' Dotfiles for Desktops
+# WantGuns' Dotfiles for Embedded Devices
 
 These are my curated dots which I picked over in an year or so.
 My workflow is heavily based on writing, tmux and nvim usually on random
