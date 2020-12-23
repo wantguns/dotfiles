@@ -33,8 +33,6 @@ alias ixio="curl -F 'f:1=<-' ix.io"
 alias ls='ls --color=auto'
 alias gsudo='sudo git -c "include.path='"${XDG_CONFIG_DIR:-$HOME/.config}/git/config\""
 alias tmux='tmux -f "$XDG_CONFIG_HOME"/tmux/tmux.conf' # y u do dis tmux
-alias config='/usr/bin/git --git-dir=$HOME/.dots/ --work-tree=$HOME'
-alias ssh='SSH_AUTH_SOCK= ssh -i ~/.ssh/gallifrey'
 
 # Command completion
 autoload -Uz compinit
@@ -46,16 +44,7 @@ source $ZDOTDIR/keybindings.zsh
 
 # Prompt
 autoload -Uz promptinit
-autoload -Uz vcs_info
-precmd_vcs_info() { vcs_info }
-precmd_functions+=( precmd_vcs_info )
 setopt prompt_subst
 promptinit
-PROMPT='%F{yellow}[%m] %B%F{cyan}%n%b% %F{magenta}${vcs_info_msg_0_}%(?.. %F{red}%?):%E ' # boldface username
+PROMPT='%F{yellow}[%m] %B%F{cyan}%n%b% %(?.. %F{red}%?):%E ' # boldface username
 RPROMPT='%F{white}%~' # current directory
-
-# git prompt 
-zstyle ':vcs_info:*' check-for-changes true
-zstyle ':vcs_info:*' unstagedstr '!'
-zstyle ':vcs_info:*' stagedstr '+'
-zstyle ':vcs_info:*' formats ' %b%u%c'
