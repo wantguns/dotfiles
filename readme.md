@@ -23,9 +23,9 @@ Checkout the repository at $HOME
 
 ```sh
 # This alias is already declared in the zshrc for future purposes
-alias config='/usr/bin/git --git-dir=$HOME/.dots/ --work-tree=$HOME -b pc --recurse-submodules'
+alias config='/usr/bin/git --git-dir=$HOME/.dots/ --work-tree=$HOME'
 config checkout
-config submodule update
+config submodule update --init --recursive
 ```
 
 Stop showing untracked files for our repository for saner version
