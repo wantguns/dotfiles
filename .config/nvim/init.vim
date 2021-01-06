@@ -201,3 +201,4 @@ nmap <silent> gr <Plug>(coc-references)
 "" Competitive Programming max
 nnoremap <leader>cp :-1read $HOME/.config/nvim/templates/compprog.cpp<CR>13ji<Tab>
 autocmd filetype cpp nnoremap <leader>r :!clang++ -std=c++17 % -o %:r<CR>:!./%:r<CR>
+nnoremap <leader>p :!curl -X POST --data-binary @% https://bin.wantguns.dev<CR>

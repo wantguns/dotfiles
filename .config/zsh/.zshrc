@@ -22,6 +22,11 @@ mcd() {
     cd "$1"
 }
 
+paste() {
+    local file=${1:-/dev/stdin}
+    curl --data-binary @${file} https://bin.wantguns.dev | tee >(xclip -selection clipboard)
+}
+
 # aliases
 alias grep='rg'
 alias vim='nvim'
@@ -29,12 +34,12 @@ alias cfgz='nvim ~/.config/zsh/.zshrc'
 alias cfgt='nvim ~/.config/tmux/tmux.conf'
 alias cfgn='nvim ~/.config/nvim/init.vim'
 alias srcz='source ~/.config/zsh/.zshrc'
-alias ixio="curl -F 'f:1=<-' ix.io"
 alias ls='ls --color=auto'
 alias gsudo='sudo git -c "include.path='"${XDG_CONFIG_DIR:-$HOME/.config}/git/config\""
 alias tmux='tmux -f "$XDG_CONFIG_HOME"/tmux/tmux.conf' # y u do dis tmux
 alias config='/usr/bin/git --git-dir=$HOME/.dots/ --work-tree=$HOME'
-alias ssh='SSH_AUTH_SOCK= ssh -i ~/.ssh/gallifrey'
+alias vm='sudo virsh'
+alias gallifrey='ssh root@g.wantguns.dev -p 4081'
 
 # Command completion
 autoload -Uz compinit
