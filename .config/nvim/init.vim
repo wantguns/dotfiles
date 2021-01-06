@@ -28,19 +28,21 @@ call plug#begin(expand('~/.config/nvim/plugged'))
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
+Plug 'mhinz/vim-startify'
 Plug 'preservim/nerdtree'
-Plug 'matze/vim-move'
 Plug 'itchyny/lightline.vim'
 Plug 'neoclide/coc.nvim'
 Plug 'psliwka/vim-smoothie'
 Plug 'Raimondi/delimitMate'
 Plug 'sheerun/vim-polyglot'
 Plug 'junegunn/goyo.vim'
-Plug 'matze/vim-move'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'ayu-theme/ayu-vim'
+Plug 'tpope/vim-sensible'
+Plug 'jistr/vim-nerdtree-tabs'
+
 
 call plug#end()
 
@@ -77,6 +79,37 @@ set smartcase
 
 "" C-Backspace deletes last word
 inoremap <C-H> <C-W>
+
+"" Tab navigation
+nnoremap <leader>1 1gt
+nnoremap <leader>2 2gt
+nnoremap <leader>3 3gt
+nnoremap <leader>4 4gt
+nnoremap <leader>5 5gt
+nnoremap <leader>6 6gt
+nnoremap <leader>7 7gt
+nnoremap <leader>8 8gt
+nnoremap <leader>9 9gt
+
+"" Tab commands
+nnoremap th  :tabfirst<CR>
+nnoremap tk  :tabnext<CR>
+nnoremap tj  :tabprev<CR>
+nnoremap tl  :tablast<CR>
+nnoremap te  :tabedit<Space>
+nnoremap tn  :tabnext<Space>
+nnoremap tm  :tabm<Space>
+nnoremap td  :tabclose<CR>
+
+"" Last Tab switch
+" Switch to last-active tab
+if !exists('g:Lasttab')
+    let g:Lasttab = 1
+    let g:Lasttab_backup = 1
+endif
+autocmd! TabLeave * let g:Lasttab_backup = g:Lasttab | let g:Lasttab = tabpagenr()
+autocmd! TabClosed * let g:Lasttab = g:Lasttab_backup
+nnoremap tt :exe "tabn " . g:Lasttab<cr>
 
 "*****************************************************************************
 "" Visual Settings
@@ -163,13 +196,11 @@ endif
 nnoremap <silent> <leader>f :FZF -m<CR>
 nnoremap <silent> <Leader>/ :Find<CR>
 
-"" NERDTree
-nnoremap <leader>n :NERDTreeFocus<CR>
-nnoremap <C-n> :NERDTree<CR>
-nnoremap <C-t> :NERDTreeToggle<CR>
+"" NERDTree (but with tabs now)
+map <Leader>n <plug>NERDTreeTabsToggle<CR>
 
 "" Goyo
-map <C-f> :Goyo<CR>
+map <silent> <C-f> :Goyo<CR>
 
 "" COC
 let g:coc_global_extensions = ['coc-rust-analyzer', 'coc-python', 'coc-clangd']
