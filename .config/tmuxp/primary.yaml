@@ -8,9 +8,9 @@ windows:
     focus: true
     panes:
       - zsh
-  - window_name: "dalek"
+  - window_name: "gallifrey"
     panes:
-      - mosh wantguns@dalek.wantguns.dev
+      - ssh root@gallifrey.wantguns.dev -p 4081
     window_index: 8
   - window_name: "temp"
     start_directory: "/tmp"
