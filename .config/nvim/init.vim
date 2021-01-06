@@ -57,6 +57,9 @@ set fileencodings=utf-8
 " Relative Numbers gutter
 set relativenumber
 
+"" Enable mouse-mode (pls no judge)
+set mouse=a
+
 "" Fix backspace indent
 set backspace=indent,eol,start
 
