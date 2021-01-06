@@ -16,3 +16,10 @@
 
 [mergetool "vimdiff"]
 	path = nvim
+
+[sendemail]
+    smtpserver = /usr/bin/msmtp
+    smtpserveroption = -a
+    smtpserveroption = mail@wantguns.dev
+[http]
+	cookiefile = /home/wantguns/.gitcookies
