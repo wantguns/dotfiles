@@ -69,4 +69,4 @@ bell:
   animation: EaseOutExpo
   duration: 1 
 
-background_opacity: 1
+background_opacity: 0.95

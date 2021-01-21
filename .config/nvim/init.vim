@@ -144,6 +144,9 @@ vnoremap K :m '<-2<CR>gv=gv
 "" Copy/Paste/Cut
 set clipboard=unnamed,unnamedplus
 
+"" Transparent background
+hi Normal guibg=NONE ctermbg=NONE
+
 "*****************************************************************************
 "" Abbreviations
 "*****************************************************************************
