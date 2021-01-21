@@ -43,6 +43,8 @@ Plug 'junegunn/fzf.vim'
 Plug 'ayu-theme/ayu-vim'
 Plug 'tpope/vim-sensible'
 Plug 'jistr/vim-nerdtree-tabs'
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
+Plug 'vimwiki/vimwiki'
 
 
 call plug#end()
@@ -278,6 +280,17 @@ nmap <silent> gY <Plug>(coc-type-definition)
 
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
+
+nmap <leader>qf  <Plug>(coc-fix-current)
+
+
+"" VimWiki
+
+let wiki = {}
+let wiki.nested_syntaxes = {'py': 'python', 'c++': 'cpp', 'rust': 'rust', 'c': 'c'}
+let g:vimwiki_list = [wiki]
+
+""
 
 "*****************************************************************************
 "" Miscellaneous
