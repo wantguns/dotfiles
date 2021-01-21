@@ -55,6 +55,9 @@ autoload -Uz vcs_info
 precmd_vcs_info() { vcs_info }
 precmd_functions+=( precmd_vcs_info )
 setopt prompt_subst
+setopt inc_append_history
+setopt SHARE_HISTORY
+setopt EXTENDED_HISTORY
 promptinit
 PROMPT='%F{yellow}[%m] %B%F{cyan}%n%b% %F{magenta}${vcs_info_msg_0_}%(?.. %F{red}%?):%E ' # boldface username
 RPROMPT='%F{white}%~' # current directory
