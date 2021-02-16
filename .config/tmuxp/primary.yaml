@@ -8,6 +8,10 @@ windows:
     focus: true
     panes:
       - zsh
+  - window_name: "dalek"
+    panes:
+      - ssh wantguns@spy.seedhost.eu
+    window_index: 7
   - window_name: "gallifrey"
     panes:
       - ssh root@gallifrey.wantguns.dev -p 4081
