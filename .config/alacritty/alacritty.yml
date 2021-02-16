@@ -57,6 +57,8 @@ window:
   decorations: "none"
   startup_mode: Maximized
 
+  gtk_theme_variant: dark
+
 shell:
   program: /usr/bin/zsh
 
@@ -69,4 +71,4 @@ bell:
   animation: EaseOutExpo
   duration: 1 
 
-background_opacity: 0.95
+background_opacity: 1
