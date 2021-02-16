@@ -209,6 +209,12 @@ set wildmode=list:longest,list:full
 set wildignore+=*.o,*.obj,.git,*.rbc,*.pyc,__pycache__
 let $FZF_DEFAULT_COMMAND =  "find * -path '*/\.*' -prune -o -path 'node_modules/**' -prune -o -path 'target/**' -prune -o -path 'dist/**' -prune -o  -type f -print -o -type l -print 2> /dev/null"
 
+" Opening in buffers, tabs, etc
+let g:fzf_action = {
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-s': 'split',
+  \ 'ctrl-v': 'vsplit' }
+
 " ripgrep
 if executable('rg')
   let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --follow --glob "!.git/*"'
@@ -221,6 +227,10 @@ nnoremap <silent> <Leader>/ :Find<CR>
 
 "" NERDTree (but with tabs now)
 map <Leader>n <plug>NERDTreeTabsToggle<CR>
+let NERDTreeMinimalUI = 1
+let NERDTreeDirArrows = 1
+let g:NERDTreeMapOpenSplit = '-'
+let g:NERDTreeMapOpenVSplit = '_'
 
 "" Goyo
 map <silent> <C-f> :Goyo<CR>
@@ -281,7 +291,18 @@ nmap <silent> gY <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
+" Applying codeAction to the selected region.
+" Example: `<leader>aap` for current paragraph
+xmap <leader>a  <Plug>(coc-codeaction-selected)
+nmap <leader>a  <Plug>(coc-codeaction-selected)
+
+" Remap keys for applying codeAction to the current buffer.
+nmap <leader>ac  <Plug>(coc-codeaction)
+" Apply AutoFix to problem on the current line.
 nmap <leader>qf  <Plug>(coc-fix-current)
+" Prettier
+vmap <C-p>  <Plug>(coc-format-selected)
+nmap <C-p>  <Plug>(coc-format-selected)
 
 
 "" VimWiki
