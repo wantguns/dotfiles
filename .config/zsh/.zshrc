@@ -27,6 +27,10 @@ paste() {
     curl --data-binary @${file} https://bin.wantguns.dev | tee >(xclip -selection clipboard)
 }
 
+sharkbait() {
+    ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -l root -i ~/.ssh/sb/id_ed25519 lavender $@
+}
+
 # aliases
 alias grep='rg'
 alias vim='nvim'
@@ -40,6 +44,7 @@ alias tmux='tmux -f "$XDG_CONFIG_HOME"/tmux/tmux.conf' # y u do dis tmux
 alias config='/usr/bin/git --git-dir=$HOME/.dots/ --work-tree=$HOME'
 alias vm='sudo virsh'
 alias gallifrey='ssh root@g.wantguns.dev -p 4081'
+alias ssh='SSH_AUTH_SOCK= ssh -i ~/.ssh/gallifrey'
 
 # Command completion
 autoload -Uz compinit
@@ -56,8 +61,8 @@ precmd_vcs_info() { vcs_info }
 precmd_functions+=( precmd_vcs_info )
 setopt prompt_subst
 setopt inc_append_history
-setopt SHARE_HISTORY
-setopt EXTENDED_HISTORY
+# setopt SHARE_HISTORY
+# setopt EXTENDED_HISTORY
 promptinit
 PROMPT='%F{yellow}[%m] %B%F{cyan}%n%b% %F{magenta}${vcs_info_msg_0_}%(?.. %F{red}%?):%E ' # boldface username
 RPROMPT='%F{white}%~' # current directory
