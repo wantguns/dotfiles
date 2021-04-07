@@ -13,3 +13,6 @@
 [submodule "/home/wantguns/.config/p10k"]
 	path = /home/wantguns/.config/p10k
 	url = https://github.com/romkatv/powerlevel10k.git
+[submodule ".config/p10k"]
+	path = .config/p10k
+	url = https://github.com/romkatv/powerlevel10k.git
