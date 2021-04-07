@@ -1,6 +1,10 @@
 # ABOUT: ZSHRC
 # AUTHOR: WantGuns <mail@wantguns.dev>
 
+# Sane Defaults
+autoload -U colors && colors	# Load colors
+setopt interactivecomments      # Use comments
+
 # Persist History
 HISTFILE=~/.local/zsh/zsh_history
 HISTSIZE=10000
@@ -46,13 +50,20 @@ alias vm='sudo virsh'
 alias gallifrey='ssh root@g.wantguns.dev -p 4081'
 alias ssh='SSH_AUTH_SOCK= ssh -i ~/.ssh/gallifrey'
 
+
 # Command completion
 autoload -Uz compinit
-compinit
 zstyle ':completion:*' menu select
+compinit
+zmodload zsh/complist
+_comp_options+=(globdots)		# Include hidden files.
 
 # Source Keybindings
 source $ZDOTDIR/keybindings.zsh
+
+# Edit line in vim with ctrl-e:
+autoload edit-command-line; zle -N edit-command-line
+bindkey '^e' edit-command-line
 
 # Prompt
 autoload -Uz promptinit
