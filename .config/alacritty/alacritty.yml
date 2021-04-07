@@ -37,15 +37,15 @@ colors:
 
 font:
   normal:
-    family: FiraCode Nerd Font Mono
-    style: Medium
+    family: Iosevka SS05
+    style: Extended
   bold:
-    family: FiraCode Nerd Font Mono
-    style: Bold
+    family: Iosevka SS05
+    style: Bold Extended
   italic:
-    family: FiraCode Nerd Font Mono
-    style: Italic
-  size: 11.5
+    family: Iosevka SS05
+    style: Extended Italic
+  size: 14
 
 window:
   padding:
