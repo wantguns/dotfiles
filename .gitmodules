@@ -10,3 +10,6 @@
 [submodule ".config/zsh/plugins/zsh-sudo"]
 	path = .config/zsh/plugins/zsh-sudo
 	url = https://github.com/hcgraf/zsh-sudo
+[submodule "/home/wantguns/.config/p10k"]
+	path = /home/wantguns/.config/p10k
+	url = https://github.com/romkatv/powerlevel10k.git
