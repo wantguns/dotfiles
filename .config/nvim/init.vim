@@ -38,6 +38,7 @@ Plug 'Raimondi/delimitMate'
 Plug 'sheerun/vim-polyglot'
 Plug 'junegunn/goyo.vim'
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'jabirali/vim-tmux-yank'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'ayu-theme/ayu-vim'
