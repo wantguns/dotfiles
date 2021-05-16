@@ -1,0 +1,48 @@
+# 
+# aerc default styleset
+# 
+# This styleset uses the terminal defaults as its base.
+# More information on how to configure the styleset can be found in
+# the aerc-styleset(7) manpage. Please read the manual before
+# modifying or creating a styleset.
+
+# Views
+title.fg=#F87060
+header.bold=true
+header.fg=#F87060
+
+# Spool
+tab.fg=#ff7f11
+
+*error.bold=true
+error.fg=#FF3333
+warning.fg=#ff7f11
+success.fg=#B8CC52
+
+statusline*.default=true
+statusline_error.fg=#FF3333
+statusline_error.reverse=true
+
+# Msglist
+msglist_unread.bold=true
+msglist_read.fg=#5C6773
+msglist_unread.fg=#95E6CB
+msglist_deleted.fg=gray
+msglist_default.fg=#36A3D9
+
+# Dirlist
+dirlist_default.fg=#F87060
+
+# Spinner
+spinner.fg=#3E4B59
+
+# Stack (TODO: change for contrasts)
+stack.bg=#0F1419
+stack.fg=#0F1419
+
+# Selected
+*.selected.reverse=toggle
+selector_focused.bg=#F9E0D9
+selector_focused.reverse=true
+selector_chooser.bg=#F9E0D9
+selector_chooser.bold=true
