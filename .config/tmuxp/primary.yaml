@@ -3,7 +3,7 @@ start_directory: "/home/wantguns"
 windows:
   - window_name: "mail"
     panes:
-      - neomutt
+      - aerc
   - window_name: ""
     focus: true
     panes:
