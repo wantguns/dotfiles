@@ -37,15 +37,14 @@ colors:
 
 font:
   normal:
-    family: Iosevka SS05
-    style: Extended
+    family: Iosevka Term SS05
   bold:
-    family: Iosevka SS05
-    style: Bold Extended
+    family: Iosevka Term SS05
+    style: Bold
   italic:
-    family: Iosevka SS05
-    style: Extended Italic
-  size: 14
+    family: Iosevka Term SS05
+    style: Italic
+  size: 15
 
 window:
   padding:
