@@ -51,7 +51,13 @@ source $ZDOTDIR/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source $ZDOTDIR/plugins/zsh-sudo/sudo.plugin.zsh
 
 # FZF
-export FZF_DEFAULT_OPTS="--layout=reverse --height 50%"
+export FZF_DEFAULT_OPTS='
+    --layout=reverse --height 50%
+    --color=fg:#e6e1cf,bg:#0f1419,hl:#36a3d9
+    --color=fg+:#e6e1cf,bg+:#0f1419,hl+:#95e6cb
+    --color=info:#C7C7C7,prompt:#3e4b59,pointer:#f29718
+    --color=marker:#b8cc52,spinner:#3e4b59,header:#ffee99
+'
 
 # exports
 export EDITOR=nvim
@@ -73,7 +79,7 @@ sharkbait() { ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -l
 
 f() {
     # fuzy find a file, and pipe it into editor
-    find ~/.local/scripts ~/.config | fzf | xargs -r "$EDITOR"
+    find ~/.local/scripts ~/.config | fzf --preview 'bat --color=always --style=numbers --line-range=:500 {}' | xargs -r "$EDITOR"
 }
 
 # aliases
@@ -89,7 +95,23 @@ alias tmux='tmux -f "$XDG_CONFIG_HOME"/tmux/tmux.conf' # y u do dis tmux
 alias config='/usr/bin/git --git-dir=$HOME/.dots/ --work-tree=$HOME'
 alias vm='sudo virsh'
 alias gallifrey='ssh root@g.wantguns.dev -p 4081'
-alias ssh='SSH_AUTH_SOCK= ssh -i ~/.ssh/gallifrey'
+# alias ssh='SSH_AUTH_SOCK= ssh -i ~/.ssh/gallifrey'
+
+# Less Colors
+export LESS_TERMCAP_mb=$'\e[6m'             # begin blinking
+export LESS_TERMCAP_md=$'\e[34m'            # begin bold
+export LESS_TERMCAP_us=$'\e[4;32m'          # begin underline
+export LESS_TERMCAP_so=$'\e[01;33;03;40m'   # begin standout-mode - info box
+export LESS_TERMCAP_me=$'\e[m'              # end mode
+export LESS_TERMCAP_ue=$'\e[m'              # end underline
+export LESS_TERMCAP_se=$'\e[m'              # end standout-mode
+
+# Set man-page width
+export MANWIDTH=80
+export MANOPT='--nh --nj'
+
+# Use bat for coloured man pages
+export MANPAGER="sh -c 'col -bx | bat -l man -p --theme gruvbox-dark'"
 
 # Prompt
 source ~/.config/p10k/powerlevel10k.zsh-theme
