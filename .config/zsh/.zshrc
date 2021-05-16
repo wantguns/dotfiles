@@ -7,25 +7,43 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 # Sane Defaults
-autoload -U colors && colors	# Load colors
-setopt interactivecomments      # Use comments
-# Persist History
-HISTFILE=~/.local/zsh/zsh_history
-HISTSIZE=10000
-SAVEHIST=10000
-setopt appendhistory
-# Command completion
-autoload -Uz compinit
+
+# Completions
+autoload -U compinit
+compinit -C
+
+# Arrow key menu for completions
 zstyle ':completion:*' menu select
-compinit
-zmodload zsh/complist
-_comp_options+=(globdots)		# Include hidden files.
+
+# Case-insensitive (all),partial-word and then substring completion
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+
+# Include hidden files
+setopt globdots
+
+# Autocomplete command line switches for aliases
+setopt completealiases
+
+# History
+export HISTSIZE=10000
+export SAVEHIST=10000
+export HISTFILE=~/.local/zsh/zsh_history
+setopt inc_append_history
+bindkey "^[[A" history-beginning-search-backward
+bindkey "^[[B" history-beginning-search-forward
+
+# Automatically use cd when paths are entered without cd
+setopt autocd
+
+# Understand comments
+setopt interactivecomments
+
 # Source Keybindings
 source $ZDOTDIR/keybindings.zsh
+
 # Edit line in vim with ctrl-e:
 autoload edit-command-line; zle -N edit-command-line
 bindkey '^e' edit-command-line
-
 
 # Plugins
 source $ZDOTDIR/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
