@@ -2,8 +2,12 @@
     email = mail@wantguns.dev
     name = Gunwant Jain
 
+[credential]
+	helper = /usr/lib/git-core/git-credential-libsecret
+
 [commit]
-    template = "/home/wantguns/.config/git/message"
+    template = "~/.config/git/message"
+    gpgsign = true
 
 [core]
     editor = nvim
@@ -18,8 +22,6 @@
 	path = nvim
 
 [sendemail]
-    smtpserver = /usr/bin/msmtp
-    smtpserveroption = -a
-    smtpserveroption = mail@wantguns.dev
-[http]
-	cookiefile = /home/wantguns/.gitcookies
+    smtpserver = smtp.migadu.com
+    smtpuser = mail@wantguns.dev
+    smtpencryption = ssl
