@@ -65,7 +65,7 @@ export PATH="$PATH:$HOME/.local/scripts"
 export PATH="$PATH:$HOME/.local/bin"
 
 # use dialog boxes with cron and at 
-xhost local:wantguns > /dev/null
+# xhost local:wantguns > /dev/null
 
 # helper functions
 mcd() { mkdir -p "$1"; cd "$1" }
@@ -112,6 +112,9 @@ export MANOPT='--nh --nj'
 
 # Use bat for coloured man pages
 export MANPAGER="sh -c 'col -bx | bat -l man -p --theme gruvbox-dark'"
+
+# GPG: switch to basics for Ad-Hoc purposes
+export GPG_TTY=$(tty)
 
 # Prompt
 source ~/.config/p10k/powerlevel10k.zsh-theme
