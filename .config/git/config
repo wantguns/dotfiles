@@ -7,7 +7,6 @@
 
 [commit]
     template = "~/.config/git/message"
-    gpgsign = true
 
 [core]
     editor = nvim
