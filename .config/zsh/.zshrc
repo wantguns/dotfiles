@@ -70,7 +70,26 @@ export PATH="$PATH:$HOME/.local/bin"
 # helper functions
 mcd() { mkdir -p "$1"; cd "$1" }
 
+paste_beta() {
+    curl \
+        -Ls -o /dev/null \
+        -w %{url_effective} \
+        --data-binary @${1:-/dev/stdin} \
+        https://betabin.wantguns.dev | tee >(xclip -selection clipboard)
+}
+
 paste() {
+    curl --request POST \
+              -Ls -o /dev/null \
+              -w %{url_effective} \
+              --data-binary @${1:-/dev/stdin} \
+              --url https://betabin.wantguns.dev 
+
+    # echo "$redir_link" | tee >(xclip -selection clipboard)
+}
+
+paste_old() {
+    # edit some stuff
     local file=${1:-/dev/stdin}
     curl --data-binary @${file} https://bin.wantguns.dev | tee >(xclip -selection clipboard)
 }
@@ -83,7 +102,7 @@ f() {
 }
 
 # aliases
-alias grep='rg'
+# alias grep='rg'
 alias vim='nvim'
 alias cfgz='nvim ~/.config/zsh/.zshrc'
 alias cfgt='nvim ~/.config/tmux/tmux.conf'
@@ -115,6 +134,11 @@ export MANPAGER="sh -c 'col -bx | bat -l man -p --theme gruvbox-dark'"
 
 # GPG: switch to basics for Ad-Hoc purposes
 export GPG_TTY=$(tty)
+
+# Android Dev
+CCACHE_EXEC=/usr/bin/ccache
+USE_CCACHE=1
+CCACHE_COMPRESS=1
 
 # Prompt
 source ~/.config/p10k/powerlevel10k.zsh-theme
