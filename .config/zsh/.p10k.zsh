@@ -45,7 +45,7 @@
 
   # Basic style options that define the overall look of your prompt. You probably don't want to
   # change them.
-  typeset -g POWERLEVEL9K_BACKGROUND=0                            # transparent background
+  typeset -g POWERLEVEL9K_BACKGROUND=                            # transparent background
   typeset -g POWERLEVEL9K_{LEFT,RIGHT}_{LEFT,RIGHT}_WHITESPACE=  # no surrounding whitespace
   typeset -g POWERLEVEL9K_{LEFT,RIGHT}_SUBSEGMENT_SEPARATOR=' '  # separate segments with a space
   typeset -g POWERLEVEL9K_{LEFT,RIGHT}_SEGMENT_SEPARATOR=        # no end-of-line symbol
