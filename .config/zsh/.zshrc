@@ -97,8 +97,13 @@ paste_old() {
 sharkbait() { ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -l root -i ~/.ssh/sb/id_ed25519 lavender $@ }
 
 f() {
-    # fuzy find a file, and pipe it into editor
+    # fzf into .config
     find ~/.local/scripts ~/.config | fzf --preview 'bat --color=always --style=numbers --line-range=:500 {}' | xargs -r "$EDITOR"
+}
+
+d() {
+    # fzf into ~/dev
+    cd $(find ~/dev -type d | fzf --preview 'bat --color=always --style=numbers --line-range=:500 {}')
 }
 
 # aliases
