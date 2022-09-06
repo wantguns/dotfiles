@@ -20,7 +20,6 @@ require('packer').startup(function(use)
   use 'williamboman/nvim-lsp-installer'
   use { 'hrsh7th/nvim-cmp', requires = { 'hrsh7th/cmp-nvim-lsp' } }
   use { 'L3MON4D3/LuaSnip', requires = { 'saadparwaiz1/cmp_luasnip' } }
-  -- use 'ayu-theme/ayu-vim'
   use 'nvim-lualine/lualine.nvim'
   use 'tpope/vim-sleuth'
   use { 'nvim-telescope/telescope.nvim', requires = { 'nvim-lua/plenary.nvim' } }
@@ -31,6 +30,8 @@ require('packer').startup(function(use)
   use 'jdsimcoe/hyper.vim'
   use 'bluz71/vim-moonfly-colors'
   use 'Shatur/neovim-ayu'
+  use 'casonadams/walh'
+  use 'dhruvasagar/vim-table-mode'
 
   use {
     'folke/which-key.nvim',
@@ -63,6 +64,12 @@ require('packer').startup(function(use)
 
   -- Fuzzy Finder Algorithm which requires local dependencies to be built. Only load if `make` is available
   use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make', cond = vim.fn.executable "make" == 1 }
+
+  use {
+    "luukvbaal/stabilize.nvim",
+    config = function() require("stabilize").setup() end
+  }
+
 
   if is_bootstrap then
     require('packer').sync()
@@ -118,8 +125,10 @@ vim.o.updatetime = 250
 vim.wo.signcolumn = 'yes'
 
 -- Set colorscheme
-vim.o.termguicolors = true
-vim.cmd [[colorscheme ayu-dark]]
+-- vim.o.notermguicolors = true
+vim.cmd [[set notermguicolors]]
+-- vim.cmd [[colorscheme ayu-dark]]
+vim.cmd [[colorscheme walh-gruvbox]]
 
 -- Tabs
 vim.o.tabstop = 4
@@ -162,6 +171,16 @@ vim.keymap.set('v', 'K', ':m \'<-2<CR>gv=gv', { noremap = true })
 
 -- Copy/Paste/Cut
 vim.o.clipboard = 'unnamed,unnamedplus'
+
+-- store contents in blackhole when "dd" is invoked on blanklines
+local function delete_special()
+  if vim.api.nvim_get_current_line():match("^%s*$") then
+    return "\"_dd"
+  else
+    return "dd"
+  end
+end
+vim.keymap.set("n", "dd", delete_special, { noremap = true, expr = true })
 
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
@@ -316,7 +335,7 @@ vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { de
 -- See `:help nvim-treesitter`
 require('nvim-treesitter.configs').setup {
   -- Add languages to be installed here that you want installed for treesitter
-  ensure_installed = { 'lua', 'typescript', 'rust', 'go', 'python' },
+  ensure_installed = "all",
 
   highlight = { enable = true },
   indent = { enable = true },
@@ -427,7 +446,7 @@ end
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 -- Enable the following language servers
-local servers = { 'clangd', 'rust_analyzer', 'pyright', 'tsserver', 'sumneko_lua', 'gopls', 'bashls' }
+local servers = { 'clangd', 'rust_analyzer', 'pyright', 'tsserver', 'sumneko_lua', 'gopls', 'bashls', 'ansiblels', 'yamlls', 'jdtls' }
 
 -- Ensure the servers above are installed
 require('nvim-lsp-installer').setup {
