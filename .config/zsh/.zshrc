@@ -53,10 +53,6 @@ source $ZDOTDIR/plugins/zsh-sudo/sudo.plugin.zsh
 # FZF
 export FZF_DEFAULT_OPTS='
     --layout=reverse --height 50%
-    --color=fg:#e6e1cf,bg:#0f1419,hl:#36a3d9
-    --color=fg+:#e6e1cf,bg+:#0f1419,hl+:#95e6cb
-    --color=info:#C7C7C7,prompt:#3e4b59,pointer:#f29718
-    --color=marker:#b8cc52,spinner:#3e4b59,header:#ffee99
 '
 
 # exports
@@ -103,7 +99,7 @@ f() {
 
 d() {
     # fzf into ~/dev
-    cd $(find ~/dev -type d | fzf --preview 'bat --color=always --style=numbers --line-range=:500 {}')
+    cd $(find -L ~/dev -type d 2>/dev/null | fzf --preview 'bat --color=always --style=numbers --line-range=:500 {}')
 }
 
 # aliases

@@ -32,6 +32,9 @@ require('packer').startup(function(use)
   use 'Shatur/neovim-ayu'
   use 'casonadams/walh'
   use 'dhruvasagar/vim-table-mode'
+  use 'kyazdani42/nvim-web-devicons'
+  use 'sindrets/diffview.nvim'
+  use 'ibhagwan/smartyank.nvim'
 
   use {
     'folke/which-key.nvim',
@@ -206,7 +209,7 @@ vim.cmd('cnoreabbrev Q q')
 -- See `:help lualine.txt`
 require('lualine').setup {
   options = {
-    icons_enabled = false,
+    icons_enabled = true,
     theme = 'ayu',
     component_separators = '|',
     section_separators = '',
@@ -230,7 +233,7 @@ require('gitsigns').setup {
 
 -- BarBar
 require'bufferline'.setup {
-    icons = false,
+    icons = true,
 }
 
 local nvim_tree_events = require('nvim-tree.events')
