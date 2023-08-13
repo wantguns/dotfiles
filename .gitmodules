@@ -16,3 +16,6 @@
 [submodule ".config/p10k"]
 	path = .config/p10k
 	url = https://github.com/romkatv/powerlevel10k.git
+[submodule "/Users/wantguns/.config/zsh/plugins/fzf-zsh-completions"]
+	path = /Users/wantguns/.config/zsh/plugins/fzf-zsh-completions
+	url = https://github.com/chitoku-k/fzf-zsh-completions

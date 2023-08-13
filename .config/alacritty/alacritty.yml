@@ -2,59 +2,208 @@
 # AUTHOR: Gunwant Jain <mail@wantguns.dev>
 
 colors:
-    # Default colors
-    primary:
-      background: '0x000000'
-      foreground: '0xeaeaea'
+  # Default
+  primary: 
+    background: "#0F1419"
+    foreground: "#E6E1CF"
 
-    # Normal colors
-    normal:
-      black:   '0x000000'
-      red:     '0xd54e53'
-      green:   '0xb9ca4a'
-      yellow:  '0xe6c547'
-      blue:    '0x7aa6da'
-      magenta: '0xc397d8'
-      cyan:    '0x70c0ba'
-      white:   '0x424242'
+  # Cursor Color
+  cursor:
+    text: "#3E4B59"
+    cursor: "#5C6773"
 
-    # Bright colors
-    bright:
-      black:   '0x666666'
-      red:     '0xff3334'
-      green:   '0x9ec400'
-      yellow:  '0xe7c547'
-      blue:    '0x7aa6da'
-      magenta: '0xb77ee0'
-      cyan:    '0x54ced6'
-      white:   '0xeaeaea'
+  # Normal (0 - 7)
+  normal:
+    black: '#0F1419'
+    red: '#F07178'
+    green: "#B8CC52"
+    yellow: "#F29718"
+    blue: "#36A3D9"
+    magenta: "#FFEE99"
+    cyan: "#95E6CB"
+    white: '#C7C7C7'
+    
+  # Bright (8 - 16)
+  bright:
+    black: "#3E4B59"
+    red: "#FF3333"
+    green: "#B8CC52"
+    yellow: "#F29718"
+    blue: "#36A3D9"
+    magenta: "#FFEE99"
+    cyan: "#95E6CB"
+    white: "#5C6773"
+
+# Kanagawa Dragon Alacritty Colors
+colors:
+  primary:
+    background: '#181616'
+    foreground: '#c5c9c5'
+
+  normal:
+    black:   '#0d0c0c'
+    red:     '#c4746e'
+    green:   '#8a9a7b'
+    yellow:  '#c4b28a'
+    blue:    '#8ba4b0'
+    magenta: '#a292a3'
+    cyan:    '#8ea4a2'
+    white:   '#C8C093'
+
+  bright:
+    black:   '#a6a69c'
+    red:     '#E46876'
+    green:   '#87a987'
+    yellow:  '#E6C384'
+    blue:    '#7FB4CA'
+    magenta: '#938AA9'
+    cyan:    '#7AA89F'
+    white:   '#c5c9c5'
+
+  selection:
+    background: '#2D4F67'
+    foreground: '#C8C093'
+
+  indexed_colors:
+    - { index: 16, color: '#b6927b' }
+    - { index: 17, color: '#b98d7b' }
+
+
+# Moonfly colors
+draw_bold_text_with_bright_colors: true
+
+# Colors
+colors:
+  # Default colors
+  primary:
+    background:        '#080808'
+    foreground:        '#bdbdbd'
+    bright_foreground: '#eeeeee'
+
+  # Cursor colors
+  cursor:
+    text:   '#080808'
+    cursor: '#9e9e9e'
+
+  # Selection colors
+  selection:
+    text:       '#080808'
+    background: '#b2ceee'
+
+  # Normal colors
+  normal:
+    black:   '#323437'
+    red:     '#ff5454'
+    green:   '#8cc85f'
+    yellow:  '#e3c78a'
+    blue:    '#80a0ff'
+    magenta: '#cf87e8'
+    cyan:    '#79dac8'
+    white:   '#c6c6c6'
+
+  # Bright colors
+  bright:
+    black:   '#949494'
+    red:     '#ff5189'
+    green:   '#36c692'
+    yellow:  '#c2c292'
+    blue:    '#74b2ff'
+    magenta: '#ae81ff'
+    cyan:    '#85dc85'
+    white:   '#e4e4e4'
+
+# colors:
+#   # tabs             : '#F9C5D1'
+#   # tabs-active      : '#FC7428'
+#   primary:
+#     background       : '#0F0D0E'
+#     foreground       : '#F9F4DA'
+#
+#   cursor:
+#     cursor           : '#F38BA3'
+#
+#   normal:
+#     black            : '#231F20'
+#     blue             : '#006EE6'
+#     cyan             : '#88DAF2'
+#     green            : '#0BA95B'
+#     magenta          : '#7B5EA7'
+#     red              : '#ED203D'
+#     white            : '#F1F1F1'
+#     yellow           : '#FCBA28'
+#
+#   dim:
+#     black        : '#1C191A'
+#     blue         : '#0E91B7'
+#     cyan         : '#93D4E7'
+#     foreground   : '#ECDC8A'
+#     green        : '#098749'
+#     magenta      : '#624A87'
+#     red          : '#C7102A'
+#     white        : '#C1C1C1'
+#     yellow       : '#E6A003'
+#
+#   bright:
+#     black      : '#2C2728'
+#     blue       : '#44C9F0'
+#     cyan       : '#7BE1FF'
+#     foreground : '#F2EFE2'
+#     green      : '#0ED372'
+#     magenta    : '#9E88BE'
+#     red        : '#F25E73'
+#     white      : '#FFFFFF'
+#     yellow     : '#FDF170'
 
 font:
+  # normal:
+  #   family: FiraCode Nerd Font Mono
+  #   style: Regular
+  # bold:
+  #   family: FiraCode Nerd Font Mono
+  #   style: Bold
+  # italic:
+  #   family: FiraCode Nerd Font Mono
+  #   style: Regular
+  # normal:
+  #   family: SF Mono
+  #   style: Regular
+  # bold:
+  #   family: SF Mono
+  #   style: Bold
+  # italic:
+  #   family: SF Mono
+  #   style: Regular Italic
   normal:
-    family: Iosevka Term SS05
+    family: Iosevka Nerd Font
+    style: Regular
   bold:
-    family: Iosevka Term SS05
+    family: Iosevka Nerd Font
     style: Bold
   italic:
-    family: Iosevka Term SS05
+    family: Iosevka Nerd Font
     style: Italic
-  size: 13.5
-  builtin_box_drawing: true
+  size: 15.5
+  offset:
+    x: 0    # For letter spacing.
+    y: 4    # For line spacing.
+  glyph_offset:
+    x: 0
+    y: 3
+  builtin_box_drawing: false
+
+draw_bold_text_with_bright_colors: false
 
 window:
   padding:
     x: 5
-    y: 5
+    y: 3
   
   # For Wayland on Gnome. 
   # Know what you're doing if you copy this
   decorations: none
   startup_mode: Maximized
 
-  gtk_theme_variant: dark
-
-shell:
-  program: /usr/bin/zsh
+  decoreations_theme_variant: dark
 
 mouse_bindings:
   - { mouse: Middle, action: PasteSelection }
