@@ -1,0 +1,588 @@
+k9s:
+  refreshRate: 2
+  maxConnRetry: 5
+  enableMouse: false
+  headless: false
+  logoless: false
+  crumbsless: false
+  readOnly: false
+  noExitOnCtrlC: false
+  noIcons: false
+  logger:
+    tail: 5000
+    buffer: 5000
+    sinceSeconds: 60
+    fullScreenLogs: false
+    textWrap: false
+    showTime: false
+  currentContext: master
+  currentCluster: arn:aws:eks:ap-south-1:944908621410:cluster/master-ap-south-1
+  clusters:
+    arn:aws:eks:ap-south-1:944908621410:cluster/central-sre-k8s:
+      namespace:
+        active: all
+        lockFavorites: false
+        favorites:
+        - newrelic
+        - edge-stack
+        - all
+        - argocd
+        - argo
+        - default
+      view:
+        active: pod
+      featureGates:
+        nodeShell: false
+      shellPod:
+        image: busybox:1.35.0
+        command: []
+        args: []
+        namespace: default
+        limits:
+          cpu: 100m
+          memory: 100Mi
+      portForwardAddress: localhost
+    arn:aws:eks:ap-south-1:944908621410:cluster/dev-ap-south-1:
+      namespace:
+        active: all
+        lockFavorites: false
+        favorites:
+        - coturn
+        - default
+        - kube-system
+        - castai-agent
+        - kubecost
+        - argocd
+        - newrelic
+        - all
+        - edge-stack
+      view:
+        active: pod
+      featureGates:
+        nodeShell: false
+      shellPod:
+        image: busybox:1.35.0
+        command: []
+        args: []
+        namespace: default
+        limits:
+          cpu: 100m
+          memory: 100Mi
+      portForwardAddress: localhost
+    arn:aws:eks:ap-south-1:944908621410:cluster/master-ap-south-1:
+      namespace:
+        active: all
+        lockFavorites: false
+        favorites:
+        - all
+        - default
+      view:
+        active: nodes
+      featureGates:
+        nodeShell: false
+      shellPod:
+        image: busybox:1.35.0
+        command: []
+        args: []
+        namespace: default
+        limits:
+          cpu: 100m
+          memory: 100Mi
+      portForwardAddress: localhost
+    arn:aws:eks:ap-south-1:944908621410:cluster/preprod-ap-south-1:
+      namespace:
+        active: default
+        lockFavorites: false
+        favorites:
+        - castai-agent
+        - all
+        - default
+      view:
+        active: pod
+      featureGates:
+        nodeShell: false
+      shellPod:
+        image: busybox:1.35.0
+        command: []
+        args: []
+        namespace: default
+        limits:
+          cpu: 100m
+          memory: 100Mi
+      portForwardAddress: localhost
+    arn:aws:eks:ap-south-1:944908621410:cluster/staging-ap-south-1:
+      namespace:
+        active: default
+        lockFavorites: false
+        favorites:
+        - default
+      view:
+        active: pod
+      featureGates:
+        nodeShell: false
+      shellPod:
+        image: busybox:1.35.0
+        command: []
+        args: []
+        namespace: default
+        limits:
+          cpu: 100m
+          memory: 100Mi
+      portForwardAddress: localhost
+    arn:aws:eks:ap-southeast-1:944908621410:cluster/dev-sin-aws:
+      namespace:
+        active: all
+        lockFavorites: false
+        favorites:
+        - default
+      view:
+        active: pod
+      featureGates:
+        nodeShell: false
+      shellPod:
+        image: busybox:1.35.0
+        command: []
+        args: []
+        namespace: default
+        limits:
+          cpu: 100m
+          memory: 100Mi
+      portForwardAddress: localhost
+    arn:aws:eks:ap-southeast-1:944908621410:cluster/dev-singapore-ap-southeast-1:
+      namespace:
+        active: all
+        lockFavorites: false
+        favorites:
+        - coturn
+        - monitoring
+        - all
+        - edge-stack
+        - default
+      view:
+        active: pod
+      featureGates:
+        nodeShell: false
+      shellPod:
+        image: busybox:1.35.0
+        command: []
+        args: []
+        namespace: default
+        limits:
+          cpu: 100m
+          memory: 100Mi
+      portForwardAddress: localhost
+    arn:aws:eks:ap-southeast-1:944908621410:cluster/master-ap-southeast-1:
+      namespace:
+        active: all
+        lockFavorites: false
+        favorites:
+        - default
+      view:
+        active: po
+      featureGates:
+        nodeShell: false
+      shellPod:
+        image: busybox:1.35.0
+        command: []
+        args: []
+        namespace: default
+        limits:
+          cpu: 100m
+          memory: 100Mi
+      portForwardAddress: localhost
+    arn:aws:eks:ap-southeast-1:944908621410:cluster/master-singapore-ap-southeast-1:
+      namespace:
+        active: default
+        lockFavorites: false
+        favorites:
+        - default
+      view:
+        active: pod
+      featureGates:
+        nodeShell: false
+      shellPod:
+        image: busybox:1.35.0
+        command: []
+        args: []
+        namespace: default
+        limits:
+          cpu: 100m
+          memory: 100Mi
+      portForwardAddress: localhost
+    arn:aws:eks:ap-southeast-1:944908621410:cluster/staging-singapore-ap-southeast-1:
+      namespace:
+        active: default
+        lockFavorites: false
+        favorites:
+        - default
+      view:
+        active: pod
+      featureGates:
+        nodeShell: false
+      shellPod:
+        image: busybox:1.35.0
+        command: []
+        args: []
+        namespace: default
+        limits:
+          cpu: 100m
+          memory: 100Mi
+      portForwardAddress: localhost
+    arn:aws:eks:eu-central-1:944908621410:cluster/master-fr-eu-central-1:
+      namespace:
+        active: default
+        lockFavorites: false
+        favorites:
+        - default
+      view:
+        active: pod
+      featureGates:
+        nodeShell: false
+      shellPod:
+        image: busybox:1.35.0
+        command: []
+        args: []
+        namespace: default
+        limits:
+          cpu: 100m
+          memory: 100Mi
+      portForwardAddress: localhost
+    arn:aws:eks:us-east-1:944908621410:cluster/master-us-east-1:
+      namespace:
+        active: default
+        lockFavorites: false
+        favorites:
+        - all
+        - default
+      view:
+        active: pod
+      featureGates:
+        nodeShell: false
+      shellPod:
+        image: busybox:1.35.0
+        command: []
+        args: []
+        namespace: default
+        limits:
+          cpu: 100m
+          memory: 100Mi
+      portForwardAddress: localhost
+    arn:aws:eks:us-east-1:944908621410:cluster/master-virginia-us-east-1:
+      namespace:
+        active: default
+        lockFavorites: false
+        favorites:
+        - default
+      view:
+        active: pod
+      featureGates:
+        nodeShell: false
+      shellPod:
+        image: busybox:1.35.0
+        command: []
+        args: []
+        namespace: default
+        limits:
+          cpu: 100m
+          memory: 100Mi
+      portForwardAddress: localhost
+    arn:aws:eks:us-east-1:944908621410:cluster/preprod-virginia-us-east-1:
+      namespace:
+        active: all
+        lockFavorites: false
+        favorites:
+        - monitoring
+        - all
+        - default
+      view:
+        active: pod
+      featureGates:
+        nodeShell: false
+      shellPod:
+        image: busybox:1.35.0
+        command: []
+        args: []
+        namespace: default
+        limits:
+          cpu: 100m
+          memory: 100Mi
+      portForwardAddress: localhost
+    gke_long-victor-290219_asia-south1-a_deployte-gke:
+      namespace:
+        active: ramyak-full
+        lockFavorites: false
+        favorites:
+        - ramyak-full
+        - deployte
+        - cert-manager
+        - all
+        - default
+      view:
+        active: host
+      featureGates:
+        nodeShell: false
+      shellPod:
+        image: busybox:1.35.0
+        command: []
+        args: []
+        namespace: default
+        limits:
+          cpu: 100m
+          memory: 100Mi
+      portForwardAddress: localhost
+    gke_prj-srv-prod-01_asia-south1_prod-bom-gcp-recording:
+      namespace:
+        active: all
+        lockFavorites: false
+        favorites:
+        - all
+        - default
+      view:
+        active: pod
+      featureGates:
+        nodeShell: false
+      shellPod:
+        image: busybox:1.35.0
+        command: []
+        args: []
+        namespace: default
+        limits:
+          cpu: 100m
+          memory: 100Mi
+      portForwardAddress: localhost
+    gke_prj-srv-prod-01_asia-south1_prod-bom-gcp-recording-02:
+      namespace:
+        active: default
+        lockFavorites: false
+        favorites:
+        - newrelic
+        - all
+        - default
+      view:
+        active: pod
+      featureGates:
+        nodeShell: false
+      shellPod:
+        image: busybox:1.35.0
+        command: []
+        args: []
+        namespace: default
+        limits:
+          cpu: 100m
+          memory: 100Mi
+      portForwardAddress: localhost
+    gke_prj-srv-prod-01_asia-south1_prod-media-regional-as1:
+      namespace:
+        active: default
+        lockFavorites: false
+        favorites:
+        - kube-system
+        - monitoring
+        - all
+        - default
+      view:
+        active: pod
+      featureGates:
+        nodeShell: false
+      shellPod:
+        image: busybox:1.35.0
+        command: []
+        args: []
+        namespace: default
+        limits:
+          cpu: 100m
+          memory: 100Mi
+      portForwardAddress: localhost
+    gke_prj-srv-prod-01_asia-south1_prod-media-regional-as1-02:
+      namespace:
+        active: all
+        lockFavorites: false
+        favorites:
+        - cert-manager
+        - monitoring
+        - kube-system
+        - newrelic
+        - all
+        - default
+      view:
+        active: nodes
+      featureGates:
+        nodeShell: false
+      shellPod:
+        image: busybox:1.35.0
+        command: []
+        args: []
+        namespace: default
+        limits:
+          cpu: 100m
+          memory: 100Mi
+      portForwardAddress: localhost
+    gke_prj-srv-prod-01_asia-south1_prod-recording-remote-browser-as1:
+      namespace:
+        active: all
+        lockFavorites: false
+        favorites:
+        - all
+        - default
+      view:
+        active: pod
+      featureGates:
+        nodeShell: false
+      shellPod:
+        image: busybox:1.35.0
+        command: []
+        args: []
+        namespace: default
+        limits:
+          cpu: 100m
+          memory: 100Mi
+      portForwardAddress: localhost
+    gke_prj-srv-stage-01_asia-south1_stage-media-regional-as1:
+      namespace:
+        active: default
+        lockFavorites: false
+        favorites:
+        - all
+        - default
+      view:
+        active: ctx
+      featureGates:
+        nodeShell: false
+      shellPod:
+        image: busybox:1.35.0
+        command: []
+        args: []
+        namespace: default
+        limits:
+          cpu: 100m
+          memory: 100Mi
+      portForwardAddress: localhost
+    gke_prj-srv-stage-01_asia-south1_stage-media-regional-as1-02:
+      namespace:
+        active: default
+        lockFavorites: false
+        favorites:
+        - monitoring
+        - edge-stack
+        - newrelic
+        - gmp-system
+        - all
+        - default
+      view:
+        active: pod
+      featureGates:
+        nodeShell: false
+      shellPod:
+        image: busybox:1.35.0
+        command: []
+        args: []
+        namespace: default
+        limits:
+          cpu: 100m
+          memory: 100Mi
+      portForwardAddress: localhost
+    gke_prj-srv-stage-01_asia-south1_staging-dust-as1:
+      namespace:
+        active: all
+        lockFavorites: false
+        favorites:
+        - default
+      view:
+        active: pod
+      featureGates:
+        nodeShell: false
+      shellPod:
+        image: busybox:1.35.0
+        command: []
+        args: []
+        namespace: default
+        limits:
+          cpu: 100m
+          memory: 100Mi
+      portForwardAddress: localhost
+    kind-kubealex:
+      namespace:
+        active: all
+        lockFavorites: false
+        favorites:
+        - default
+      view:
+        active: pod
+      featureGates:
+        nodeShell: false
+      shellPod:
+        image: busybox:1.35.0
+        command: []
+        args: []
+        namespace: default
+        limits:
+          cpu: 100m
+          memory: 100Mi
+      portForwardAddress: localhost
+    staging-bom-gcp-recording:
+      namespace:
+        active: default
+        lockFavorites: false
+        favorites:
+        - all
+        - default
+      view:
+        active: pod
+      featureGates:
+        nodeShell: false
+      shellPod:
+        image: busybox:1.35.0
+        command: []
+        args: []
+        namespace: default
+        limits:
+          cpu: 100m
+          memory: 100Mi
+      portForwardAddress: localhost
+    staging-bom-recording-gcp-02:
+      namespace:
+        active: default
+        lockFavorites: false
+        favorites:
+        - all
+        - default
+      view:
+        active: pod
+      featureGates:
+        nodeShell: false
+      shellPod:
+        image: busybox:1.35.0
+        command: []
+        args: []
+        namespace: default
+        limits:
+          cpu: 100m
+          memory: 100Mi
+      portForwardAddress: localhost
+    staging-recording:
+      namespace:
+        active: all
+        lockFavorites: false
+        favorites:
+        - default
+      view:
+        active: pod
+      featureGates:
+        nodeShell: false
+      shellPod:
+        image: busybox:1.35.0
+        command: []
+        args: []
+        namespace: default
+        limits:
+          cpu: 100m
+          memory: 100Mi
+      portForwardAddress: localhost
+  thresholds:
+    cpu:
+      critical: 90
+      warn: 70
+    memory:
+      critical: 90
+      warn: 70
+  screenDumpDir: /Volumes/development/k9s/grabs

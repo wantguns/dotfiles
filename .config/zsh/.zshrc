@@ -163,6 +163,7 @@ source "$HOME/.cargo/env"
 
 # Golang Binaries
 export PATH="/Users/wantguns/go/bin:$PATH"
+export PATH=$PATH:$(go env GOPATH)/bin
 
 # Stoopid python on a mac
 export PYENV_ROOT="$HOME/.pyenv"
@@ -173,6 +174,7 @@ fi
 
 # Homebrew
 export PATH="/opt/homebrew/bin:${PATH}"
+export PATH="/opt/homebrew/opt/binutils/bin:$PATH"
 
 # Flutter
 export PATH="$PATH:/Users/wantguns/pkg/flutter/bin"
@@ -184,6 +186,12 @@ source ~/.config/p10k/powerlevel10k.zsh-theme
 # Direnv
 export DIRENV_LOG_FORMAT=
 eval "$(direnv hook zsh)"
+
+# Use newer gcc
+alias g++=/opt/homebrew/bin/g++-13
+export LDFLAGS="-L/opt/homebrew/opt/llvm/lib,-L/opt/homebrew/opt/llvm/lib/c++ -Wl,-rpath,/opt/homebrew/opt/llvm/lib/c++"
+export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
+export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
 
 # NVM
 export NVM_DIR="$HOME/.nvm"

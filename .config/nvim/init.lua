@@ -18,6 +18,7 @@ require('lazy').setup({
   'tpope/vim-fugitive',
   'tpope/vim-rhubarb',
   'tpope/vim-sleuth',
+  'towolf/vim-helm',
 
   -- Gitlinker
   {
@@ -42,6 +43,21 @@ require('lazy').setup({
             }
         }
     end
+  },
+
+  {
+    "nathom/filetype.nvim",
+    config = function()
+        require("filetype").setup {
+            overrides = {
+                extensions = {
+                    tf = "terraform",
+                    tfvars = "terraform",
+                    tfstate = "json",
+                },
+            },
+        }
+    end,
   },
 
   {
@@ -114,19 +130,27 @@ require('lazy').setup({
     },
   },
 
-  {
-    -- Add indentation guides even on blank lines
-    'lukas-reineke/indent-blankline.nvim',
-    -- Enable `lukas-reineke/indent-blankline.nvim`
-    -- See `:help indent_blankline.txt`
-    opts = {
-      char = '┊',
-      show_trailing_blankline_indent = false,
-    },
-  },
+  { "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
+
+  --
+  -- {
+  --   -- Add indentation guides even on blank lines
+  --   'lukas-reineke/indent-blankline.nvim',
+  --   -- Enable `lukas-reineke/indent-blankline.nvim`
+  --   -- See `:help indent_blankline.txt`
+  --
+  --   main = "ibl",
+  --   opts = {
+  --     char = '┊',
+  --     show_trailing_blankline_indent = false,
+  --   },
+  -- },
 
   -- "gc" to comment visual regions/lines
   { 'numToStr/Comment.nvim', opts = {} },
+
+  -- sops
+  { 'jsecchiero/vim-sops' },
 
   -- Fuzzy Finder (files, lsp, etc)
   { 'nvim-telescope/telescope.nvim', branch = '0.1.x', dependencies = { 'nvim-lua/plenary.nvim' } },
@@ -298,6 +322,9 @@ require('telescope').setup {
   },
 }
 
+-- Gitlinker
+require"gitlinker".setup()
+
 -- Enable telescope fzf native, if installed
 pcall(require('telescope').load_extension, 'fzf')
 
@@ -364,6 +391,9 @@ require('nvim-treesitter.configs').setup {
     'toml',
     'tsx',
     'yaml',
+    'elixir',
+    'eex',
+    'heex'
   },
 
   -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
@@ -485,6 +515,21 @@ end
 --
 --  If you want to override the default filetypes that your language server will attach to you can
 --  define the property 'filetypes' to the map in question.
+local configs = require('lspconfig.configs')
+local util = require('lspconfig.util')
+
+ if not configs.helm_ls then
+  configs.helm_ls = {
+    default_config = {
+      cmd = {"helm_ls", "serve"},
+      filetypes = {'helm'},
+      root_dir = function(fname)
+        return util.root_pattern('Chart.yaml')(fname)
+      end,
+    },
+  }
+end
+
 local servers = {
   clangd = {},
   gopls = {},
@@ -498,6 +543,10 @@ local servers = {
       telemetry = { enable = false },
     },
   },
+  helm_ls = {
+    filetypes = {"helm"},
+    cmd = {"helm_ls", "serve"},
+  }
 }
 
 -- Setup neovim lua configuration
@@ -572,6 +621,9 @@ cmp.setup {
     { name = 'luasnip' },
   },
 }
+
+-- sops
+vim.g['sops_files_match'] = "{sops-*,*.sops,*secret*,values*,*secrets/values.yaml}"
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et

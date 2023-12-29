@@ -182,7 +182,7 @@ font:
   italic:
     family: Iosevka Nerd Font
     style: Italic
-  size: 15.5
+  size: 16
   offset:
     x: 0    # For letter spacing.
     y: 4    # For line spacing.
@@ -211,3 +211,7 @@ mouse_bindings:
 bell:
   animation: EaseOutExpo
   duration: 1 
+
+cursor:
+  unfocused_hollow: false
+
