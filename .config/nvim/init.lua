@@ -18,7 +18,6 @@ require('lazy').setup({
   'tpope/vim-fugitive',
   'tpope/vim-rhubarb',
   'tpope/vim-sleuth',
-  'towolf/vim-helm',
 
   -- Gitlinker
   {
@@ -26,8 +25,93 @@ require('lazy').setup({
     requires = 'nvim-lua/plenary.nvim',
   },
 
+  {
+    "CopilotC-Nvim/CopilotChat.nvim",
+    dependencies = {
+      { "github/copilot.vim" }, -- or zbirenbaum/copilot.lua
+      { "nvim-lua/plenary.nvim", branch = "master" }, -- for curl, log and async functions
+    },
+    build = "make tiktoken", -- Only on MacOS or Linux
+    opts = {
+      -- See Configuration section for options
+    },
+    -- See Commands section for default commands if you want to lazy load on them
+  },
+
+  {
+  "karb94/neoscroll.nvim",
+  config = function ()
+    require('neoscroll').setup({})
+  end
+  },
+
+  {
+    "NeogitOrg/neogit",
+    dependencies = {
+      "nvim-lua/plenary.nvim",         -- required
+      "sindrets/diffview.nvim",        -- optional - Diff integration
+
+      -- Only one of these is needed.
+      "nvim-telescope/telescope.nvim", -- optional
+      -- "ibhagwan/fzf-lua",              -- optional
+      -- "echasnovski/mini.pick",         -- optional
+    },
+    config = true
+  },
+
+
   -- RFC reader
   'mhinz/vim-rfc',
+
+  -- {
+  --   "nvim-neo-tree/neo-tree.nvim",
+  --   branch = "v3.x",
+  --   dependencies = {
+  --     "nvim-lua/plenary.nvim",
+  --     "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+  --     "MunifTanjim/nui.nvim",
+  --     -- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
+  --   },
+  --   init = function()
+  --     vim.api.nvim_create_autocmd('BufEnter', {
+  --       -- make a group to be able to delete it later
+  --       group = vim.api.nvim_create_augroup('NeoTreeInit', {clear = true}),
+  --       callback = function()
+  --         local f = vim.fn.expand('%:p')
+  --         if vim.fn.isdirectory(f) ~= 0 then
+  --           vim.cmd('Neotree current dir=' .. f)
+  --           -- neo-tree is loaded now, delete the init autocmd
+  --           vim.api.nvim_clear_autocmds{group = 'NeoTreeInit'}
+  --         end
+  --       end
+  --     })
+  --   end,
+  --   opts = {
+  --     filesystem = {
+  --       hijack_netrw_behavior = 'open_current'
+  --   }
+  -- }
+  -- },
+
+  
+
+  {
+    'stevearc/oil.nvim',
+    ---@module 'oil'
+    ---@type oil.SetupOpts
+    opts = {},
+    -- Optional dependencies
+    dependencies = { { "echasnovski/mini.icons", opts = {} } },
+    -- dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if prefer nvim-web-devicons
+  },
+
+
+  -- Typst
+  {
+    'kaarmu/typst.vim',
+    ft = 'typst',
+    lazy=false,
+  },
 
   -- Tmux navigation
   { 'alexghergh/nvim-tmux-navigation', config = function()
@@ -43,21 +127,6 @@ require('lazy').setup({
             }
         }
     end
-  },
-
-  {
-    "nathom/filetype.nvim",
-    config = function()
-        require("filetype").setup {
-            overrides = {
-                extensions = {
-                    tf = "terraform",
-                    tfvars = "terraform",
-                    tfstate = "json",
-                },
-            },
-        }
-    end,
   },
 
   {
@@ -130,27 +199,16 @@ require('lazy').setup({
     },
   },
 
-  { "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
-
-  --
-  -- {
-  --   -- Add indentation guides even on blank lines
-  --   'lukas-reineke/indent-blankline.nvim',
-  --   -- Enable `lukas-reineke/indent-blankline.nvim`
-  --   -- See `:help indent_blankline.txt`
-  --
-  --   main = "ibl",
-  --   opts = {
-  --     char = '┊',
-  --     show_trailing_blankline_indent = false,
-  --   },
-  -- },
+  {
+    -- Add indentation guides even on blank lines
+    'lukas-reineke/indent-blankline.nvim',
+    -- Enable `lukas-reineke/indent-blankline.nvim`
+    -- See `:help indent_blankline.txt`
+    main = "ibl"
+  },
 
   -- "gc" to comment visual regions/lines
   { 'numToStr/Comment.nvim', opts = {} },
-
-  -- sops
-  { 'jsecchiero/vim-sops' },
 
   -- Fuzzy Finder (files, lsp, etc)
   { 'nvim-telescope/telescope.nvim', branch = '0.1.x', dependencies = { 'nvim-lua/plenary.nvim' } },
@@ -189,12 +247,26 @@ require('lazy').setup({
   --    Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
   --
   --    For additional information see: https://github.com/folke/lazy.nvim#-structuring-your-plugins
-  { import = 'custom.plugins' },
+  -- { import = 'custom.plugins' },
 }, {})
 
 -- [[ Setting options ]]
 -- See `:help vim.o`
 -- NOTE: You can change these options as you wish!
+
+-- Indentline
+-- local highlight = {
+--     "CursorColumn",
+--     "Whitespace",
+-- }
+require("ibl").setup {
+    -- indent = { highlight = highlight, char = "" },
+    whitespace = {
+        -- highlight = highlight,
+        remove_blankline_trail = false,
+    },
+    -- scope = { enabled = false },
+}
 
 -- Folds
 vim.o.foldcolumn = '0'
@@ -203,8 +275,8 @@ vim.o.foldlevelstart = 99
 vim.o.foldenable = true
 
 -- Using ufo provider need remap `zR` and `zM`. If Neovim is 0.6.1, remap yourself
-vim.keymap.set('n', 'zR', require('ufo').openAllFolds)
-vim.keymap.set('n', 'zM', require('ufo').closeAllFolds)
+-- vim.keymap.set('n', 'zR', require('ufo').openAllFolds)
+-- vim.keymap.set('n', 'zM', require('ufo').closeAllFolds)
 
 -- Set wrap
 vim.o.wrap = true
@@ -256,7 +328,7 @@ vim.o.softtabstop = 4
 vim.o.shiftwidth = 4
 vim.o.expandtab = true
 
-vim.cmd [[colorscheme moonfly]]
+-- vim.cmd [[colorscheme moonfly]]
 
 -- [[ Basic Keymaps ]]
 
@@ -322,9 +394,6 @@ require('telescope').setup {
   },
 }
 
--- Gitlinker
-require"gitlinker".setup()
-
 -- Enable telescope fzf native, if installed
 pcall(require('telescope').load_extension, 'fzf')
 
@@ -345,6 +414,9 @@ vim.keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags, { desc
 vim.keymap.set('n', '<leader>sw', require('telescope.builtin').grep_string, { desc = '[S]earch current [W]ord' })
 vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
 vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
+vim.keymap.set('n', '<leader>sb', require('telescope.builtin').buffers, { desc = '[S]earch [B]uffers' })
+vim.keymap.set('n', '<leader>so', require('telescope.builtin').oldfiles, { desc = '[S]earch [O]ldfiles' })
+vim.keymap.set('n', '<leader>si', require('telescope.builtin').lsp_implementations, { desc = '[S]earch [I]mplementation' })
 
 -- [[ Configure Treesitter ]]
 -- See `:help nvim-treesitter`
@@ -354,11 +426,11 @@ require('nvim-treesitter.configs').setup {
     'c',
     'cpp',
     'go',
+    'elixir',
+    'heex',
     'lua',
     'python',
     'rust',
-    'tsx',
-    'typescript',
     'vimdoc',
     'vim',
     'diff',
@@ -373,7 +445,6 @@ require('nvim-treesitter.configs').setup {
     'gomod',
     'gosum',
     'hcl',
-    'java',
     'javascript',
     'json',
     'jsonnet',
@@ -391,9 +462,6 @@ require('nvim-treesitter.configs').setup {
     'toml',
     'tsx',
     'yaml',
-    'elixir',
-    'eex',
-    'heex'
   },
 
   -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
@@ -456,6 +524,17 @@ require('nvim-treesitter.configs').setup {
   },
 }
 
+-- Helm / Go Templates TS Config
+local parser_config = require'nvim-treesitter.parsers'.get_parser_configs()
+parser_config.gotmpl = {
+  install_info = {
+    url = "https://github.com/ngalaiko/tree-sitter-go-template",
+    files = {"src/parser.c"}
+  },
+  filetype = "gotmpl",
+  used_by = {"gohtmltmpl", "gotexttmpl", "gotmpl", "yaml"}
+}
+
 -- Diagnostic keymaps
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
@@ -515,25 +594,36 @@ end
 --
 --  If you want to override the default filetypes that your language server will attach to you can
 --  define the property 'filetypes' to the map in question.
-local configs = require('lspconfig.configs')
-local util = require('lspconfig.util')
-
- if not configs.helm_ls then
-  configs.helm_ls = {
-    default_config = {
-      cmd = {"helm_ls", "serve"},
-      filetypes = {'helm'},
-      root_dir = function(fname)
-        return util.root_pattern('Chart.yaml')(fname)
-      end,
-    },
-  }
-end
-
 local servers = {
+  -- elixir-ls = {},
   clangd = {},
   gopls = {},
-  pyright = {},
+  ruff = {
+    setup = {
+      init_options = {
+        settings = {
+          args = {},
+        }
+      }
+    }
+  },
+  pyright = {
+    setup = {
+      settings = {
+          pyright = {
+              autoImportCompletion = true,
+              -- Using Ruff's import organizer
+              disableOrganizeImports = true
+          },
+          python = {
+              analysis = {
+                  -- Ignore all files for analysis to exclusively use Ruff for linting
+                  ignore = { '*' }
+              }
+          }
+      }
+    }
+  },
   rust_analyzer = {},
   tsserver = {},
   html = { filetypes = { 'html', 'twig', 'hbs'} },
@@ -543,10 +633,6 @@ local servers = {
       telemetry = { enable = false },
     },
   },
-  helm_ls = {
-    filetypes = {"helm"},
-    cmd = {"helm_ls", "serve"},
-  }
 }
 
 -- Setup neovim lua configuration
@@ -622,11 +708,22 @@ cmp.setup {
   },
 }
 
--- sops
-vim.g['sops_files_match'] = "{sops-*,*.sops,*secret*,values*,*secrets/values.yaml}"
-
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
 
 -- Custom autocmds
 vim.keymap.set('n', '<leader>p', ':!pst %<CR>', { noremap = true })
+vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
+
+vim.cmd [[colorscheme moonfly]]
+
+-- vim.api.nvim_create_augroup("neotree", {})
+-- vim.api.nvim_create_autocmd("UiEnter", {
+--   desc = "Open Neotree automatically",
+--   group = "neotree",
+--   callback = function()
+--     if vim.fn.argc() == 0 then
+--       vim.cmd "Neotree toggle"
+--     end
+--   end,
+-- })

@@ -182,7 +182,7 @@ font:
   italic:
     family: Iosevka Nerd Font
     style: Italic
-  size: 16
+  size: 19
   offset:
     x: 0    # For letter spacing.
     y: 4    # For line spacing.

@@ -50,7 +50,7 @@ bindkey '^e' edit-command-line
 source $ZDOTDIR/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source $ZDOTDIR/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source $ZDOTDIR/plugins/zsh-sudo/sudo.plugin.zsh
-source $ZDOTDIR/plugins/fzf-zsh-completions/fzf-zsh-completions.plugin.zsh
+# source $ZDOTDIR/plugins/fzf-zsh-completions/fzf-zsh-completions.plugin.zsh
 
 # FZF
 export FZF_DEFAULT_OPTS='
@@ -100,7 +100,7 @@ sharkbait() { ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -l
 
 f() {
     # fzf into .config
-    find ~/.local/scripts ~/.config | fzf --preview 'bat --color=always --style=numbers --line-range=:500 {}' | xargs -r "$EDITOR"
+    find ~/.config | fzf --preview 'bat --color=always --style=numbers --line-range=:500 {}' | xargs -r "$EDITOR"
 }
 
 d() {
@@ -116,7 +116,7 @@ d() {
 }
 
 function m() {
-    cd $(fd . -L ~/dev/dyte -t d 2>/dev/null | fzf --preview 'bat --color=always --style=numbers --line-range=:500 {}')
+    cd $(fd . -L ~/dev/tensorfuse -t d 2>/dev/null | fzf --preview 'bat --color=always --style=numbers --line-range=:500 {}')
 }
 
 # aliases
@@ -143,12 +143,9 @@ alias gallifrey='ssh root@g.wantguns.dev -p 4081'
 # export LESS_TERMCAP_ue=$'\e[m'              # end underline
 # export LESS_TERMCAP_se=$'\e[m'              # end standout-mode
 
-# Set man-page width
-# export MANWIDTH=80
-# export MANOPT='--nh --nj'
-
 # Use bat for coloured man pages
-export MANPAGER=""
+export MANWIDTH=80
+export MANPAGER="nvim +Man!"
 
 # GPG: switch to basics for Ad-Hoc purposes
 export GPG_TTY=$(tty)
@@ -159,11 +156,10 @@ USE_CCACHE=1
 CCACHE_COMPRESS=1
 
 # Cargo
-source "$HOME/.cargo/env"
+# source "$HOME/.cargo/env"
 
 # Golang Binaries
 export PATH="/Users/wantguns/go/bin:$PATH"
-export PATH=$PATH:$(go env GOPATH)/bin
 
 # Stoopid python on a mac
 export PYENV_ROOT="$HOME/.pyenv"
@@ -174,7 +170,6 @@ fi
 
 # Homebrew
 export PATH="/opt/homebrew/bin:${PATH}"
-export PATH="/opt/homebrew/opt/binutils/bin:$PATH"
 
 # Flutter
 export PATH="$PATH:/Users/wantguns/pkg/flutter/bin"
@@ -187,12 +182,6 @@ source ~/.config/p10k/powerlevel10k.zsh-theme
 export DIRENV_LOG_FORMAT=
 eval "$(direnv hook zsh)"
 
-# Use newer gcc
-alias g++=/opt/homebrew/bin/g++-13
-export LDFLAGS="-L/opt/homebrew/opt/llvm/lib,-L/opt/homebrew/opt/llvm/lib/c++ -Wl,-rpath,/opt/homebrew/opt/llvm/lib/c++"
-export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
-export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
-
 # NVM
 export NVM_DIR="$HOME/.nvm"
 [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
@@ -201,3 +190,18 @@ export NVM_DIR="$HOME/.nvm"
 fpath=(/opt/vagrant/embedded/gems/2.3.0/gems/vagrant-2.3.0/contrib/zsh $fpath)
 compinit
 # <<<<  Vagrant command completion (end)
+#
+# source ~/.config/zsh/.zshrc
+export TERMINFO=/usr/share/terminfo
+export PATH=$PATH:~/go/bin
+export PATH=$PATH:~/.local/bin
+export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
+
+tmp () {
+    nvim "/tmp/$(uuidgen)"
+}
+. "$HOME/.cargo/env"
+export LAMBDA_API_KEY=secret_k8s-cluster-poc_164a33f0febc4c45b1bdbb28b1934fc1.THq0QA2St48p2irVmNciwijvyRQW7iOs
+export PATH=$HOME/.elixir-install/installs/otp/27.1.2/erts-15.1.2/bin:$PATH
+export PATH=$HOME/.elixir-install/installs/elixir/1.17.3-otp-27/bin:$PATH
+# export AWS_DEFAULT_PROFILE=ContractorKarpenter-089962644720
