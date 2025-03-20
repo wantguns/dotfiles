@@ -1,0 +1,7 @@
+keys:
+  - &wantguns_C02GH2V9MD6M age1qwdptp2f9jqzugvkvapf4ssqdt3xm0mn8tq9f9xrqdf8kazsn3js6ftmg6
+creation_rules:
+  - path_regex: secrets/[^/]+\.(yaml|json|env|ini)$
+    key_groups:
+    - age:
+      - *wantguns_C02GH2V9MD6M

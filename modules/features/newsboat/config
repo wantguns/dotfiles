@@ -1,0 +1,8 @@
+urls-source "miniflux"
+miniflux-url "https://feed.wantguns.dev"
+
+miniflux-tokeneval "([[ \"$OSTYPE\" == \"linux\"* ]] && cat $XDG_RUNTIME_DIR/miniflux/apitoken) || ([[ \"$OSTYPE\" == \"darwin\"* ]] && cat $(getconf DARWIN_USER_TEMP_DIR)miniflux/apitoken)"
+
+use-proxy yes
+proxy-type socks5
+proxy localhost:1080

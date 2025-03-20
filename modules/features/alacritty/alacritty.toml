@@ -1,0 +1,75 @@
+[bell]
+animation = "EaseOutExpo"
+duration = 1
+
+[colors]
+draw_bold_text_with_bright_colors = true
+
+[colors.bright]
+black = "#949494"
+blue = "#74b2ff"
+cyan = "#85dc85"
+green = "#36c692"
+magenta = "#ae81ff"
+red = "#ff5189"
+white = "#e4e4e4"
+yellow = "#c2c292"
+
+[colors.cursor]
+cursor = "#9e9e9e"
+text = "#080808"
+
+[colors.normal]
+black = "#323437"
+blue = "#80a0ff"
+cyan = "#79dac8"
+green = "#8cc85f"
+magenta = "#cf87e8"
+red = "#ff5454"
+white = "#c6c6c6"
+yellow = "#e3c78a"
+
+[colors.primary]
+background = "#080808"
+bright_foreground = "#eeeeee"
+foreground = "#bdbdbd"
+
+[colors.selection]
+background = "#b2ceee"
+text = "#080808"
+
+[font]
+builtin_box_drawing = false
+size = 16.5
+
+[font.bold]
+family = "IosevkaTerm NF"
+style = "Bold"
+
+[font.glyph_offset]
+x = 0
+y = 0
+
+[font.italic]
+family = "IosevkaTerm NF"
+style = "Italic"
+
+[font.normal]
+family = "IosevkaTerm NF"
+style = "Regular"
+
+[font.offset]
+x = 0
+y = 2
+
+[[mouse.bindings]]
+action = "PasteSelection"
+mouse = "Middle"
+
+[window]
+decorations = "none"
+startup_mode = "Maximized"
+
+[window.padding]
+x = 0
+y = 8

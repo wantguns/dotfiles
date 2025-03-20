@@ -1,0 +1,1 @@
+This is a single nix flake which I plan to use for all the servers I rent, hardware I own, and machines I SSH frequently into. I am currently blogging about it at [wantguns.dev/tags/yakshaving](https://wantguns.dev/tags/yakshaving).

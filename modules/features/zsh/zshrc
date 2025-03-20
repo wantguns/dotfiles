@@ -1,0 +1,32 @@
+if [ -f ~/.p10k.zsh ]; then
+    source ~/.p10k.zsh
+fi
+
+# Arrow key menu for completions
+zstyle ':completion:*' menu select
+
+# Case-insensitive (all),partial-word and then substring completion
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+
+# Include hidden files
+setopt globdots
+
+# Autocomplete command line switches for aliases
+setopt completealiases
+
+# Understand comments
+setopt interactivecomments
+
+# Edit line in vim with ctrl-e:
+autoload edit-command-line; zle -N edit-command-line
+bindkey '^e' edit-command-line
+
+export MANPAGER="nvim +Man!"
+
+alias ls='ls --color=auto'
+
+mcd() { mkdir -p "$1"; cd "$1" }
+
+d() {
+    cd $(fd . -L ~/dev -t d 2>/dev/null | fzf)
+}

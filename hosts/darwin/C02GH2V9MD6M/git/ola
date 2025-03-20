@@ -1,0 +1,11 @@
+; vim: set ft=gitconfig:
+
+[user]
+	email = gunwant.jain1@olakrutrim.com
+	name = Gunwant Jain
+
+[commit]
+	template = "/Users/gunwant.jain1/dev/ola/.gitmessage"
+
+[core]
+	sshCommand = "ssh -i ~/.ssh/id_ed25519"
