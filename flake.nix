@@ -38,7 +38,7 @@
           username = "wantguns";
           remoteBuild = true;
           ips = {
-            private = "192.168.1.5";
+            private = "192.168.1.130";
           };
         };
       };

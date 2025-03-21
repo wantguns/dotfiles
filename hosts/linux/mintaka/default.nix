@@ -11,6 +11,9 @@
     };
   };
 
+  # see: https://github.com/nix-community/disko/issues/581#issuecomment-2024231487
+  fileSystems."/home".options = ["noauto"];
+
   networking = {
     hostName = "mintaka";
     hostId = "30daa5e6";
