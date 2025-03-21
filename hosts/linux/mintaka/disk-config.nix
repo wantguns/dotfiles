@@ -49,22 +49,27 @@
           "root" = {
             type = "zfs_fs";
             mountpoint = "/";
+            options.mountpoint = "legacy";
           };
           "root/nix" = {
             type = "zfs_fs";
             mountpoint = "/nix";
+            options.mountpoint = "legacy";
           };
           "root/var" = {
             type = "zfs_fs";
             mountpoint = "/var";
+            options.mountpoint = "legacy";
           };
           "root/var/log" = {
             type = "zfs_fs";
             mountpoint = "/var/log";
+            options.mountpoint = "legacy";
           };
           "root/home" = {
             type = "zfs_fs";
             mountpoint = "/home";
+            options.mountpoint = "legacy";
           };
           "root/swap" = {
             type = "zfs_volume";
