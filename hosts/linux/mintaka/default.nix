@@ -14,6 +14,13 @@
   networking = {
     hostName = "mintaka";
     hostId = "30daa5e6";
+    interfaces = {
+        enp2s0.ipv6.addresses = [{
+          address = "192.168.1.130";
+          prefixLength = 32;
+        }];
+    };
+    nameservers = [ "1.1.1.1" "8.8.8.8" ];
   };
 
   programs.zsh.enable = true;
