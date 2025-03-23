@@ -78,7 +78,7 @@ in
             plugin = fromGitHub {
               ref = "HEAD";
               repo = "bluz71/vim-moonfly-colors";
-              sha256 = "U7lantIADJuP5K1YMZobGolNa5xPkdZKL3lPnFMfXqg=";
+              sha256 = "3nEbXoy0dJks7yKgkk23DvqeWMtZF2V/tKb+1gv3cSs=";
             };
             config = "colorscheme moonfly";
           }

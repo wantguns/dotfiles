@@ -9,25 +9,21 @@
           type = "gpt";
           partitions = {
             ESP = {
-              name = "ESP";
-              number = 15;
-              size = "99M";
-              type = "EF00";
+              size = "100M";
+              type = "EF00";  # EFI System Partition
               content = {
                 type = "filesystem";
                 format = "vfat";
-                mountpoint = "/boot/efi";
+                mountpoint = "/boot";
               };
             };
             root = {
-              name = "root";
-              number = 1;
-              size = "100%";
+              size = "100%";  # Use all remaining space
               content = {
                 type = "filesystem";
                 format = "ext4";
                 mountpoint = "/";
-                extraArgs = ["-L" "cloudimg-rootfs"];
+                extraArgs = ["-L" "cloudimg-rootfs"];  # Preserve the LABEL from your fstab
               };
             };
           };

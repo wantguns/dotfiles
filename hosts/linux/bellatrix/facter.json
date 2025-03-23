@@ -2015,7 +2015,7 @@
     ],
     "disk": [
       {
-        "index": 38,
+        "index": 39,
         "attached_to": 36,
         "class_list": [
           "disk",
@@ -2068,10 +2068,10 @@
           "range": 16
         },
         "unix_device_names": [
+          "/dev/disk/by-diskseq/9",
           "/dev/disk/by-id/scsi-360916b62e12d47898e06935030cd4f6b",
           "/dev/disk/by-id/wwn-0x60916b62e12d47898e06935030cd4f6b",
           "/dev/disk/by-path/pci-0000:18:00.0-scsi-0:0:0:1",
-          "/dev/oracleoci/oraclevda",
           "/dev/sda"
         ],
         "unix_device_name2": "/dev/sg0",
@@ -2191,19 +2191,15 @@
           "prog_if": 0
         },
         "driver": "virtio-pci",
-        "driver_module": "virtio_pci",
         "drivers": [
           "virtio-pci"
-        ],
-        "driver_modules": [
-          "virtio_pci"
         ],
         "module_alias": "pci:v00001AF4d00001050sv0000108Esd00001100bc03sc80i00"
       }
     ],
     "hub": [
       {
-        "index": 41,
+        "index": 42,
         "attached_to": 31,
         "class_list": [
           "usb",
@@ -2225,7 +2221,7 @@
         },
         "vendor": {
           "hex": "1d6b",
-          "name": "Linux 5.15.0-1076-oracle xhci-hcd",
+          "name": "Linux 6.12.19 xhci-hcd",
           "value": 7531
         },
         "device": {
@@ -2235,11 +2231,11 @@
         },
         "revision": {
           "hex": "0000",
-          "name": "5.15",
+          "name": "6.12",
           "value": 0
         },
         "serial": "0000:00:02.0",
-        "model": "Linux 5.15.0-1076-oracle xhci-hcd xHCI Host Controller",
+        "model": "Linux 6.12.19 xhci-hcd xHCI Host Controller",
         "sysfs_id": "/devices/pci0000:00/0000:00:02.0/usb1/1-0:1.0",
         "sysfs_bus_id": "1-0:1.0",
         "resources": [
@@ -2280,17 +2276,13 @@
         },
         "hotplug": "usb",
         "driver": "hub",
-        "driver_module": "usbcore",
         "drivers": [
           "hub"
         ],
-        "driver_modules": [
-          "usbcore"
-        ],
-        "module_alias": "usb:v1D6Bp0002d0515dc09dsc00dp01ic09isc00ip00in00"
+        "module_alias": "usb:v1D6Bp0002d0612dc09dsc00dp01ic09isc00ip00in00"
       },
       {
-        "index": 43,
+        "index": 44,
         "attached_to": 31,
         "class_list": [
           "usb",
@@ -2312,7 +2304,7 @@
         },
         "vendor": {
           "hex": "1d6b",
-          "name": "Linux 5.15.0-1076-oracle xhci-hcd",
+          "name": "Linux 6.12.19 xhci-hcd",
           "value": 7531
         },
         "device": {
@@ -2322,11 +2314,11 @@
         },
         "revision": {
           "hex": "0000",
-          "name": "5.15",
+          "name": "6.12",
           "value": 0
         },
         "serial": "0000:00:02.0",
-        "model": "Linux 5.15.0-1076-oracle xhci-hcd xHCI Host Controller",
+        "model": "Linux 6.12.19 xhci-hcd xHCI Host Controller",
         "sysfs_id": "/devices/pci0000:00/0000:00:02.0/usb2/2-0:1.0",
         "sysfs_bus_id": "2-0:1.0",
         "detail": {
@@ -2357,20 +2349,16 @@
         },
         "hotplug": "usb",
         "driver": "hub",
-        "driver_module": "usbcore",
         "drivers": [
           "hub"
         ],
-        "driver_modules": [
-          "usbcore"
-        ],
-        "module_alias": "usb:v1D6Bp0003d0515dc09dsc00dp03ic09isc00ip00in00"
+        "module_alias": "usb:v1D6Bp0003d0612dc09dsc00dp03ic09isc00ip00in00"
       }
     ],
     "keyboard": [
       {
-        "index": 39,
-        "attached_to": 41,
+        "index": 40,
+        "attached_to": 42,
         "class_list": [
           "keyboard",
           "usb"
@@ -2418,6 +2406,7 @@
         "unix_device_names": [
           "/dev/input/by-id/usb-QEMU_QEMU_USB_Keyboard_68284-0000:00:02.0-2-event-kbd",
           "/dev/input/by-path/pci-0000:00:02.0-usb-0:2:1.0-event-kbd",
+          "/dev/input/by-path/pci-0000:00:02.0-usbv2-0:2:1.0-event-kbd",
           "/dev/input/event2"
         ],
         "resources": [
@@ -2458,11 +2447,7 @@
         },
         "hotplug": "usb",
         "driver": "usbhid",
-        "driver_module": "usbhid",
         "drivers": [
-          "usbhid"
-        ],
-        "driver_modules": [
           "usbhid"
         ],
         "driver_info": {
@@ -2494,7 +2479,7 @@
           {
             "type": "mem",
             "base": 0,
-            "range": 18823843840,
+            "range": 18798022656,
             "enabled": true,
             "access": "read_write",
             "prefetch": "unknown"
@@ -2506,10 +2491,144 @@
         ]
       }
     ],
+    "monitor": [
+      {
+        "index": 38,
+        "attached_to": 10,
+        "class_list": [
+          "monitor"
+        ],
+        "base_class": {
+          "hex": "0100",
+          "name": "Monitor",
+          "value": 256
+        },
+        "sub_class": {
+          "hex": "0002",
+          "name": "LCD Monitor",
+          "value": 2
+        },
+        "vendor": {
+          "hex": "4914",
+          "value": 18708
+        },
+        "device": {
+          "hex": "1234",
+          "name": "QEMU Monitor",
+          "value": 4660
+        },
+        "serial": "0",
+        "model": "QEMU Monitor",
+        "resources": [
+          {
+            "type": "monitor",
+            "width": 1024,
+            "height": 768,
+            "vertical_frequency": 60,
+            "interlaced": false
+          },
+          {
+            "type": "monitor",
+            "width": 1920,
+            "height": 1080,
+            "vertical_frequency": 60,
+            "interlaced": false
+          },
+          {
+            "type": "monitor",
+            "width": 2048,
+            "height": 1152,
+            "vertical_frequency": 60,
+            "interlaced": false
+          },
+          {
+            "type": "monitor",
+            "width": 640,
+            "height": 480,
+            "vertical_frequency": 60,
+            "interlaced": false
+          },
+          {
+            "type": "monitor",
+            "width": 800,
+            "height": 600,
+            "vertical_frequency": 60,
+            "interlaced": false
+          },
+          {
+            "type": "size",
+            "unit": "mm",
+            "value_1": 403,
+            "value_2": 302
+          }
+        ],
+        "detail": {
+          "manufacture_year": 2014,
+          "manufacture_week": 42,
+          "vertical_sync": {
+            "min": 50,
+            "max": 125
+          },
+          "horizontal_sync": {
+            "min": 30,
+            "max": 160
+          },
+          "horizontal_sync_timings": {
+            "disp": 1024,
+            "sync_start": 1280,
+            "sync_end": 1310,
+            "total": 1382
+          },
+          "vertical_sync_timings": {
+            "disp": 768,
+            "sync_start": 771,
+            "sync_end": 774,
+            "total": 794
+          },
+          "clock": 82290,
+          "width": 1024,
+          "height": 768,
+          "width_millimetres": 403,
+          "height_millimetres": 302,
+          "horizontal_flag": 45,
+          "vertical_flag": 45,
+          "vendor": "",
+          "name": "QEMU Monitor"
+        },
+        "driver_info": {
+          "type": "display",
+          "width": 2048,
+          "height": 1152,
+          "vertical_sync": {
+            "min": 50,
+            "max": 125
+          },
+          "horizontal_sync": {
+            "min": 30,
+            "max": 160
+          },
+          "bandwidth": 0,
+          "horizontal_sync_timings": {
+            "disp": 1024,
+            "sync_start": 1280,
+            "sync_end": 1310,
+            "total": 1382
+          },
+          "vertical_sync_timings": {
+            "disp": 768,
+            "sync_start": 771,
+            "sync_end": 774,
+            "total": 794
+          },
+          "horizontal_flag": 45,
+          "vertical_flag": 45
+        }
+      }
+    ],
     "mouse": [
       {
-        "index": 40,
-        "attached_to": 41,
+        "index": 41,
+        "attached_to": 42,
         "class_list": [
           "mouse",
           "usb"
@@ -2604,11 +2723,7 @@
         },
         "hotplug": "usb",
         "driver": "usbhid",
-        "driver_module": "usbhid",
         "drivers": [
-          "usbhid"
-        ],
-        "driver_modules": [
           "usbhid"
         ],
         "driver_info": {
@@ -2625,8 +2740,8 @@
         "module_alias": "usb:v0627p0001d0000dc00dsc00dp00ic03isc01ip02in00"
       },
       {
-        "index": 42,
-        "attached_to": 41,
+        "index": 43,
+        "attached_to": 42,
         "class_list": [
           "mouse",
           "usb"
@@ -2721,11 +2836,7 @@
         },
         "hotplug": "usb",
         "driver": "usbhid",
-        "driver_module": "usbhid",
         "drivers": [
-          "usbhid"
-        ],
-        "driver_modules": [
           "usbhid"
         ],
         "driver_info": {
@@ -2788,34 +2899,15 @@
           }
         ],
         "driver": "virtio_net",
-        "driver_module": "virtio_net",
         "drivers": [
           "virtio_net"
         ],
-        "driver_modules": [
-          "virtio_net"
-        ],
-        "driver_info": {
-          "type": "module",
-          "db_entry_0": [
-            "virtio_net"
-          ],
-          "active": true,
-          "modprobe": true,
-          "names": [
-            "virtio_net"
-          ],
-          "module_args": [
-            ""
-          ],
-          "conf": ""
-        },
         "module_alias": "virtio:d00000001v0000108E"
       }
     ],
     "network_interface": [
       {
-        "index": 46,
+        "index": 45,
         "attached_to": 35,
         "class_list": [
           "network_interface"
@@ -2848,16 +2940,12 @@
           }
         ],
         "driver": "virtio_net",
-        "driver_module": "virtio_net",
         "drivers": [
-          "virtio_net"
-        ],
-        "driver_modules": [
           "virtio_net"
         ]
       },
       {
-        "index": 55,
+        "index": 46,
         "attached_to": 0,
         "class_list": [
           "network_interface"
@@ -2966,12 +3054,8 @@
           "prog_if": 0
         },
         "driver": "virtio-pci",
-        "driver_module": "virtio_pci",
         "drivers": [
           "virtio-pci"
-        ],
-        "driver_modules": [
-          "virtio_pci"
         ],
         "module_alias": "pci:v00001AF4d00001000sv0000108Esd00000001bc02sc00i00"
       }
@@ -3059,12 +3143,8 @@
           "prog_if": 0
         },
         "driver": "virtio-pci",
-        "driver_module": "virtio_pci",
         "drivers": [
           "virtio-pci"
-        ],
-        "driver_modules": [
-          "virtio_pci"
         ],
         "module_alias": "pci:v00001AF4d00001048sv0000108Esd00001100bc01sc00i00"
       }
@@ -3100,21 +3180,6 @@
         "driver_modules": [
           "virtio_scsi"
         ],
-        "driver_info": {
-          "type": "module",
-          "db_entry_0": [
-            "virtio_scsi"
-          ],
-          "active": true,
-          "modprobe": true,
-          "names": [
-            "virtio_scsi"
-          ],
-          "module_args": [
-            ""
-          ],
-          "conf": ""
-        },
         "module_alias": "virtio:d00000008v0000108E"
       },
       {
@@ -3146,21 +3211,6 @@
         "driver_modules": [
           "virtio_gpu"
         ],
-        "driver_info": {
-          "type": "module",
-          "db_entry_0": [
-            "virtio_gpu"
-          ],
-          "active": true,
-          "modprobe": true,
-          "names": [
-            "virtio_gpu"
-          ],
-          "module_args": [
-            ""
-          ],
-          "conf": ""
-        },
         "module_alias": "virtio:d00000010v0000108E"
       }
     ],
@@ -3243,28 +3293,9 @@
           "prog_if": 48
         },
         "driver": "xhci_hcd",
-        "driver_module": "xhci_pci",
         "drivers": [
           "xhci_hcd"
         ],
-        "driver_modules": [
-          "xhci_pci"
-        ],
-        "driver_info": {
-          "type": "module",
-          "db_entry_0": [
-            "xhci_pci"
-          ],
-          "active": true,
-          "modprobe": true,
-          "names": [
-            "xhci_pci"
-          ],
-          "module_args": [
-            ""
-          ],
-          "conf": ""
-        },
         "module_alias": "pci:v00001B36d0000000Dsv00001AF4sd00001100bc0Csc03i30"
       }
     ]
