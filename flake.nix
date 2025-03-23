@@ -41,6 +41,16 @@
             private = "192.168.1.130";
           };
         };
+
+        "bellatrix" = lib.my.mkHostConfig {
+          hostname = "bellatrix";
+          system = "aarch64-linux";
+          username = "wantguns";
+          remoteBuild = true;
+          ips = {
+            public = "152.67.6.204";
+          };
+        };
       };
 
       forAllHosts = f: builtins.mapAttrs f hosts;
