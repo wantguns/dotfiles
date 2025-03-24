@@ -51,5 +51,7 @@
     enableRedistributableFirmware = true;
   };
 
+  sops.secrets."wg/mintaka/private" = {};
+
   system.stateVersion = "24.11";
 }

@@ -36,6 +36,8 @@ in
         commonPath
         "${hostPath}/default.nix"
         hmModule
+
+        inputs.sops-nix.nixosModules.sops
       ];
 
       linuxModules = if hostDarwin then [] else
