@@ -41,5 +41,7 @@
     enableRedistributableFirmware = true;
   };
 
+  sops.secrets."wg/bellatrix/private" = {};
+
   system.stateVersion = "24.11";
 }
