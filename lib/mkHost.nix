@@ -36,8 +36,6 @@ in
         commonPath
         "${hostPath}/default.nix"
         hmModule
-
-        inputs.sops-nix.nixosModules.sops
       ];
 
       linuxModules = if hostDarwin then [] else
@@ -46,7 +44,9 @@ in
         (lib.optional hasFacterJson inputs.nixos-facter-modules.nixosModules.facter) ++
         (lib.optional hasFacterJson {
           facter.reportPath = facterJsonPath;
-        });
+        }) ++ [
+            inputs.sops-nix.nixosModules.sops
+        ];
 
       systemBuilder = if hostDarwin
                       then inputs.darwin.lib.darwinSystem
