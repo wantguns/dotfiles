@@ -3,8 +3,16 @@
 let
   cfg = config.features;
 
-  toLua = str: "\nlua << EOF\n${str}\nEOF";
-  toLuaFile = file: "\nlua << EOF\n${builtins.readFile file}\nEOF";
+  toLua = str: ''
+
+    lua << EOF
+    ${str}
+    EOF'';
+  toLuaFile = file: ''
+
+    lua << EOF
+    ${builtins.readFile file}
+    EOF'';
 
   fromGitHub = { ref, repo, sha256 ? lib.fakeSha256 }:
     pkgs.vimUtils.buildVimPlugin {
@@ -19,8 +27,7 @@ let
     };
 
   fakeVimPlugin = pkgs.runCommand "fakeVimPlugin" { } "mkdir $out";
-in
-{
+in {
   config = lib.mkMerge [
     {
       home = {
@@ -43,68 +50,68 @@ in
         vimAlias = true;
         vimdiffAlias = true;
 
-        plugins = with pkgs.vimPlugins; [
-          {
-            plugin = fakeVimPlugin;
-            config = toLuaFile ./nvim/base.lua;
-          }
-          plenary-nvim
-        ]
-        ++ lib.optional cfg.editors.nvim.copilot copilot-vim
+        plugins = with pkgs.vimPlugins;
+          [
+            {
+              plugin = fakeVimPlugin;
+              config = toLuaFile ./nvim/base.lua;
+            }
+            plenary-nvim
+          ] ++ lib.optional cfg.editors.nvim.copilot copilot-vim
 
-        ++ lib.optionals cfg.editors.nvim.ui [
-          which-key-nvim
-          {
-            plugin = gitlinker-nvim;
-            config = toLua ''require('gitlinker').setup()'';
-          }
-          {
-            plugin = gitsigns-nvim;
-            config = toLua ''require('gitsigns').setup()'';
-          }
-          {
-            plugin = lualine-nvim;
-            config = toLuaFile ./nvim/lualine.lua;
-          }
-          {
-            plugin = oil-nvim;
-            config = toLuaFile ./nvim/oil.lua;
-          }
-          {
-            plugin = telescope-nvim;
-            config = toLuaFile ./nvim/telescope.lua;
-          }
-          {
-            plugin = fromGitHub {
-              ref = "HEAD";
-              repo = "bluz71/vim-moonfly-colors";
-              sha256 = "3nEbXoy0dJks7yKgkk23DvqeWMtZF2V/tKb+1gv3cSs=";
-            };
-            config = "colorscheme moonfly";
-          }
-        ]
+          ++ lib.optionals cfg.editors.nvim.ui [
+            which-key-nvim
+            {
+              plugin = gitlinker-nvim;
+              config = toLua "require('gitlinker').setup()";
+            }
+            {
+              plugin = gitsigns-nvim;
+              config = toLua "require('gitsigns').setup()";
+            }
+            {
+              plugin = lualine-nvim;
+              config = toLuaFile ./nvim/lualine.lua;
+            }
+            {
+              plugin = oil-nvim;
+              config = toLuaFile ./nvim/oil.lua;
+            }
+            {
+              plugin = telescope-nvim;
+              config = toLuaFile ./nvim/telescope.lua;
+            }
+            {
+              plugin = fromGitHub {
+                ref = "27e8e0d7ccc2654c29370815d0f9d15e87ac8ea8";
+                repo = "bluz71/vim-moonfly-colors";
+                sha256 = "1f3783jy62ih1c0w115q6rkxcvgs1qiin388spzpmxzm4as0vl39";
+              };
+              config = "colorscheme moonfly";
+            }
+          ]
 
-        ++ lib.optionals cfg.editors.nvim.lsp [
-          {
-            plugin = nvim-treesitter.withAllGrammars;
-            config = toLuaFile ./nvim/treesitter.lua;
-          }
-          {
-            plugin = nvim-lspconfig;
-            config = toLuaFile ./nvim/lsp.lua;
-          }
-          {
-            plugin = nvim-cmp;
-            config = toLuaFile ./nvim/cmp.lua;
-          }
-          cmp-nvim-lsp
-        ]
+          ++ lib.optionals cfg.editors.nvim.lsp [
+            {
+              plugin = nvim-treesitter.withAllGrammars;
+              config = toLuaFile ./nvim/treesitter.lua;
+            }
+            {
+              plugin = nvim-lspconfig;
+              config = toLuaFile ./nvim/lsp.lua;
+            }
+            {
+              plugin = nvim-cmp;
+              config = toLuaFile ./nvim/cmp.lua;
+            }
+            cmp-nvim-lsp
+          ]
 
-        # Obsidian
-        ++ lib.optional cfg.editors.nvim.obsidian {
-          plugin = obsidian-nvim;
-          config = toLuaFile ./nvim/obsidian.lua;
-        };
+          # Obsidian
+          ++ lib.optional cfg.editors.nvim.obsidian {
+            plugin = obsidian-nvim;
+            config = toLuaFile ./nvim/obsidian.lua;
+          };
 
         extraPackages = with pkgs; [
           (lib.mkIf cfg.dev.go gopls)
@@ -121,7 +128,7 @@ in
         enableCompletion = true;
         defaultKeymap = "viins";
 
-        completionInit = ''autoload -U compinit && compinit -u'';
+        completionInit = "autoload -U compinit && compinit -u";
 
         history = {
           append = true;
@@ -144,9 +151,7 @@ in
       home.file.".p10k.zsh".source = ./zsh/p10k.zsh;
     })
 
-    (lib.mkIf cfg.fzf {
-      programs.fzf.enable = true;
-    })
+    (lib.mkIf cfg.fzf { programs.fzf.enable = true; })
 
     (lib.mkIf cfg.tmux {
       programs.tmux = {
@@ -185,17 +190,22 @@ in
       sops = {
         age.keyFile = "${config.home.homeDirectory}/.config/sops/age/keys.txt";
         defaultSopsFile = ../../secrets/home.yaml;
-        secrets."email/mail@wantguns.dev/source".path = "%r/email/mail@wantguns.dev/source";
-        secrets."email/mail@wantguns.dev/outgoing".path = "%r/email/mail@wantguns.dev/outgoing";
-        secrets."email/void@wantguns.dev/source".path = "%r/email/void@wantguns.dev/source";
-        secrets."email/void@wantguns.dev/outgoing".path = "%r/email/void@wantguns.dev/outgoing";
+        secrets."email/mail@wantguns.dev/source".path =
+          "%r/email/mail@wantguns.dev/source";
+        secrets."email/mail@wantguns.dev/outgoing".path =
+          "%r/email/mail@wantguns.dev/outgoing";
+        secrets."email/void@wantguns.dev/source".path =
+          "%r/email/void@wantguns.dev/source";
+        secrets."email/void@wantguns.dev/outgoing".path =
+          "%r/email/void@wantguns.dev/outgoing";
         secrets."miniflux/apitoken".path = "%r/miniflux/apitoken";
       };
     })
 
     (lib.mkIf cfg.alacritty {
       programs.alacritty.enable = true;
-      home.file.".config/alacritty/alacritty.toml".source = ./alacritty/alacritty.toml;
+      home.file.".config/alacritty/alacritty.toml".source =
+        ./alacritty/alacritty.toml;
     })
 
     (lib.mkIf cfg.newsboat {

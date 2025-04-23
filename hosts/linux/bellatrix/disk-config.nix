@@ -10,7 +10,7 @@
           partitions = {
             ESP = {
               size = "100M";
-              type = "EF00";  # EFI System Partition
+              type = "EF00"; # EFI System Partition
               content = {
                 type = "filesystem";
                 format = "vfat";
@@ -18,12 +18,15 @@
               };
             };
             root = {
-              size = "100%";  # Use all remaining space
+              size = "100%"; # Use all remaining space
               content = {
                 type = "filesystem";
                 format = "ext4";
                 mountpoint = "/";
-                extraArgs = ["-L" "cloudimg-rootfs"];  # Preserve the LABEL from your fstab
+                extraArgs = [
+                  "-L"
+                  "cloudimg-rootfs"
+                ]; # Preserve the LABEL from your fstab
               };
             };
           };

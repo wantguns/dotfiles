@@ -35,11 +35,10 @@
     "dev/ola/.gitconfig".source = ./git/ola;
     "dev/ola/.gitmessage".source = ./git/olamessage;
   };
-  programs.git.extraConfig.core.sshCommand = "ssh -i /Users/gunwant.jain1/.ssh/wantguns_gh";
-  programs.git.includes = [
-    {
-      condition = "gitdir/i:~/dev/ola";
-      path = "~/dev/ola/.gitconfig";
-    }
-  ];
+  programs.git.extraConfig.core.sshCommand =
+    "ssh -i /Users/gunwant.jain1/.ssh/wantguns_gh";
+  programs.git.includes = [{
+    condition = "gitdir/i:~/dev/ola";
+    path = "~/dev/ola/.gitconfig";
+  }];
 }

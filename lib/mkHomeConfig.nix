@@ -3,8 +3,7 @@
 let
   utils = import ./utils.nix { inherit lib; };
   inherit (utils) isDarwin isLinux;
-in
-{
+in {
   mkHomeConfig = hostname: hostConfig:
     let
       system = hostConfig.system;
@@ -12,22 +11,15 @@ in
       platform = if isDarwin system then "darwin" else "linux";
       hostPath = ../hosts/${platform}/${hostname};
       homeDirectory =
-        if isDarwin system
-        then "/Users/${username}"
-        else "/home/${username}";
-    in
-    inputs.home-manager.lib.homeManagerConfiguration {
+        if isDarwin system then "/Users/${username}" else "/home/${username}";
+    in inputs.home-manager.lib.homeManagerConfiguration {
       pkgs = inputs.nixpkgs.legacyPackages.${system};
       extraSpecialArgs = { inherit inputs; };
       modules = [
         ../modules/features/default.nix
         ../modules/features/implementation.nix
         "${hostPath}/home.nix"
-        {
-          home = {
-            inherit username homeDirectory;
-          };
-        }
+        { home = { inherit username homeDirectory; }; }
       ];
     };
 }

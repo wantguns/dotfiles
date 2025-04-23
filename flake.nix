@@ -18,10 +18,14 @@
   outputs = inputs@{ self, nixpkgs, darwin, home-manager, ... }:
     let
       lib = nixpkgs.lib.extend (final: prev: {
-        my = import ./lib { inherit inputs; lib = prev; };
+        my = import ./lib {
+          inherit inputs;
+          lib = prev;
+        };
       });
 
-      systems = [ "x86_64-linux" "x86_64-darwin" "aarch64-linux" "aarch64-darwin" ];
+      systems =
+        [ "x86_64-linux" "x86_64-darwin" "aarch64-linux" "aarch64-darwin" ];
       forAllSystems = nixpkgs.lib.genAttrs systems;
 
       hosts = {
@@ -37,9 +41,7 @@
           system = "x86_64-linux";
           username = "wantguns";
           remoteBuild = true;
-          ips = {
-            private = "192.168.1.130";
-          };
+          ips = { private = "192.168.1.130"; };
         };
 
         "bellatrix" = lib.my.mkHostConfig {
@@ -47,35 +49,44 @@
           system = "aarch64-linux";
           username = "wantguns";
           remoteBuild = true;
-          ips = {
-            public = "152.67.6.204";
-          };
+          ips = { public = "152.67.6.204"; };
+        };
+
+        "alnitak" = lib.my.mkHostConfig {
+          hostname = "alnitak";
+          system = "x86_64-linux";
+          username = "wantguns";
+          remoteBuild = true;
+          ips = { public = "78.46.83.190"; };
         };
       };
 
       forAllHosts = f: builtins.mapAttrs f hosts;
 
-    in
-    {
+    in {
       inherit hosts;
 
-      darwinConfigurations = builtins.mapAttrs
-        (name: hostConfig: lib.my.mkHost hostConfig)
-        (lib.filterAttrs (name: hostConfig: lib.my.isDarwin hostConfig.system) hosts);
+      darwinConfigurations =
+        builtins.mapAttrs (name: hostConfig: lib.my.mkHost hostConfig)
+        (lib.filterAttrs (name: hostConfig: lib.my.isDarwin hostConfig.system)
+          hosts);
 
-      nixosConfigurations = builtins.mapAttrs
-        (name: hostConfig: lib.my.mkHost hostConfig)
-        (lib.filterAttrs (name: hostConfig: lib.my.isLinux hostConfig.system) hosts);
+      nixosConfigurations =
+        builtins.mapAttrs (name: hostConfig: lib.my.mkHost hostConfig)
+        (lib.filterAttrs (name: hostConfig: lib.my.isLinux hostConfig.system)
+          hosts);
 
       homeConfigurations = forAllHosts lib.my.mkHomeConfig;
 
       apps = forAllSystems (system: {
         deploy = {
           type = "app";
-          program = "${import ./lib/deploy.nix { 
-            pkgs = nixpkgs.legacyPackages.${system}; 
-            inherit nixpkgs;
-          }}/bin/deploy";
+          program = "${
+              import ./lib/deploy.nix {
+                pkgs = nixpkgs.legacyPackages.${system};
+                inherit nixpkgs;
+              }
+            }/bin/deploy";
         };
       });
     };

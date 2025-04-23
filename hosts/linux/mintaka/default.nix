@@ -12,16 +12,16 @@
   };
 
   # see: https://github.com/nix-community/disko/issues/581#issuecomment-2024231487
-  fileSystems."/home".options = ["noauto"];
+  fileSystems."/home".options = [ "noauto" ];
 
   networking = {
     hostName = "mintaka";
     hostId = "30daa5e6";
     interfaces = {
-        enp2s0.ipv6.addresses = [{
-          address = "192.168.1.130";
-          prefixLength = 32;
-        }];
+      enp2s0.ipv6.addresses = [{
+        address = "192.168.1.130";
+        prefixLength = 32;
+      }];
     };
     nameservers = [ "1.1.1.1" "8.8.8.8" ];
   };
@@ -47,11 +47,9 @@
     };
   };
 
-  hardware = {
-    enableRedistributableFirmware = true;
-  };
+  hardware = { enableRedistributableFirmware = true; };
 
-  sops.secrets."wg/mintaka/private" = {};
+  sops.secrets."wg/mintaka/private" = { };
 
   system.stateVersion = "24.11";
 }

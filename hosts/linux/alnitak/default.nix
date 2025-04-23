@@ -2,6 +2,7 @@
 
 {
   boot = {
+    supportedFilesystems = [ "zfs" ];
     loader = {
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
@@ -9,10 +10,11 @@
     };
   };
 
-  time.timeZone = "Asia/Kolkata";
+  fileSystems."/home".options = [ "noauto" ];
 
   networking = {
-    hostName = "bellatrix";
+    hostId = "98e1d0eb";
+    hostName = "alnitak";
     nameservers = [ "1.1.1.1" "8.8.8.8" ];
   };
 
@@ -27,6 +29,7 @@
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINMm/9RWSPMxyeMHglw6cyZBgtuke+7l5wc9dXmQkiii"
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIIA5UkkDnsE/Td4aa0N+2pZ05xAHvPE8SMVk5zlHhxA"
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAN+U9xlrIVyWY7DzhMO6Tf+JN04a9nzcdMc7nLOnWqq wantguns@mintaka"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIZXnfEw3pyp3l0hAtdjExzZBlzIzFY12L1kMI3ckF0c wantguns@bellatrix"
     ];
   };
 
@@ -39,8 +42,6 @@
   };
 
   hardware = { enableRedistributableFirmware = true; };
-
-  sops.secrets."wg/bellatrix/private" = { };
 
   system.stateVersion = "24.11";
 }

@@ -17,7 +17,7 @@ pkgs.writeShellScriptBin "deploy" ''
     local host=$1
     local remote=$2
     echo "Deploying home configuration for $host..."
-  
+
     if [ "$remote" == "true" ]; then
       ssh "$USERNAME@$IP" "nix run 'github:nix-community/home-manager/master' -- switch --flake '.#$host'"
     else
@@ -28,17 +28,17 @@ pkgs.writeShellScriptBin "deploy" ''
   if [[ "$REMOTE_BUILD" == "true" && "$REMOTE_BUILD_ENABLED" == "true" ]]; then
     PUBLIC_IP=$(nix eval --raw .#hosts."$HOSTNAME".ips.public 2>/dev/null || echo "")
     PRIVATE_IP=$(nix eval --raw .#hosts."$HOSTNAME".ips.private 2>/dev/null || echo "")
-  
+
     IP="$PUBLIC_IP"
     if ! ping -c 1 -W 1 "$IP" &>/dev/null && [ -n "$PRIVATE_IP" ]; then
       IP="$PRIVATE_IP"
     fi
-  
+
     if [ -z "$IP" ]; then
       echo "Error: No IP address available for remote build"
       exit 1
     fi
-  
+
     if [[ "$JUST_HOME" == "true" ]]; then
       deploy_home "$HOSTNAME" true
     else

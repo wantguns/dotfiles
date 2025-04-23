@@ -1,13 +1,7 @@
 { config, pkgs, ... }: {
-  nix = {
-    settings = {
-      "ssl-cert-file" = "/opt/nix-and-zscaler.crt";
-    };
-  };
+  nix = { settings = { "ssl-cert-file" = "/opt/nix-and-zscaler.crt"; }; };
 
-  environment.systemPackages = with pkgs; [
-    termshark
-  ];
+  environment.systemPackages = with pkgs; [ termshark ];
 
   users.users."gunwant.jain1" = {
     shell = pkgs.zsh;
