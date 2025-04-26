@@ -11,6 +11,8 @@
   };
 
   fileSystems."/home".options = [ "noauto" ];
+  fileSystems."/media".options = [ "noauto" ];
+  fileSystems."/backups".options = [ "noauto" ];
 
   networking = {
     hostId = "98e1d0eb";
