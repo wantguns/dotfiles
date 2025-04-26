@@ -22,7 +22,6 @@
   services.k3s = {
     enable = true;
     role = "server";
-    token = "/run/secrets/k3s/token";
     clusterInit = true;
     extraFlags = toString [
       "--flannel-backend=none"
@@ -33,6 +32,4 @@
       "--debug"
     ];
   };
-
-  sops.secrets."k3s/token" = { };
 }
