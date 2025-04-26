@@ -14,14 +14,14 @@ let
     ${builtins.readFile file}
     EOF'';
 
-  fromGitHub = { ref, repo, sha256 ? lib.fakeSha256 }:
+  fromGitHub = { owner, repo, rev, sha256 ? lib.fakeSha256 }:
     pkgs.vimUtils.buildVimPlugin {
       pname = "${lib.strings.sanitizeDerivationName repo}";
-      version = ref;
+      version = rev;
       src = pkgs.fetchFromGitHub {
-        owner = lib.strings.elemAt (lib.strings.splitString "/" repo) 0;
-        repo = lib.strings.elemAt (lib.strings.splitString "/" repo) 1;
-        rev = ref;
+        owner = owner;
+        repo = repo;
+        rev = rev;
         sha256 = sha256;
       };
     };
@@ -83,9 +83,10 @@ in {
             }
             {
               plugin = fromGitHub {
-                ref = "27e8e0d7ccc2654c29370815d0f9d15e87ac8ea8";
-                repo = "bluz71/vim-moonfly-colors";
-                sha256 = "1f3783jy62ih1c0w115q6rkxcvgs1qiin388spzpmxzm4as0vl39";
+                owner = "bluz71";
+                repo = "vim-moonfly-colors";
+                rev = "b2c58a0c6eb3ee091d5cc13b8f4f6e6fba8a9c7a";
+                sha256 = "Q59tUqcv7I36XrCd3L6D/ICWbf9FvPMeSekrVib6wBs=";
               };
               config = "colorscheme moonfly";
             }
