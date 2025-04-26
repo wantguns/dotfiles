@@ -1,6 +1,10 @@
 { config, pkgs, lib, inputs, ... }:
 
 {
+  imports = [
+    ./k3s.nix
+  ];
+
   boot = {
     supportedFilesystems = [ "zfs" ];
     loader = {
@@ -17,7 +21,7 @@
   networking = {
     hostId = "98e1d0eb";
     hostName = "alnitak";
-    nameservers = [ "1.1.1.1" "8.8.8.8" ];
+    nameservers = [ "1.1.1.1" ];
   };
 
   programs.zsh.enable = true;
@@ -44,6 +48,16 @@
   };
 
   hardware = { enableRedistributableFirmware = true; };
+  environment.systemPackages = with pkgs;
+  [
+    rclone
+    kubectl
+    k9s
+    fluxcd
+    cilium-cli
+    jq
+    kubernetes-helm
+  ];
 
   system.stateVersion = "24.11";
 }
