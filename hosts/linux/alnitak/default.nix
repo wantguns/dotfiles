@@ -14,6 +14,8 @@
     };
   };
 
+  # These parameters prevent lock ups
+  systemd.network.wait-online.enable = false;
   fileSystems."/home".options = [ "noauto" ];
   fileSystems."/media".options = [ "noauto" ];
   fileSystems."/backups".options = [ "noauto" ];
