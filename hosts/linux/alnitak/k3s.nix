@@ -8,6 +8,7 @@
       6443 # apiserver
       2379 # ha etcd clients
       2380 # ha etcd peers
+      8472 # cilium
       10250 # metrics-server
     ];
     checkReversePath = "loose";

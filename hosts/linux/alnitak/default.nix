@@ -50,6 +50,7 @@
   };
 
   hardware = { enableRedistributableFirmware = true; };
+  programs.mosh.enable = true;
   environment.systemPackages = with pkgs;
   [
     rclone
