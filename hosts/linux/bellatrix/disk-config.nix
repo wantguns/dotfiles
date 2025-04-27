@@ -9,7 +9,7 @@
           type = "gpt";
           partitions = {
             ESP = {
-              size = "100M";
+              size = "512M";
               type = "EF00"; # EFI System Partition
               content = {
                 type = "filesystem";
@@ -26,7 +26,7 @@
                 extraArgs = [
                   "-L"
                   "cloudimg-rootfs"
-                ]; # Preserve the LABEL from your fstab
+                ];
               };
             };
           };
