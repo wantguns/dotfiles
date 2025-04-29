@@ -1,0 +1,8 @@
+; vim: set ft=gitconfig:
+
+[user]
+	email = gunwant.jain@aion.xyz
+	name = Gunwant Jain
+
+[commit]
+	template = "/Users/wantguns/dev/aion/.gitmessage"

@@ -16,6 +16,8 @@
     };
 
     NSGlobalDomain = {
+      "com.apple.mouse.tapBehavior" = 1; # enable tap to click
+
       InitialKeyRepeat = 10;
       KeyRepeat = 1;
     };

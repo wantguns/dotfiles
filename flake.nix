@@ -59,6 +59,13 @@
           remoteBuild = true;
           ips = { public = "78.46.83.190"; };
         };
+
+        "meissa" = lib.my.mkHostConfig {
+          hostname = "meissa";
+          system = "aarch64-darwin";
+          username = "wantguns";
+          remoteBuild = false;
+        };
       };
 
       forAllHosts = f: builtins.mapAttrs f hosts;
