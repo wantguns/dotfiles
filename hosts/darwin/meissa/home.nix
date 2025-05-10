@@ -4,7 +4,7 @@
       enable = true;
       ui = true;
       lsp = true;
-      copilot = false;
+      copilot = true;
       obsidian = false;
     };
 
@@ -26,8 +26,8 @@
     newsboat = false;
 
     dev = {
-      go = false;
-      python = false;
+      go = true;
+      python = true;
     };
   };
 

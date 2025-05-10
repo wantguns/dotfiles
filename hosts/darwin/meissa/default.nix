@@ -8,7 +8,6 @@
     spotify
     feishin
     rectangle
-    signal-desktop-bin
   ];
 
   users.users."wantguns" = {
@@ -20,6 +19,12 @@
       kubernetes-helm
       xh
       jq
+      mosh
+
+      gnumake
+      go
+      python312
+      pipx
     ];
   };
 
