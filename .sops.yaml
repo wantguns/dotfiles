@@ -2,9 +2,9 @@ keys:
   - &wantguns_C02GH2V9MD6M age1qwdptp2f9jqzugvkvapf4ssqdt3xm0mn8tq9f9xrqdf8kazsn3js6ftmg6
   - &wantguns_mintaka age1wwmwwqm7tm7msj9jl5yj6gxrjnkpc8qykgpux9u7x6nhg8llus4qk2e7ds
   - &root_mintaka age1e0slax42xt6r7nzwv7kxnkshuewwefu4049zr7wswxzdelajxguqsclvt6
-  - &root_bellatrix age1ckhg3rzvcqfqlxltw8l2kg483d45gn0ugz93ywrsgcp8m80fkq5q3dfxhm
   - &alnitak age1cfcja4l7ar2t4cuscs4xqax22ded73re3wjcvq8ymg39jk8jmgjqnms563
   - &meissa age1nyrdtt37tgdd7zvrhyhzptjumurdaqymv8e08nvm704u8hd8qcyqp6a3uw
+  - &bellatrix age1qlq2enxnf3pgn7ffnp6gc090dymrdfmahh38pu7nxnd9w0dac5ys06rh96
 creation_rules:
   - path_regex: secrets/[^/]+\.(yaml|json|env|ini)$
     key_groups:
@@ -12,6 +12,6 @@ creation_rules:
       - *wantguns_C02GH2V9MD6M
       - *wantguns_mintaka
       - *root_mintaka
-      - *root_bellatrix
       - *alnitak
       - *meissa
+      - *bellatrix
