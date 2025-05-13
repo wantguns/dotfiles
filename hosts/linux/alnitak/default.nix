@@ -17,8 +17,16 @@
   # These parameters prevent lock ups
   systemd.network.wait-online.enable = false;
   fileSystems."/home".options = [ "noauto" ];
-  fileSystems."/media".options = [ "noauto" ];
-  fileSystems."/backups".options = [ "noauto" ];
+
+  # Mount legacy zfs pool
+  fileSystems."/media" = {
+    device = "mediapool/media";
+    fsType = "zfs";
+  };
+  fileSystems."/backups" = {
+    device = "mediapool/backups";
+    fsType = "zfs";
+  };
 
   networking = {
     hostId = "98e1d0eb";

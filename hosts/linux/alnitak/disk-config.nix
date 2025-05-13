@@ -121,11 +121,13 @@
           "media" = {
             type = "zfs_fs";
             mountpoint = "/media";
+            options.mountpoint = "legacy";
           };
           "backups" = {
             type = "zfs_fs";
             mountpoint = "/backups";
             options = {
+              mountpoint = "legacy";
               compression = "zstd";
               recordsize = "1M";
               copies = "1";
