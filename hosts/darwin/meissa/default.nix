@@ -8,6 +8,7 @@
     spotify
     feishin
     rectangle
+    itsycal
   ];
 
   users.users."wantguns" = {
@@ -19,11 +20,14 @@
       kubernetes-helm
       xh
       jq
+      yq
       mosh
+      shadowsocks-rust
 
       gnumake
       go
       python312
+      python312Packages.pyyaml
       pipx
     ];
   };

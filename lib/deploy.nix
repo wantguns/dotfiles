@@ -54,10 +54,10 @@ pkgs.writeShellScriptBin "deploy" ''
           --use-substitutes \
           --option builders-use-substitutes true
       else
-        nix run github:lnl7/nix-darwin/master#darwin-rebuild -- switch \
+        sudo nix run github:lnl7/nix-darwin/master#darwin-rebuild -- switch \
           --flake .#"$HOSTNAME" \
-          --build-host "$USERNAME@$IP" \
-          --target-host "$USERNAME@$IP" \
+          --build-host "root@$IP" \
+          --target-host "root@$IP" \
           --fast
       fi
     fi
