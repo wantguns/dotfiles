@@ -18,7 +18,17 @@
   networking = {
     hostName = "bellatrix";
     nameservers = [ "1.1.1.1" "8.8.8.8" ];
+
+    firewall = {
+      allowedTCPPorts = [
+        8388 # shadowsocks
+      ];
+      checkReversePath = "loose";
+    };
   };
+
+  # Prevent lockups
+  systemd.network.wait-online.enable = false;
 
   programs.zsh.enable = true;
 
@@ -32,6 +42,10 @@
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIIA5UkkDnsE/Td4aa0N+2pZ05xAHvPE8SMVk5zlHhxA"
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAN+U9xlrIVyWY7DzhMO6Tf+JN04a9nzcdMc7nLOnWqq wantguns@mintaka"
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMQ0qLuDtERCe8zPmAOfJjJzENQl8SJURTwqZnXfdGsn wantguns@alnitak"
+    ];
+
+    packages = with pkgs; [
+      shadowsocks-rust
     ];
   };
 
