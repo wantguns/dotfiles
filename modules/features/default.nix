@@ -28,6 +28,9 @@ with lib;
       go = mkEnableOption "go development environment";
       rust = mkEnableOption "rust development environment";
       python = mkEnableOption "python development environment";
+      terraform = mkEnableOption "enable terraform environment";
+      nodejs = mkEnableOption "enable javascript/typescript environment";
+      lua = mkEnableOption "enable lua environment";
     };
 
     git = {

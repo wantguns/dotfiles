@@ -38,6 +38,11 @@ in {
         ];
       };
 
+      # sessionVariables = {
+      #   GOPATH = "${builtins.getEnv "HOME"}/go";
+      # };
+
+
       fonts.fontconfig.enable = true;
       programs.home-manager.enable = true;
     }
@@ -60,6 +65,7 @@ in {
           ] ++ lib.optional cfg.editors.nvim.copilot copilot-vim
 
           ++ lib.optionals cfg.editors.nvim.ui [
+            vim-fugitive
             which-key-nvim
             {
               plugin = gitlinker-nvim;
@@ -108,6 +114,10 @@ in {
             cmp-nvim-lsp
           ]
 
+          ++ lib.optionals cfg.dev.terraform [
+            nvim-treesitter-parsers.terraform
+          ]
+
           # Obsidian
           ++ lib.optional cfg.editors.nvim.obsidian {
             plugin = obsidian-nvim;
@@ -115,8 +125,13 @@ in {
           };
 
         extraPackages = with pkgs; [
+          (lib.mkIf cfg.dev.lua lua-language-server)
           (lib.mkIf cfg.dev.go gopls)
+          (lib.mkIf cfg.dev.go golangci-lint-langserver)
           (lib.mkIf cfg.dev.python pyright)
+          (lib.mkIf cfg.dev.terraform terraform-ls)
+          (lib.mkIf cfg.dev.nodejs typescript-language-server)
+          (lib.mkIf cfg.dev.nodejs typescript)
         ];
       };
     })
@@ -138,7 +153,7 @@ in {
           save = 1000000;
         };
 
-        initExtraFirst = builtins.readFile ./zsh/zshrc;
+        initContent = builtins.readFile ./zsh/zshrc;
 
         plugins = lib.optional cfg.shell.zsh.powerlevel10k {
           name = "zsh-powerlevel10k";

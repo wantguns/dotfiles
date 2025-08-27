@@ -17,15 +17,18 @@ local on_attach = function(_, bufnr)
   nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
 
   nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
-  nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
   nmap('gI', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
   nmap('<leader>D', vim.lsp.buf.type_definition, 'Type [D]efinition')
-  nmap('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
-  nmap('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
 
   -- See `:help K` for why this keymap
   nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
   nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
+
+  -- Diagnostics
+  nmap('[d', vim.diagnostic.goto_prev, 'Go to previous diagnostic message')
+  nmap(']d', vim.diagnostic.goto_next,  'Go to next diagnostic message')
+  nmap('ge', vim.diagnostic.open_float, 'Open floating diagnostic message')
+  nmap('gq', vim.diagnostic.setloclist, 'Open diagnostics list')
 
   -- Lesser used LSP functionality
   nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
@@ -46,8 +49,26 @@ require('lspconfig').gopls.setup {
     capabilities = capabilities,
     on_attach = on_attach,
 }
+require('lspconfig').golangci_lint_ls.setup {
+    capabilities = capabilities,
+    on_attach = on_attach,
+    init_options = {
+      command = { "golangci-lint", "run", "--output.json.path=stdout", "--output.text.path=/dev/null", "--show-stats=false" },
+    },
+}
 require('lspconfig').pyright.setup {
     capabilities = capabilities,
     on_attach = on_attach,
 }
-
+require('lspconfig').terraformls.setup {
+    capabilities = capabilities,
+    on_attach = on_attach,
+}
+require('lspconfig').ts_ls.setup {
+    capabilities = capabilities,
+    on_attach = on_attach,
+}
+require('lspconfig').lua_ls.setup {
+    capabilities = capabilities,
+    on_attach = on_attach,
+}
