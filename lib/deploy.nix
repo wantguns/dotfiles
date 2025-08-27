@@ -56,9 +56,8 @@ pkgs.writeShellScriptBin "deploy" ''
       else
         sudo nix run github:lnl7/nix-darwin/master#darwin-rebuild -- switch \
           --flake .#"$HOSTNAME" \
-          --build-host "root@$IP" \
-          --target-host "root@$IP" \
-          --fast
+          --build-host "$USERNAME@$IP" \
+          --target-host "$USERNAME@$IP"
       fi
     fi
   else
@@ -70,7 +69,7 @@ pkgs.writeShellScriptBin "deploy" ''
       if [[ "$SYSTEM" == *"-linux" ]]; then
         sudo nix run nixpkgs#nixos-rebuild -- switch --flake .#"$HOSTNAME"
       else
-        nix run github:lnl7/nix-darwin/master#darwin-rebuild -- switch --flake .#"$HOSTNAME"
+        sudo nix run github:lnl7/nix-darwin/master#darwin-rebuild -- switch --flake .#"$HOSTNAME"
       fi
     fi
   fi

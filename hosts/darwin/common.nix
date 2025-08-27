@@ -1,6 +1,8 @@
 { config, pkgs, ... }: {
   system.stateVersion = 6;
 
+  system.primaryUser = "root";
+
   system.defaults = {
     dock = {
       autohide = true;
