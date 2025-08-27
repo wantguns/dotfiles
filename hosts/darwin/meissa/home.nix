@@ -4,7 +4,7 @@
       enable = true;
       ui = true;
       lsp = true;
-      copilot = true;
+      copilot = false;
       obsidian = false;
     };
 
@@ -21,13 +21,16 @@
     tmux = true;
     fzf = true;
     aerc = true;
-    secrets = true;
+    secrets = false;
     alacritty = true;
     newsboat = false;
 
     dev = {
       go = true;
       python = true;
+      terraform = true;
+      nodejs = true;
+      lua = true;
     };
   };
 
