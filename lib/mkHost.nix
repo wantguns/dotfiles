@@ -36,7 +36,9 @@ in {
         ++ (lib.optional hasFacterJson
           inputs.nixos-facter-modules.nixosModules.facter)
         ++ (lib.optional hasFacterJson { facter.reportPath = facterJsonPath; })
-        ++ [ inputs.sops-nix.nixosModules.sops ];
+        ++ [ inputs.sops-nix.nixosModules.sops
+            ../modules/network/wireguard-orion.nix
+        ];
 
       systemBuilder = if hostDarwin then
         inputs.darwin.lib.darwinSystem
@@ -44,7 +46,11 @@ in {
         inputs.nixpkgs.lib.nixosSystem;
     in systemBuilder {
       inherit system;
-      specialArgs = { inherit inputs; };
+      specialArgs = {
+          inherit inputs;
+          hosts = inputs.self.hosts;
+          thisHostName = hostname;
+      } // hostConfig.specialArgs or {};
       modules = baseModules ++ linuxModules ++ [{
         nixpkgs = {
           config.allowUnfree = true;

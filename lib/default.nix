@@ -8,4 +8,5 @@
   isPlatform = (import ./utils.nix { inherit lib; }).isPlatform;
   isDarwin = (import ./utils.nix { inherit lib; }).isDarwin;
   isLinux = (import ./utils.nix { inherit lib; }).isLinux;
+  wg = import ./wg.nix { inherit lib; };
 }

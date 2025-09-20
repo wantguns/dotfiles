@@ -60,7 +60,12 @@
   hardware = { enableRedistributableFirmware = true; };
   programs.mosh.enable = true;
 
-  sops.secrets."wg/bellatrix/private" = { };
+  sops.secrets."wg/bellatrix/private" = {
+    owner = "root";
+    group = "systemd-network";
+    mode = "0640";
+    restartUnits = [ "systemd-networkd.service" ];
+  };
 
   system.stateVersion = "24.11";
 }

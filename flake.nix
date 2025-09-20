@@ -49,7 +49,14 @@
           system = "aarch64-linux";
           username = "wantguns";
           remoteBuild = true;
-          ips = { public = "152.67.6.204"; };
+          ips = {
+            public = "152.67.3.218";
+            orion = {
+              address = "10.69.0.2";
+              publicKey = "h8gz2dL5bESUFaBshKZdkDXZYi1Nt/T4X04nVNBIygA=";
+              privateKeyFile = "/run/secrets/wg/bellatrix/private";
+            };
+          };
         };
 
         "alnitak" = lib.my.mkHostConfig {
@@ -57,7 +64,14 @@
           system = "x86_64-linux";
           username = "wantguns";
           remoteBuild = true;
-          ips = { public = "78.46.83.190"; };
+          ips = {
+            public = "78.46.83.190";
+            orion = {
+              address = "10.69.0.1";
+              publicKey = "5pvq7XBbZ59aeJsCtc6r0wpet3z2sFyp1M/TQaXJqlc=";
+              privateKeyFile = "/run/secrets/wg/alnitak/private";
+            };
+          };
         };
 
         "meissa" = lib.my.mkHostConfig {
@@ -68,18 +82,39 @@
         };
       };
 
+      extraWgHosts = {
+        "shiba" = {
+          hostname = "shiba";
+          ips = {
+            orion = {
+              address = "10.69.0.10";
+              publicKey = "fIiyno6ZKuLLa38OZ2tcs0/Gn6MvQV7Y8wzlsN1ybQw=";
+              privateKeyFile = "/run/secrets/wg/shiba/private";
+            };
+          };
+        };
+      };
+
+      wgInfo = lib.my.wg.mkInfo {
+        inherit hosts extraWgHosts;
+      };
+
       forAllHosts = f: builtins.mapAttrs f hosts;
 
     in {
       inherit hosts;
 
       darwinConfigurations =
-        builtins.mapAttrs (name: hostConfig: lib.my.mkHost hostConfig)
+        builtins.mapAttrs (name: hostConfig: lib.my.mkHost (hostConfig // {
+          specialArgs.hosts = wgInfo.wgHosts;
+        }))
         (lib.filterAttrs (name: hostConfig: lib.my.isDarwin hostConfig.system)
           hosts);
 
       nixosConfigurations =
-        builtins.mapAttrs (name: hostConfig: lib.my.mkHost hostConfig)
+        builtins.mapAttrs (name: hostConfig: lib.my.mkHost (hostConfig // {
+          specialArgs.hosts = wgInfo.wgHosts;
+        }))
         (lib.filterAttrs (name: hostConfig: lib.my.isLinux hostConfig.system)
           hosts);
 
@@ -96,5 +131,10 @@
             }/bin/deploy";
         };
       });
+
+      packages = forAllSystems (system:
+        let pkgs = nixpkgs.legacyPackages.${system};
+        in wgInfo.buildPackages { inherit pkgs; }
+      );
     };
 }
