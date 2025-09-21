@@ -7,17 +7,24 @@ let mkInfo = { hosts, extraWgHosts }:
         privateKey = builtins.readFile host.ips.orion.privateKeyFile;
         listenPort = 51820;
         publicPeers = lib.filterAttrs (_: v: v ? ips && v.ips ? public) allWgHosts;
+
+        gatewayHostname =
+          if host.ips.orion ? gateway
+          then host.ips.orion.gateway
+          else (lib.head (lib.attrNames publicPeers));
       in ''
         [Interface]
         PrivateKey = ${privateKey}
         Address = ${host.ips.orion.address}/16
         DNS = 10.69.0.1
 
-        # Create a [Peer] block for every public host.
+        # Create a [Peer] block for every public host
         ${lib.concatStringsSep "\n" (lib.mapAttrsToList (name: peer: ''
           [Peer]
           PublicKey = ${peer.ips.orion.publicKey}
-          AllowedIPs = 10.69.0.0/16
+          # If this peer is the gateway, it handles all traffic.
+          # Otherwise, we only allow traffic for its own IP.
+          AllowedIPs = ${if name == gatewayHostname then "10.69.0.0/16" else "${peer.ips.orion.address}/32"}
           Endpoint = ${peer.ips.public}:${toString listenPort}
           PersistentKeepalive = 25
         '') publicPeers)}
