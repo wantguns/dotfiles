@@ -41,7 +41,15 @@
           system = "x86_64-linux";
           username = "wantguns";
           remoteBuild = true;
-          ips = { private = "192.168.1.130"; };
+          ips = {
+            private = "192.168.1.130";
+            orion = {
+              address = "10.69.0.3";
+              gateway = "bellatrix";
+              publicKey = "U6ePNi8mX6KbE/p8e1xip2JkGjdIGWqIvnxSDL8MFg0=";
+              privateKeyFile = "/run/secrets/wg/mintaka/private";
+            };
+          };
         };
 
         "bellatrix" = lib.my.mkHostConfig {
@@ -88,6 +96,7 @@
           ips = {
             orion = {
               address = "10.69.0.10";
+              gateway = "bellatrix";
               publicKey = "fIiyno6ZKuLLa38OZ2tcs0/Gn6MvQV7Y8wzlsN1ybQw=";
               privateKeyFile = "/run/secrets/wg/shiba/private";
             };

@@ -26,6 +26,16 @@
       }];
     };
     nameservers = [ "1.1.1.1" "8.8.8.8" ];
+    firewall = {
+      checkReversePath = "loose";
+      trustedInterfaces = [
+        "wg_orion"
+      ];
+
+      extraInputRules = ''
+        ip saddr 10.69.0.0/16 accept
+      '';
+    };
   };
 
   programs.zsh.enable = true;
@@ -51,7 +61,20 @@
 
   hardware = { enableRedistributableFirmware = true; };
 
-  sops.secrets."wg/mintaka/private" = { };
+  sops.secrets = {
+      "wg/mintaka/private" = {
+        owner = "root";
+        group = "systemd-network";
+        mode = "0640";
+        restartUnits = [ "systemd-networkd.service" ];
+      };
+      "wg/shiba/private" = {
+        owner = "root";
+        group = "systemd-network";
+        mode = "0640";
+        restartUnits = [ "systemd-networkd.service" ];
+      };
+  };
 
   system.stateVersion = "24.11";
 }
