@@ -102,6 +102,18 @@
             };
           };
         };
+
+        "meissa" = {
+          hostname = "meissa";
+          ips = {
+            orion = {
+              address = "10.69.0.4";
+              gateway = "bellatrix";
+              publicKey = "vRTc+GClR3/TbRHiJUzZEHWwY7fYOWfcQ78ZdczH4g4=";
+              privateKeyFile = "/run/secrets/wg/meissa/private";
+            };
+          };
+        };
       };
 
       wgInfo = lib.my.wg.mkInfo {

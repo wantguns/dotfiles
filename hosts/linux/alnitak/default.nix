@@ -77,12 +77,6 @@
         mode = "0640";
         restartUnits = [ "systemd-networkd.service" ];
       };
-      "wg/shiba/private" = {
-        owner = "root";
-        group = "systemd-network";
-        mode = "0640";
-        restartUnits = [ "systemd-networkd.service" ];
-      };
   };
 
   system.stateVersion = "24.11";
