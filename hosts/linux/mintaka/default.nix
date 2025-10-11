@@ -21,7 +21,7 @@
     hostId = "30daa5e6";
     interfaces = {
       enp2s0.ipv6.addresses = [{
-        address = "192.168.1.130";
+        address = "192.168.0.130";
         prefixLength = 32;
       }];
     };
