@@ -14,7 +14,7 @@ let
     ${builtins.readFile file}
     EOF'';
 
-  fromGitHub = { owner, repo, rev, sha256 ? lib.fakeSha256 }:
+  fromGitHub = { owner, repo, rev, sha256 ? lib.fakeSha256, doCheck ? false }:
     pkgs.vimUtils.buildVimPlugin {
       pname = "${lib.strings.sanitizeDerivationName repo}";
       version = rev;
@@ -24,6 +24,7 @@ let
         rev = rev;
         sha256 = sha256;
       };
+      inherit doCheck;
     };
 
   fakeVimPlugin = pkgs.runCommand "fakeVimPlugin" { } "mkdir $out";
@@ -68,8 +69,14 @@ in {
             vim-fugitive
             which-key-nvim
             {
-              plugin = gitlinker-nvim;
-              config = toLua "require('gitlinker').setup()";
+              plugin = fromGitHub {
+                owner = "linrongbin16";
+                repo = "gitlinker.nvim";
+                rev = "7c1fae10e39fba627a433a0d7126683c79af289f";
+                sha256 = "J7WG0xoVI9NKrOrgA7zTdD/Q4gSh+Hhg/wAIh/1RmDA=";
+                doCheck = false;
+              };
+              config = toLuaFile ./nvim/gitlink.lua;
             }
             {
               plugin = gitsigns-nvim;
