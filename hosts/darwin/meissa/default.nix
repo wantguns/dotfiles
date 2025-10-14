@@ -61,6 +61,14 @@
       fd
       grpcurl
       ocrmypdf
+      clusterctl
+      kind
+      tilt
+      kubebuilder
+      zola
+      protobuf
+      protoc-gen-go
+      protoc-gen-go-grpc
 
       go
       python312
