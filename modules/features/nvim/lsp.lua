@@ -45,30 +45,46 @@ local on_attach = function(_, bufnr)
 end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
-require('lspconfig').gopls.setup {
-    capabilities = capabilities,
-    on_attach = on_attach,
+
+-- New API: vim.lsp.config instead of require('lspconfig')
+vim.lsp.config.gopls = {
+  capabilities = capabilities,
+  on_attach = on_attach,
 }
-require('lspconfig').golangci_lint_ls.setup {
-    capabilities = capabilities,
-    on_attach = on_attach,
-    init_options = {
-      command = { "golangci-lint", "run", "--output.json.path=stdout", "--output.text.path=/dev/null", "--show-stats=false" },
-    },
+
+vim.lsp.config.golangci_lint_ls = {
+  capabilities = capabilities,
+  on_attach = on_attach,
+  cmd = { "golangci-lint-langserver" },
+  init_options = {
+    command = { "golangci-lint", "run", "--output.json.path=stdout", "--output.text.path=/dev/null", "--show-stats=false" },
+  },
 }
-require('lspconfig').pyright.setup {
-    capabilities = capabilities,
-    on_attach = on_attach,
+
+vim.lsp.config.pyright = {
+  capabilities = capabilities,
+  on_attach = on_attach,
 }
-require('lspconfig').terraformls.setup {
-    capabilities = capabilities,
-    on_attach = on_attach,
+
+vim.lsp.config.terraformls = {
+  capabilities = capabilities,
+  on_attach = on_attach,
 }
-require('lspconfig').ts_ls.setup {
-    capabilities = capabilities,
-    on_attach = on_attach,
+
+vim.lsp.config.ts_ls = {
+  capabilities = capabilities,
+  on_attach = on_attach,
 }
-require('lspconfig').lua_ls.setup {
-    capabilities = capabilities,
-    on_attach = on_attach,
+
+vim.lsp.config.lua_ls = {
+  capabilities = capabilities,
+  on_attach = on_attach,
 }
+
+-- Enable the LSP servers (required with new API)
+vim.lsp.enable('gopls')
+vim.lsp.enable('golangci_lint_ls')
+vim.lsp.enable('pyright')
+vim.lsp.enable('terraformls')
+vim.lsp.enable('ts_ls')
+vim.lsp.enable('lua_ls')

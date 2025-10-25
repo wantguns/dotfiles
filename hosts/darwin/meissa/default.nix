@@ -1,8 +1,12 @@
 { config, pkgs, ... }: {
   networking.hostName = "meissa";
   environment.systemPackages = with pkgs; [
+    # (libcanberra.override { gtkSupport = "gtk2"; })
     raycast
-    firefox
+    (firefox.overrideAttrs (_: {
+      gtk_modules = [ ];
+    }))
+    # firefox
     slack
     obsidian
     spotify
@@ -14,6 +18,8 @@
     iina
     # fx-cast-bridge
     google-chrome
+    halloy
+    yaak
 
     # block of shame - no nix package with full integration
     # signal-desktop, tailscale, obs-studio

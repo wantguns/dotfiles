@@ -186,8 +186,12 @@ in {
     (lib.mkIf cfg.git.enable {
       programs.git = {
         enable = true;
-        extraConfig = import ./git/config.nix;
-        delta.enable = cfg.git.delta;
+        settings = import ./git/config.nix;
+      };
+
+      programs.delta = {
+        enable = cfg.git.delta;
+        enableGitIntegration = true;
       };
 
       home.file.".config/git/message".source = ./git/message;
