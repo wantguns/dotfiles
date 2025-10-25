@@ -1,0 +1,50 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: alnitak
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-options: PruneLast=true
+spec:
+  description: "alnitak kubernetes cluster"
+  clusterResourceWhitelist:
+    - group: "*"
+      kind: "*"
+  destinations:
+    - namespace: "*"
+      server: "https://kubernetes.default.svc"
+  namespaceResourceWhitelist:
+    - group: "*"
+      kind: "*"
+  sourceRepos:
+    - "*"
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: metaapp
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: alnitak
+  destination:
+    namespace: argocd
+    name: in-cluster
+  source:
+    repoURL: "git@github.com:wantguns/gitops.git"
+    targetRevision: HEAD
+    path: charts/metaapp/0.1.0
+    helm:
+      valueFiles:
+        - "../../../environments/alnitak/metaapp/values.yaml"
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - "Validate=true"
+      - "CreateNamespace=true"
+      - "PrunePropagationPolicy=foreground"
+      - "PruneLast=true"
+      - "ServerSideApply=true"
