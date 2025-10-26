@@ -1,22 +1,14 @@
 { config, pkgs, ... }: {
   networking.hostName = "meissa";
   environment.systemPackages = with pkgs; [
-    # (libcanberra.override { gtkSupport = "gtk2"; })
     raycast
-    (firefox.overrideAttrs (_: {
-      gtk_modules = [ ];
-    }))
-    # firefox
-    slack
     obsidian
     spotify
     feishin
     rectangle
     notion-app
     localsend
-    discord
     iina
-    # fx-cast-bridge
     google-chrome
     halloy
     yaak
@@ -24,6 +16,19 @@
     # block of shame - no nix package with full integration
     # signal-desktop, tailscale, obs-studio
   ];
+
+  homebrew = {
+    enable = true;
+    user = "wantguns";
+
+    taps = [];
+    brews = [];
+    casks = [
+        "firefox"
+        "slack"
+        "discord"
+    ];
+};
 
   users.users."wantguns" = {
     shell = pkgs.zsh;
@@ -75,6 +80,7 @@
       protobuf
       protoc-gen-go
       protoc-gen-go-grpc
+      kubeseal
 
       go
       python312
