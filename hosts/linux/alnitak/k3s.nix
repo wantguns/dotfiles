@@ -45,6 +45,7 @@ in
       "--disable traefik"
       "--node-ip=10.69.0.1"
       "--node-external-ip=78.46.83.190"
+      "--node-label openebs.io/nodeid=alnitak"
       "--debug"
     ];
     
