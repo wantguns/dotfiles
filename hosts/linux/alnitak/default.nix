@@ -64,10 +64,16 @@
     rclone
     kubectl
     k9s
-    fluxcd
     cilium-cli
     jq
     kubernetes-helm
+    htop
+    nerdctl
+    dig
+    iperf
+    wget
+    python3
+    uv
   ];
 
   sops.secrets = {
