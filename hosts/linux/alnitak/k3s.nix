@@ -31,6 +31,12 @@ in
       ip saddr 10.42.0.0/16 accept
       ip saddr 10.43.0.0/16 accept
     '';
+
+    extraCommands = ''
+      # by default the packets originating from the pod and the service cidrs with this dst were dropping
+      iptables -A nixos-fw -s 10.42.0.0/16 -d 10.69.0.1 -j nixos-fw-accept
+      iptables -A nixos-fw -s 10.43.0.0/16 -d 10.69.0.1 -j nixos-fw-accept
+    '';
   };
 
   services.k3s = {

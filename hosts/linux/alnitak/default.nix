@@ -74,6 +74,7 @@
     wget
     python3
     uv
+    pwru
   ];
 
   sops.secrets = {
