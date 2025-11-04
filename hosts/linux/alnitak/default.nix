@@ -75,6 +75,7 @@
     python3
     uv
     pwru
+    restic
   ];
 
   sops.secrets = {
