@@ -27,6 +27,7 @@
         "firefox"
         "slack"
         "discord"
+        "screen-studio"
     ];
 };
 
@@ -43,7 +44,6 @@
       yq-go
       mosh
       shadowsocks-rust
-      # dpkg
       typst
       terraform
       poppler-utils
@@ -81,6 +81,11 @@
       protoc-gen-go
       protoc-gen-go-grpc
       kubeseal
+      ruff
+      buf
+      opencode
+      cloc
+      kubectl-cnpg
 
       go
       python312

@@ -38,8 +38,13 @@
     "dev/aion/.gitconfig".source = ./git/aion;
     "dev/aion/.gitmessage".source = ./git/aionmessage;
   };
-  programs.git.includes = [{
-    condition = "gitdir:~/dev/aion/";
-    path = "~/dev/aion/.gitconfig";
-  }];
+  programs.git = {
+      settings = {
+        url."git@github-aion:aion-intelligence".insteadOf = "https://github.com/aion-intelligence";
+      };
+      includes = [{
+        condition = "gitdir:~/dev/aion/";
+        path = "~/dev/aion/.gitconfig";
+      }];
+  };
 }
