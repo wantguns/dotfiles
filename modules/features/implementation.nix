@@ -35,14 +35,10 @@ in {
         stateVersion = "24.11";
         packages = with pkgs; [
           (lib.mkIf cfg.alacritty nerd-fonts.iosevka-term)
+          (iosevka-bin.override { variant = "SS15"; })
           ripgrep
         ];
       };
-
-      # sessionVariables = {
-      #   GOPATH = "${builtins.getEnv "HOME"}/go";
-      # };
-
 
       fonts.fontconfig.enable = true;
       programs.home-manager.enable = true;
@@ -64,6 +60,20 @@ in {
             }
             plenary-nvim
           ] ++ lib.optional cfg.editors.nvim.copilot copilot-vim
+          ++ lib.optional (cfg.theme == "gruvbox-light") {
+              plugin = gruvbox;
+              config = "set background=light | set termguicolors | colorscheme gruvbox";
+            }
+          ++ lib.optional (cfg.theme == "moonfly")
+            { 
+              plugin = fromGitHub {
+                owner = "bluz71";
+                repo = "vim-moonfly-colors";
+                rev = "b2c58a0c6eb3ee091d5cc13b8f4f6e6fba8a9c7a";
+                sha256 = "Q59tUqcv7I36XrCd3L6D/ICWbf9FvPMeSekrVib6wBs=";
+              };
+              config = "colorscheme moonfly";
+            }
 
           ++ lib.optionals cfg.editors.nvim.ui [
             vim-fugitive
@@ -95,13 +105,8 @@ in {
               config = toLuaFile ./nvim/telescope.lua;
             }
             {
-              plugin = fromGitHub {
-                owner = "bluz71";
-                repo = "vim-moonfly-colors";
-                rev = "b2c58a0c6eb3ee091d5cc13b8f4f6e6fba8a9c7a";
-                sha256 = "Q59tUqcv7I36XrCd3L6D/ICWbf9FvPMeSekrVib6wBs=";
-              };
-              config = "colorscheme moonfly";
+              plugin = telescope-nvim;
+              config = toLuaFile ./nvim/telescope.lua;
             }
           ]
 
@@ -139,6 +144,7 @@ in {
           (lib.mkIf cfg.dev.terraform terraform-ls)
           (lib.mkIf cfg.dev.nodejs typescript-language-server)
           (lib.mkIf cfg.dev.nodejs typescript)
+          (lib.mkIf cfg.dev.zig zls)
         ];
       };
     })
@@ -234,6 +240,26 @@ in {
       home.file.".config/alacritty/alacritty.toml".source =
         ./alacritty/alacritty.toml;
     })
+
+
+    (lib.mkIf cfg.ghostty {
+      programs.ghostty = {
+        enable = true;
+        package = pkgs.ghostty-bin;
+        settings = {
+        font-family = "Iosevka Term SS15";
+        font-size = 16;
+        font-thicken = true;
+        window-decoration = false;
+        theme =
+          if cfg.theme == "gruvbox-light" then "Gruvbox Light"
+          else if cfg.theme == "moonfly" then "Moonfly"
+          else "moonfly";
+        cursor-style = "block";
+        };
+      };
+    })
+
 
     (lib.mkIf cfg.newsboat {
       programs.newsboat = {

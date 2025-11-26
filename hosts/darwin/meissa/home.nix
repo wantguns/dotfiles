@@ -1,5 +1,7 @@
 { config, pkgs, ... }: {
   features = {
+    # theme = "gruvbox-light";
+    theme = "moonfly";
     editors.nvim = {
       enable = true;
       ui = true;
@@ -23,6 +25,7 @@
     aerc = true;
     secrets = false;
     alacritty = true;
+    ghostty = true;
     newsboat = false;
 
     dev = {

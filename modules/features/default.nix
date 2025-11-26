@@ -4,6 +4,11 @@ with lib;
 
 {
   options.features = {
+    theme = lib.mkOption {
+      type = lib.types.enum [ "moonfly" "gruvbox-light" ];
+      default = "moonfly";
+      description = "Selected terminal theme";
+    };
     editors = {
       nvim = {
         enable = mkEnableOption "neovim editor";
@@ -41,6 +46,7 @@ with lib;
 
     aerc = mkEnableOption "aerc email client";
     alacritty = mkEnableOption "alacritty terminal";
+    ghostty = mkEnableOption "ghostty terminal";
     newsboat = mkEnableOption "newsboat RSS reader";
     secrets = mkEnableOption "mount secrets";
   };
