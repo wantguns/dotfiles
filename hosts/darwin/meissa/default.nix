@@ -22,7 +22,9 @@
     user = "wantguns";
 
     taps = [];
-    brews = [];
+    brews = [
+        "firefoxpwa"
+    ];
     casks = [
         "firefox"
         "slack"
@@ -86,6 +88,13 @@
       opencode
       cloc
       kubectl-cnpg
+      rustc
+      cargo
+      rust-analyzer
+      diesel-cli
+      restic
+      zig
+      kafkactl
 
       go
       python312

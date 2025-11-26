@@ -81,10 +81,22 @@ vim.lsp.config.lua_ls = {
   on_attach = on_attach,
 }
 
--- Enable the LSP servers (required with new API)
+vim.lsp.config.rust_analyzer = {
+  capabilities = capabilities,
+  on_attach = on_attach,
+}
+
+vim.lsp.config.zls = {
+  capabilities = capabilities,
+  on_attach = on_attach,
+}
+
+-- Enable the LSP srvers (required with new API)
 vim.lsp.enable('gopls')
 vim.lsp.enable('golangci_lint_ls')
 vim.lsp.enable('pyright')
 vim.lsp.enable('terraformls')
 vim.lsp.enable('ts_ls')
 vim.lsp.enable('lua_ls')
+vim.lsp.enable('rust_analyzer')
+vim.lsp.enable('zls')

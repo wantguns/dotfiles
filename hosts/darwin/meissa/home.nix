@@ -31,6 +31,7 @@
       terraform = true;
       nodejs = true;
       lua = true;
+      zig = true;
     };
   };
 

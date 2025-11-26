@@ -31,6 +31,7 @@ with lib;
       terraform = mkEnableOption "enable terraform environment";
       nodejs = mkEnableOption "enable javascript/typescript environment";
       lua = mkEnableOption "enable lua environment";
+      zig = mkEnableOption "enable zig environment";
     };
 
     git = {
