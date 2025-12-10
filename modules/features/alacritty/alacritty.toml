@@ -43,7 +43,7 @@ builtin_box_drawing = false
 size = 16.5
 
 [font.bold]
-family = "IosevkaTerm NF"
+family = "Iosevka Term SS15"
 style = "Bold"
 
 [font.glyph_offset]
@@ -51,11 +51,11 @@ x = 0
 y = 0
 
 [font.italic]
-family = "IosevkaTerm NF"
+family = "Iosevka Term SS15"
 style = "Italic"
 
 [font.normal]
-family = "IosevkaTerm NF"
+family = "Iosevka Term SS15"
 style = "Regular"
 
 [font.offset]

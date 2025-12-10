@@ -10,6 +10,8 @@
       obsidian = false;
     };
 
+    ai = true;
+
     shell.zsh = {
       enable = true;
       powerlevel10k = true;

@@ -30,6 +30,7 @@
         "slack"
         "discord"
         "screen-studio"
+        "inkscape"
     ];
 };
 

@@ -19,6 +19,8 @@ with lib;
       };
     };
 
+    ai = mkEnableOption "enable experimental ai tooling";
+
     shell = {
       zsh = {
         enable = mkEnableOption "zsh shell";

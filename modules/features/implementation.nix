@@ -59,7 +59,7 @@ in {
               config = toLuaFile ./nvim/base.lua;
             }
             plenary-nvim
-          ] ++ lib.optional cfg.editors.nvim.copilot copilot-vim
+          ] 
           ++ lib.optional (cfg.theme == "gruvbox-light") {
               plugin = gruvbox;
               config = "set background=light | set termguicolors | colorscheme gruvbox";
@@ -74,6 +74,11 @@ in {
               };
               config = "colorscheme moonfly";
             }
+
+          ++ lib.optional cfg.ai {
+              plugin = opencode-nvim;
+              config = toLuaFile ./nvim/opencode.lua;
+           }
 
           ++ lib.optionals cfg.editors.nvim.ui [
             vim-fugitive
@@ -251,6 +256,10 @@ in {
         font-size = 16;
         font-thicken = true;
         window-decoration = false;
+
+        # disable ligatures
+        font-feature = "-calt";
+
         theme =
           if cfg.theme == "gruvbox-light" then "Gruvbox Light"
           else if cfg.theme == "moonfly" then "Moonfly"
