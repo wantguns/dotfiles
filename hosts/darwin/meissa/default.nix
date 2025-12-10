@@ -21,7 +21,9 @@
     enable = true;
     user = "wantguns";
 
-    taps = [];
+    taps = [
+        "fastrepl/hyprnote"
+    ];
     brews = [
         "firefoxpwa"
     ];
@@ -31,6 +33,7 @@
         "discord"
         "screen-studio"
         "inkscape"
+        "hyprnote"
     ];
 };
 
@@ -40,8 +43,6 @@
     packages = with pkgs; [
       wget
       k9s
-      kubectl
-      kubernetes-helm
       xh
       jq
       yq-go

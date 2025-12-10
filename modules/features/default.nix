@@ -49,6 +49,7 @@ with lib;
     aerc = mkEnableOption "aerc email client";
     alacritty = mkEnableOption "alacritty terminal";
     ghostty = mkEnableOption "ghostty terminal";
+    kubernetes = mkEnableOption "kubernetes tooling";
     newsboat = mkEnableOption "newsboat RSS reader";
     secrets = mkEnableOption "mount secrets";
   };

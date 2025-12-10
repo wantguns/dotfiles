@@ -37,6 +37,8 @@ in {
           (lib.mkIf cfg.alacritty nerd-fonts.iosevka-term)
           (iosevka-bin.override { variant = "SS15"; })
           ripgrep
+          (lib.mkIf cfg.kubernetes kubectl)
+          (lib.mkIf cfg.kubernetes kubernetes-helm)
         ];
       };
 
@@ -274,6 +276,24 @@ in {
       programs.newsboat = {
         enable = true;
         extraConfig = builtins.readFile ./newsboat/config;
+      };
+    })
+
+    (lib.mkIf cfg.kubernetes {
+      programs.k9s = {
+        enable = true;
+        settings = {
+          k9s = {
+            ui = {
+              headless = true;
+              logoless = true;
+            };
+            skin = "transparent";
+          };
+        };
+        skins = {
+          transparent = ./k9s/transparent-skin.yaml;
+        };
       };
     })
   ];
