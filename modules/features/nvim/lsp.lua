@@ -61,7 +61,7 @@ vim.lsp.config.golangci_lint_ls = {
   },
 }
 
-vim.lsp.config.pyright = {
+vim.lsp.config.ty = {
   capabilities = capabilities,
   on_attach = on_attach,
 }
@@ -94,7 +94,7 @@ vim.lsp.config.zls = {
 -- Enable the LSP srvers (required with new API)
 vim.lsp.enable('gopls')
 vim.lsp.enable('golangci_lint_ls')
-vim.lsp.enable('pyright')
+vim.lsp.enable('ty')
 vim.lsp.enable('terraformls')
 vim.lsp.enable('ts_ls')
 vim.lsp.enable('lua_ls')

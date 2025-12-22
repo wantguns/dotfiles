@@ -97,6 +97,7 @@
       restic
       zig
       kafkactl
+      xray
 
       go
       python312

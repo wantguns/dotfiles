@@ -147,7 +147,7 @@ in {
           (lib.mkIf cfg.dev.lua lua-language-server)
           (lib.mkIf cfg.dev.go gopls)
           (lib.mkIf cfg.dev.go golangci-lint-langserver)
-          (lib.mkIf cfg.dev.python pyright)
+          (lib.mkIf cfg.dev.python ty)
           (lib.mkIf cfg.dev.terraform terraform-ls)
           (lib.mkIf cfg.dev.nodejs typescript-language-server)
           (lib.mkIf cfg.dev.nodejs typescript)
