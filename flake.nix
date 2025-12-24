@@ -114,6 +114,18 @@
             };
           };
         };
+
+        "pyco" = {
+          hostname = "pyco";
+          ips = {
+            orion = {
+              address = "10.69.0.240";
+              gateway = "bellatrix";
+              publicKey = "gnqKE+4medjdlrwILRw2IkuOqdQCn0IZRyc4xxXRmQU=";
+              privateKeyFile = "/run/secrets/wg/pyco/private";
+            };
+          };
+        };
       };
 
       wgInfo = lib.my.wg.mkInfo {

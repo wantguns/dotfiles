@@ -27,9 +27,17 @@
     };
     nameservers = [ "1.1.1.1" "8.8.8.8" ];
     firewall = {
-      checkReversePath = "loose";
+      checkReversePath = false;
       trustedInterfaces = [
         "wg_orion"
+      ];
+
+      allowedTCPPorts = [
+        27015 # cs2
+      ];
+      allowedUDPPorts = [
+        27015 # cs2
+        27020 # cs2
       ];
 
       extraInputRules = ''
@@ -60,6 +68,10 @@
   };
 
   hardware = { enableRedistributableFirmware = true; };
+  environment.systemPackages = with pkgs;
+  [
+    wireguard-tools
+  ];
 
   sops.secrets = {
       "wg/mintaka/private" = {
@@ -70,6 +82,7 @@
       };
       "wg/shiba/private" = {};
       "wg/meissa/private" = {};
+      "wg/pyco/private" = {};
   };
 
   system.stateVersion = "24.11";
