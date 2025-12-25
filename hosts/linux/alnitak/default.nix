@@ -3,6 +3,7 @@
 {
   imports = [
     ./k3s.nix
+    ./xray.nix
   ];
 
   boot = {
