@@ -34,6 +34,7 @@
 
       allowedTCPPorts = [
         27015 # cs2
+        27020 # cs2
       ];
       allowedUDPPorts = [
         27015 # cs2
