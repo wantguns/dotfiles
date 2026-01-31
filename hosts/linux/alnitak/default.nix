@@ -33,6 +33,33 @@
     hostId = "98e1d0eb";
     hostName = "alnitak";
     nameservers = [ "1.1.1.1" ];
+    useDHCP = false;
+
+    interfaces = {
+      enp0s31f6 = {
+        ipv4.addresses = [{
+          address = "78.46.83.190";
+          prefixLength = 32;
+        }];
+        ipv6.addresses = [{
+          address = "fe80::7165:daea:8bc3:9f16";
+          prefixLength = 64;
+        }];
+      };
+    };
+
+    defaultGateway = {
+      address = "78.46.83.161";
+      interface = "enp0s31f6";
+      source = "78.46.83.190";
+      metric = 100;
+    };
+    defaultGateway6 = {
+      address = "fe80::1";
+      interface = "enp0s31f6";
+      source = "fe80::7165:daea:8bc3:9f16";
+      metric = 100;
+    };
   };
 
   programs.zsh.enable = true;
