@@ -126,6 +126,43 @@
             };
           };
         };
+
+        "ps" = {
+          hostname = "ps";
+          ips = {
+            orion = {
+              address = "10.69.0.241";
+              gateway = "bellatrix";
+              publicKey = "NBkzNoi4GQoiseWx5ND5IbyuaUmgpXN8B/briQb7/zA=";
+              privateKeyFile = "/run/secrets/wg/ps/private";
+            };
+          };
+        };
+
+        "kps" = {
+          hostname = "ps";
+          ips = {
+            orion = {
+              address = "10.69.0.242";
+              gateway = "bellatrix";
+              publicKey = "kQXPl3IWivlFsI2tnnnV7wWvqtVEjgfnJjbwaGhCpxs=";
+              privateKeyFile = "/run/secrets/wg/kps/private";
+            };
+          };
+        };
+
+        "wantguns-bindos" = {
+          hostname = "wantguns-bindos";
+          ips = {
+            orion = {
+              address = "10.69.0.243";
+              gateway = "bellatrix";
+              publicKey = "YESuRKUuLz/xVCf2JP43TvDDHt3/fcDSmnhjW6vSNHs=";
+              privateKeyFile = "/run/secrets/wg/wantguns-bindos/private";
+            };
+          };
+        };
+
       };
 
       wgInfo = lib.my.wg.mkInfo {
