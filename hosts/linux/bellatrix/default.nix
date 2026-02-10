@@ -22,6 +22,8 @@
     firewall = {
       allowedTCPPorts = [
         8388 # shadowsocks
+        6969 # forwarded port
+        6970 # forwarded port
       ];
       checkReversePath = "loose";
     };
@@ -55,7 +57,14 @@
       dnssec = "allow-downgrade";
       fallbackDns = [ "1.1.1.1" "8.8.8.8" ];
     };
-  };
+
+    openssh = {
+      enable = true;
+      settings = {
+        GatewayPorts = "yes";
+      };
+    };
+};
 
   hardware = { enableRedistributableFirmware = true; };
   programs.mosh.enable = true;
