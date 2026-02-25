@@ -87,6 +87,7 @@
       "wg/kps/private" = {};
       "wg/ps/private" = {};
       "wg/wantguns-bindos/private" = {};
+      "wg/lota/private" = {};
   };
 
   system.stateVersion = "24.11";

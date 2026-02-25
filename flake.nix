@@ -163,6 +163,18 @@
           };
         };
 
+        "lota" = {
+          hostname = "lota";
+          ips = {
+            orion = {
+              address = "10.69.0.244";
+              gateway = "bellatrix";
+              publicKey = "ZVBqI7QHC3XWLjLxlIAIeuvfjqzAKjJ9us6oHDUW4D0=";
+              privateKeyFile = "/run/secrets/wg/lota/private";
+            };
+          };
+        };
+
       };
 
       wgInfo = lib.my.wg.mkInfo {
