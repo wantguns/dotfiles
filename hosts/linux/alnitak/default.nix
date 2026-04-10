@@ -4,6 +4,7 @@
   imports = [
     ./k3s.nix
     ./xray.nix
+    ./zfs-volumes.nix
   ];
 
   boot = {
