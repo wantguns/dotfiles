@@ -27,7 +27,7 @@
     tmux = true;
     fzf = true;
     aerc = true;
-    secrets = false;
+    secrets = true;
     alacritty = true;
     ghostty = true;
     newsboat = false;
@@ -57,3 +57,4 @@
       }];
   };
 }
+

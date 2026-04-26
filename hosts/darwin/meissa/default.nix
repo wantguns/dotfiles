@@ -3,7 +3,6 @@
   environment.systemPackages = with pkgs; [
     raycast
     obsidian
-    spotify
     feishin
     rectangle
     notion-app
@@ -26,6 +25,7 @@
     ];
     brews = [
         "firefoxpwa"
+        "coreutils"
     ];
     casks = [
         "firefox"
@@ -34,6 +34,8 @@
         "screen-studio"
         "inkscape"
         "hyprnote"
+        "spotify"
+        "helium-browser"
     ];
 };
 
@@ -69,11 +71,13 @@
       gnumake
       jujutsu
       golangci-lint
+      gopls
       # ollama
       graphviz
       scrcpy
       pnpm
       fd
+      curl
       grpcurl
       ocrmypdf
       clusterctl
@@ -87,7 +91,6 @@
       kubeseal
       ruff
       buf
-      opencode
       cloc
       kubectl-cnpg
       rustc
@@ -98,6 +101,14 @@
       zig
       kafkactl
       xray
+      cue
+      autossh
+      nfpm
+      lima
+      gnupg
+      wrk
+      ncdu
+      ffmpeg
 
       go
       python312

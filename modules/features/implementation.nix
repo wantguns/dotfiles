@@ -39,6 +39,15 @@ in {
           ripgrep
           (lib.mkIf cfg.kubernetes kubectl)
           (lib.mkIf cfg.kubernetes kubernetes-helm)
+
+          (lib.mkIf cfg.dev.lua lua-language-server)
+          (lib.mkIf cfg.dev.go gopls)
+          (lib.mkIf cfg.dev.go golangci-lint-langserver)
+          (lib.mkIf cfg.dev.python ty)
+          (lib.mkIf cfg.dev.terraform terraform-ls)
+          (lib.mkIf cfg.dev.nodejs typescript-language-server)
+          (lib.mkIf cfg.dev.nodejs typescript)
+          (lib.mkIf cfg.dev.zig zls)
         ];
       };
 
@@ -71,8 +80,8 @@ in {
               plugin = fromGitHub {
                 owner = "bluz71";
                 repo = "vim-moonfly-colors";
-                rev = "b2c58a0c6eb3ee091d5cc13b8f4f6e6fba8a9c7a";
-                sha256 = "Q59tUqcv7I36XrCd3L6D/ICWbf9FvPMeSekrVib6wBs=";
+                rev = "d11b3d04cc1cb71a778d67a4df73283a5a6d66f4";
+                sha256 = "+zUmQWRUNzdUDZBV7xmrA0415/HlagHDi+O9ehdaDN8=";
               };
               config = "colorscheme moonfly";
             }
@@ -142,17 +151,6 @@ in {
             plugin = obsidian-nvim;
             config = toLuaFile ./nvim/obsidian.lua;
           };
-
-        extraPackages = with pkgs; [
-          (lib.mkIf cfg.dev.lua lua-language-server)
-          (lib.mkIf cfg.dev.go gopls)
-          (lib.mkIf cfg.dev.go golangci-lint-langserver)
-          (lib.mkIf cfg.dev.python ty)
-          (lib.mkIf cfg.dev.terraform terraform-ls)
-          (lib.mkIf cfg.dev.nodejs typescript-language-server)
-          (lib.mkIf cfg.dev.nodejs typescript)
-          (lib.mkIf cfg.dev.zig zls)
-        ];
       };
     })
 
@@ -162,8 +160,7 @@ in {
         syntaxHighlighting.enable = true;
         autosuggestion.enable = true;
         enableCompletion = true;
-        defaultKeymap = "viins";
-
+        
         completionInit = "autoload -U compinit && compinit -u";
 
         history = {
@@ -278,6 +275,32 @@ in {
         extraConfig = builtins.readFile ./newsboat/config;
       };
     })
+
+    (lib.mkIf cfg.ai (let
+      opencode-src = pkgs.fetchFromGitHub {
+        owner = "anomalyco";
+        repo = "opencode";
+        tag = "v1.2.20";
+        hash = "sha256-FBmF7/uwZYY/qY1252Hz+XhXdE+Qp5axySAy5Jw7XUQ=";
+      };
+    in {
+      home.packages = [
+        (pkgs.opencode.overrideAttrs (old: {
+          version = "1.2.20-add-dir";
+          src = opencode-src;
+          patches = (old.patches or []) ++ [
+            (pkgs.fetchpatch {
+              url = "https://github.com/anomalyco/opencode/pull/8943.diff";
+              hash = "sha256-YQio9KtusTn0lozSxgPXY++w7njKQzRx0F0RBnZ8tzU=";
+            })
+          ];
+          node_modules = old.node_modules.overrideAttrs {
+            src = opencode-src;
+            outputHash = "sha256-OwlJRAeKnX5YMwQgaV4op40rjt5kxsP4WrOzpp9t90w=";
+          };
+        }))
+      ];
+    }))
 
     (lib.mkIf cfg.kubernetes {
       programs.k9s = {
