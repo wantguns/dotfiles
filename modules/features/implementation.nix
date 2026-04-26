@@ -55,6 +55,16 @@ in {
       programs.home-manager.enable = true;
     }
 
+    (lib.mkIf cfg.editors.emacs.enable {
+      programs.emacs = {
+        enable = true;
+
+        extraPackages = (epkgs: [ epkgs.vterm epkgs.treesit-grammars.with-all-grammars ]);
+      };
+
+      services.emacs.enable = true;
+    })
+
     (lib.mkIf cfg.editors.nvim.enable {
       programs.neovim = {
         enable = true;

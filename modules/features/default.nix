@@ -17,6 +17,10 @@ with lib;
         copilot = mkEnableOption "enable copilot";
         obsidian = mkEnableOption "enable obsidian";
       };
+
+      emacs = {
+        enable = mkEnableOption "emacs editor";
+      };
     };
 
     ai = mkEnableOption "enable experimental ai tooling";
