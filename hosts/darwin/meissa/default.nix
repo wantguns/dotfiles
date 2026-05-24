@@ -36,6 +36,7 @@
         "hyprnote"
         "spotify"
         "helium-browser"
+        "calibre"
     ];
 };
 
@@ -56,14 +57,14 @@
       tree
       awscli2
       ssm-session-manager-plugin
-      pgcli
+      # pgcli
       rclone
       bat
       kubecm
       colorized-logs
       gh
       dive
-      pwgen
+      # pwgen
       postgresql
       redis
       hyperfine
@@ -79,7 +80,7 @@
       fd
       curl
       grpcurl
-      ocrmypdf
+      # ocrmypdf
       clusterctl
       kind
       tilt
@@ -109,6 +110,9 @@
       wrk
       ncdu
       ffmpeg
+      zellij
+      nmap
+      pi-coding-agent
 
       go
       python312

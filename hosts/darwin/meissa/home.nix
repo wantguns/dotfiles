@@ -29,7 +29,7 @@
 
     tmux = true;
     fzf = true;
-    aerc = true;
+    aerc = false;
     secrets = true;
     alacritty = true;
     ghostty = true;

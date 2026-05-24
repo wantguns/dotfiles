@@ -3,17 +3,6 @@
 let
   cfg = config.features;
 
-  toLua = str: ''
-
-    lua << EOF
-    ${str}
-    EOF'';
-  toLuaFile = file: ''
-
-    lua << EOF
-    ${builtins.readFile file}
-    EOF'';
-
   fromGitHub = { owner, repo, rev, sha256 ? lib.fakeSha256, doCheck ? false }:
     pkgs.vimUtils.buildVimPlugin {
       pname = "${lib.strings.sanitizeDerivationName repo}";
@@ -27,12 +16,11 @@ let
       inherit doCheck;
     };
 
-  fakeVimPlugin = pkgs.runCommand "fakeVimPlugin" { } "mkdir $out";
 in {
   config = lib.mkMerge [
     {
       home = {
-        stateVersion = "24.11";
+        stateVersion = "26.05";
         packages = with pkgs; [
           (lib.mkIf cfg.alacritty nerd-fonts.iosevka-term)
           (iosevka-bin.override { variant = "SS15"; })
@@ -72,18 +60,19 @@ in {
         viAlias = true;
         vimAlias = true;
         vimdiffAlias = true;
+        initLua = lib.mkBefore (builtins.readFile ./nvim/base.lua);
+
+        extraPackages = with pkgs; [
+          (lib.mkIf cfg.editors.nvim.lsp tree-sitter)
+        ];
 
         plugins = with pkgs.vimPlugins;
           [
-            {
-              plugin = fakeVimPlugin;
-              config = toLuaFile ./nvim/base.lua;
-            }
             plenary-nvim
           ] 
           ++ lib.optional (cfg.theme == "gruvbox-light") {
               plugin = gruvbox;
-              config = "set background=light | set termguicolors | colorscheme gruvbox";
+              config = "vim.cmd(\"set background=light | set termguicolors | colorscheme gruvbox\")";
             }
           ++ lib.optional (cfg.theme == "moonfly")
             { 
@@ -93,12 +82,12 @@ in {
                 rev = "d11b3d04cc1cb71a778d67a4df73283a5a6d66f4";
                 sha256 = "+zUmQWRUNzdUDZBV7xmrA0415/HlagHDi+O9ehdaDN8=";
               };
-              config = "colorscheme moonfly";
+              config = "vim.cmd(\"colorscheme moonfly\")";
             }
 
           ++ lib.optional cfg.ai {
               plugin = opencode-nvim;
-              config = toLuaFile ./nvim/opencode.lua;
+              config = builtins.readFile ./nvim/opencode.lua;
            }
 
           ++ lib.optionals cfg.editors.nvim.ui [
@@ -112,42 +101,42 @@ in {
                 sha256 = "J7WG0xoVI9NKrOrgA7zTdD/Q4gSh+Hhg/wAIh/1RmDA=";
                 doCheck = false;
               };
-              config = toLuaFile ./nvim/gitlink.lua;
+              config = builtins.readFile ./nvim/gitlink.lua;
             }
             {
               plugin = gitsigns-nvim;
-              config = toLua "require('gitsigns').setup()";
+              config = "require('gitsigns').setup()";
             }
             {
               plugin = lualine-nvim;
-              config = toLuaFile ./nvim/lualine.lua;
+              config = builtins.readFile ./nvim/lualine.lua;
             }
             {
               plugin = oil-nvim;
-              config = toLuaFile ./nvim/oil.lua;
+              config = builtins.readFile ./nvim/oil.lua;
             }
             {
               plugin = telescope-nvim;
-              config = toLuaFile ./nvim/telescope.lua;
+              config = builtins.readFile ./nvim/telescope.lua;
             }
             {
               plugin = telescope-nvim;
-              config = toLuaFile ./nvim/telescope.lua;
+              config = builtins.readFile ./nvim/telescope.lua;
             }
           ]
 
           ++ lib.optionals cfg.editors.nvim.lsp [
             {
               plugin = nvim-treesitter.withAllGrammars;
-              config = toLuaFile ./nvim/treesitter.lua;
+              config = builtins.readFile ./nvim/treesitter.lua;
             }
             {
               plugin = nvim-lspconfig;
-              config = toLuaFile ./nvim/lsp.lua;
+              config = builtins.readFile ./nvim/lsp.lua;
             }
             {
               plugin = nvim-cmp;
-              config = toLuaFile ./nvim/cmp.lua;
+              config = builtins.readFile ./nvim/cmp.lua;
             }
             cmp-nvim-lsp
           ]
@@ -159,7 +148,7 @@ in {
           # Obsidian
           ++ lib.optional cfg.editors.nvim.obsidian {
             plugin = obsidian-nvim;
-            config = toLuaFile ./nvim/obsidian.lua;
+            config = builtins.readFile ./nvim/obsidian.lua;
           };
       };
     })
