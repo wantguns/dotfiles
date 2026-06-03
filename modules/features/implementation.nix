@@ -210,14 +210,25 @@ in {
       programs.aerc = {
         enable = true;
         extraAccounts = builtins.readFile ./aerc/accounts.conf;
-        extraConfig.general.unsafe-accounts-conf = true;
-        extraConfig.filters = {
-          "text/plain" = "colorize";
-          "text/calendar" = "calendar";
-          "message/delivery-status" = "colorize";
-          "message/rfc822" = "colorize";
-          "text/html" = "html | colorize";
-          "image/*" = "catimg -w $(tput cols) -";
+        extraConfig = {
+          general = {
+            "unsafe-accounts-conf" = true;
+          };
+          compose = {
+            "reply-to-self" = false;
+          };
+          ui = {
+            "threading-enabled" = true;
+            "column-subject" = "{{.ThreadPrefix}}{{if .ThreadFolded}}{{printf \"{%d}\" .ThreadCount}}{{end}}{{.Subject}}";
+          };
+          filters = {
+            "text/plain" = "colorize";
+            "text/calendar" = "calendar";
+            "message/delivery-status" = "colorize";
+            "message/rfc822" = "colorize";
+            "text/html" = "html | colorize";
+            "image/*" = "catimg -w $(tput cols) -";
+          };
         };
       };
     })
