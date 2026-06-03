@@ -117,7 +117,6 @@
       go
       python312
       python312Packages.pyyaml
-      pipx
       nodejs_22
       lua
       luarocks
