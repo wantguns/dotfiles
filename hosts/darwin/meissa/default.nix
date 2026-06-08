@@ -28,7 +28,6 @@
         "coreutils"
     ];
     casks = [
-        "firefox"
         "slack"
         "discord"
         "screen-studio"

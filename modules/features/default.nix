@@ -56,5 +56,7 @@ with lib;
     kubernetes = mkEnableOption "kubernetes tooling";
     newsboat = mkEnableOption "newsboat RSS reader";
     secrets = mkEnableOption "mount secrets";
+    mpv = mkEnableOption "mpv and streamlink";
+    firefox = mkEnableOption "firefox";
   };
 }

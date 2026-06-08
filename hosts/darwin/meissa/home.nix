@@ -33,8 +33,10 @@
     secrets = true;
     alacritty = true;
     ghostty = true;
-    newsboat = false;
+    newsboat = true;
     kubernetes = true;
+    mpv = true;
+    firefox = true;
 
     dev = {
       go = true;
