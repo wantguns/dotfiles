@@ -1,4 +1,10 @@
-{ config, pkgs, lib, inputs, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  inputs,
+  ...
+}:
 let
   gatewayApiCrds = pkgs.fetchurl {
     url = "https://github.com/kubernetes-sigs/gateway-api/releases/download/v1.4.0/standard-install.yaml";
@@ -10,8 +16,8 @@ in
     allowedTCPPorts = [
       80
       443
-      6443  # kube-apiserver
-      4244  # required by hubble-peer
+      6443 # kube-apiserver
+      4244 # required by hubble-peer
       10250 # metrics server
     ];
     allowedUDPPorts = [
@@ -54,13 +60,13 @@ in
       "--node-label openebs.io/nodeid=alnitak"
       "--debug"
     ];
-    
+
     manifests = {
       gateway-api = {
         source = gatewayApiCrds;
       };
     };
-    
+
     autoDeployCharts = {
       cilium = {
         name = "cilium";

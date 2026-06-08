@@ -1,4 +1,5 @@
-{ config, pkgs, ... }: {
+{ config, pkgs, ... }:
+{
   features = {
 
     # theme = "gruvbox-light";
@@ -52,26 +53,27 @@
     "dev/aion/.gitmessage".source = ./git/aionmessage;
 
     "Library/Application Support/Raycast/scripts/emacs-client.sh" = {
-        executable = true;
-        text = ''
+      executable = true;
+      text = ''
         #!/bin/bash
         # @raycast.schemaVersion 1
         # @raycast.title Emacs Client
         # @raycast.mode silent
 
         exec ${config.services.emacs.package}/bin/emacsclient -c -n
-        '';
+      '';
     };
   };
 
   programs.git = {
-      settings = {
-        url."git@github-aion:aion-intelligence".insteadOf = "https://github.com/aion-intelligence";
-      };
-      includes = [{
+    settings = {
+      url."git@github-aion:aion-intelligence".insteadOf = "https://github.com/aion-intelligence";
+    };
+    includes = [
+      {
         condition = "gitdir:~/dev/aion/";
         path = "~/dev/aion/.gitconfig";
-      }];
+      }
+    ];
   };
 }
-

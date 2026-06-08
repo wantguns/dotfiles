@@ -1,6 +1,13 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
-let cfg = config.features; in
+let
+  cfg = config.features;
+in
 
 lib.mkIf cfg.aerc {
   programs.aerc = {
@@ -56,7 +63,8 @@ lib.mkIf cfg.aerc {
       };
       ui = {
         "threading-enabled" = true;
-        "column-subject" = "{{.ThreadPrefix}}{{if .ThreadFolded}}{{printf \"{%d}\" .ThreadCount}}{{end}}{{.Subject}}";
+        "column-subject" =
+          "{{.ThreadPrefix}}{{if .ThreadFolded}}{{printf \"{%d}\" .ThreadCount}}{{end}}{{.Subject}}";
       };
       filters = {
         "text/plain" = "colorize";
@@ -70,13 +78,13 @@ lib.mkIf cfg.aerc {
   };
 
   sops.secrets = {
-    "email/gunwant2012@gmail.com/source" = {};
-    "email/gunwant2012@gmail.com/outgoing" = {};
-    "email/void@wantguns.dev/source" = {};
-    "email/void@wantguns.dev/outgoing" = {};
-    "email/therealgunwant@gmail.com/source" = {};
-    "email/therealgunwant@gmail.com/outgoing" = {};
-    "email/mail@wantguns.dev/source" = {};
-    "email/mail@wantguns.dev/outgoing" = {};
+    "email/gunwant2012@gmail.com/source" = { };
+    "email/gunwant2012@gmail.com/outgoing" = { };
+    "email/void@wantguns.dev/source" = { };
+    "email/void@wantguns.dev/outgoing" = { };
+    "email/therealgunwant@gmail.com/source" = { };
+    "email/therealgunwant@gmail.com/outgoing" = { };
+    "email/mail@wantguns.dev/source" = { };
+    "email/mail@wantguns.dev/outgoing" = { };
   };
 }

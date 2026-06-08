@@ -1,6 +1,13 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
-let cfg = config.features; in
+let
+  cfg = config.features;
+in
 
 lib.mkIf cfg.ghostty {
   programs.ghostty = {
@@ -17,9 +24,12 @@ lib.mkIf cfg.ghostty {
       shell-integration-features = "ssh-env,ssh-terminfo,sudo";
 
       theme =
-        if cfg.theme == "gruvbox-light" then "Gruvbox Light"
-        else if cfg.theme == "moonfly" then "Moonfly"
-        else "moonfly";
+        if cfg.theme == "gruvbox-light" then
+          "Gruvbox Light"
+        else if cfg.theme == "moonfly" then
+          "Moonfly"
+        else
+          "moonfly";
       cursor-style = "block";
     };
   };

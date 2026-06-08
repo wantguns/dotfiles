@@ -1,9 +1,21 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 let
   cfg = config.features;
 
-  fromGitHub = { owner, repo, rev, sha256 ? lib.fakeSha256, doCheck ? false }:
+  fromGitHub =
+    {
+      owner,
+      repo,
+      rev,
+      sha256 ? lib.fakeSha256,
+      doCheck ? false,
+    }:
     pkgs.vimUtils.buildVimPlugin {
       pname = "${lib.strings.sanitizeDerivationName repo}";
       version = rev;
@@ -16,7 +28,8 @@ let
       inherit doCheck;
     };
 
-in lib.mkIf cfg.editors.nvim.enable {
+in
+lib.mkIf cfg.editors.nvim.enable {
   programs.neovim = {
     enable = true;
     defaultEditor = true;
@@ -29,29 +42,29 @@ in lib.mkIf cfg.editors.nvim.enable {
       (lib.mkIf cfg.editors.nvim.lsp tree-sitter)
     ];
 
-    plugins = with pkgs.vimPlugins;
+    plugins =
+      with pkgs.vimPlugins;
       [
         plenary-nvim
       ]
       ++ lib.optional (cfg.theme == "gruvbox-light") {
-          plugin = gruvbox;
-          config = "vim.cmd(\"set background=light | set termguicolors | colorscheme gruvbox\")";
-        }
-      ++ lib.optional (cfg.theme == "moonfly")
-        {
-          plugin = fromGitHub {
-            owner = "bluz71";
-            repo = "vim-moonfly-colors";
-            rev = "d11b3d04cc1cb71a778d67a4df73283a5a6d66f4";
-            sha256 = "+zUmQWRUNzdUDZBV7xmrA0415/HlagHDi+O9ehdaDN8=";
-          };
-          config = "vim.cmd(\"colorscheme moonfly\")";
-        }
+        plugin = gruvbox;
+        config = "vim.cmd(\"set background=light | set termguicolors | colorscheme gruvbox\")";
+      }
+      ++ lib.optional (cfg.theme == "moonfly") {
+        plugin = fromGitHub {
+          owner = "bluz71";
+          repo = "vim-moonfly-colors";
+          rev = "d11b3d04cc1cb71a778d67a4df73283a5a6d66f4";
+          sha256 = "+zUmQWRUNzdUDZBV7xmrA0415/HlagHDi+O9ehdaDN8=";
+        };
+        config = "vim.cmd(\"colorscheme moonfly\")";
+      }
 
       ++ lib.optional cfg.ai {
-          plugin = opencode-nvim;
-          config = builtins.readFile ./opencode.lua;
-       }
+        plugin = opencode-nvim;
+        config = builtins.readFile ./opencode.lua;
+      }
 
       ++ lib.optionals cfg.editors.nvim.ui [
         vim-fugitive

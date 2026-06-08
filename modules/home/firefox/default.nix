@@ -1,6 +1,13 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
-let cfg = config.features; in
+let
+  cfg = config.features;
+in
 
 lib.mkIf cfg.firefox {
   programs.firefox = {
@@ -10,21 +17,21 @@ lib.mkIf cfg.firefox {
 
     policies = {
       # Updates & Background Services
-      AppAutoUpdate                 = false;
-      BackgroundAppUpdate           = false;
+      AppAutoUpdate = false;
+      BackgroundAppUpdate = false;
 
       # Feature Disabling
-      DisableFirefoxStudies         = true;
-      DisableFirefoxAccounts        = true;
-      DisableFirefoxScreenshots     = true;
-      DisableForgetButton           = true;
+      DisableFirefoxStudies = true;
+      DisableFirefoxAccounts = true;
+      DisableFirefoxScreenshots = true;
+      DisableForgetButton = true;
       DisableMasterPasswordCreation = true;
-      DisableProfileImport          = true;
-      DisableProfileRefresh         = true;
-      DisableSetDesktopBackground   = true;
-      DisablePocket                 = true;
-      DisableTelemetry              = true;
-      DisableFormHistory            = true;
+      DisableProfileImport = true;
+      DisableProfileRefresh = true;
+      DisableSetDesktopBackground = true;
+      DisablePocket = true;
+      DisableTelemetry = true;
+      DisableFormHistory = true;
       EnableTrackingProtection.Value = true;
       ExtensionUpdate = false;
       NetworkPrediction = false;
@@ -33,15 +40,15 @@ lib.mkIf cfg.firefox {
       GenerativeAI.Enabled = false;
 
       # Access Restrictions
-      BlockAboutConfig              = false;
-      BlockAboutProfiles            = true;
-      BlockAboutSupport             = true;
+      BlockAboutConfig = false;
+      BlockAboutProfiles = true;
+      BlockAboutSupport = true;
 
       # UI and Behavior
-      DisplayMenuBar                = "never";
-      DontCheckDefaultBrowser       = true;
-      OfferToSaveLogins             = false;
-      DefaultDownloadDirectory      = "${config.home.homeDirectory}/Downloads";
+      DisplayMenuBar = "never";
+      DontCheckDefaultBrowser = true;
+      OfferToSaveLogins = false;
+      DefaultDownloadDirectory = "${config.home.homeDirectory}/Downloads";
       ShowHomeButton = false;
       FirefoxHome = {
         Search = true;
@@ -54,58 +61,60 @@ lib.mkIf cfg.firefox {
       };
 
       # Extensions
-      ExtensionSettings = let
-        moz = short: "https://addons.mozilla.org/firefox/downloads/latest/${short}/latest.xpi";
-      in {
-        "*".installation_mode = "blocked";
+      ExtensionSettings =
+        let
+          moz = short: "https://addons.mozilla.org/firefox/downloads/latest/${short}/latest.xpi";
+        in
+        {
+          "*".installation_mode = "blocked";
 
-        "uBlock0@raymondhill.net" = {
-          install_url       = moz "ublock-origin";
-          installation_mode = "normal_installed";
-          updates_disabled  = true;
-          private_browsing  = true;
-          default_area = "navbar";
-        };
+          "uBlock0@raymondhill.net" = {
+            install_url = moz "ublock-origin";
+            installation_mode = "normal_installed";
+            updates_disabled = true;
+            private_browsing = true;
+            default_area = "navbar";
+          };
 
-        "{446900e4-71c2-419f-a6a7-df9c091e268b}" = {
-          install_url       = moz "bitwarden-password-manager";
-          installation_mode = "normal_installed";
-          updates_disabled  = true;
-          private_browsing  = true;
-          default_area = "navbar";
-        };
+          "{446900e4-71c2-419f-a6a7-df9c091e268b}" = {
+            install_url = moz "bitwarden-password-manager";
+            installation_mode = "normal_installed";
+            updates_disabled = true;
+            private_browsing = true;
+            default_area = "navbar";
+          };
 
-        "addon@darkreader.org" = {
-          install_url       = moz "darkreader";
-          installation_mode = "normal_installed";
-          updates_disabled  = true;
-          private_browsing  = true;
-          default_area = "navbar";
-        };
+          "addon@darkreader.org" = {
+            install_url = moz "darkreader";
+            installation_mode = "normal_installed";
+            updates_disabled = true;
+            private_browsing = true;
+            default_area = "navbar";
+          };
 
-        "jid1-xUfzOsOFlzSOXg@jetpack" = {
-          install_url       = moz "reddit-enhancement-suite";
-          installation_mode = "normal_installed";
-          updates_disabled  = true;
-          private_browsing  = true;
-        };
+          "jid1-xUfzOsOFlzSOXg@jetpack" = {
+            install_url = moz "reddit-enhancement-suite";
+            installation_mode = "normal_installed";
+            updates_disabled = true;
+            private_browsing = true;
+          };
 
-        "{9063c2e9-e07c-4c2c-9646-cfe7ca8d0498}" = {
-          install_url = moz "old-reddit-redirect";
-          name = "old-reddit-redirect";
-          installation_mode = "normal_installed";
-          updates_disabled  = true;
-          private_browsing  = true;
+          "{9063c2e9-e07c-4c2c-9646-cfe7ca8d0498}" = {
+            install_url = moz "old-reddit-redirect";
+            name = "old-reddit-redirect";
+            installation_mode = "normal_installed";
+            updates_disabled = true;
+            private_browsing = true;
+          };
         };
-      };
 
       # Extension configuration
       "3rdparty".Extensions = {
         "uBlock0@raymondhill.net".adminSettings = {
           userSettings = rec {
-            uiTheme            = "dark";
-            uiAccentCustom     = true;
-            uiAccentCustom0    = "#8300ff";
+            uiTheme = "dark";
+            uiAccentCustom = true;
+            uiAccentCustom0 = "#8300ff";
             cloudStorageEnabled = lib.mkForce false;
 
             importedLists = [
@@ -140,9 +149,9 @@ lib.mkIf cfg.firefox {
 
     profiles.default = {
       search = {
-          force           = true;
-          default         = "ddg";
-          privateDefault  = "ddg";
+        force = true;
+        default = "ddg";
+        privateDefault = "ddg";
       };
       settings = {
         "sidebar.revamp" = true;

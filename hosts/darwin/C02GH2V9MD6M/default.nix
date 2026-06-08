@@ -1,5 +1,10 @@
-{ config, pkgs, ... }: {
-  nix = { settings = { "ssl-cert-file" = "/opt/nix-and-zscaler.crt"; }; };
+{ config, pkgs, ... }:
+{
+  nix = {
+    settings = {
+      "ssl-cert-file" = "/opt/nix-and-zscaler.crt";
+    };
+  };
 
   environment.systemPackages = with pkgs; [ termshark ];
 

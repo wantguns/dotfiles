@@ -1,6 +1,13 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
-let cfg = config.features; in
+let
+  cfg = config.features;
+in
 
 lib.mkIf cfg.tmux {
   programs.tmux = {

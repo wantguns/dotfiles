@@ -1,4 +1,9 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 let
   cfg = config.features;
@@ -10,12 +15,13 @@ let
     hash = "sha256-FBmF7/uwZYY/qY1252Hz+XhXdE+Qp5axySAy5Jw7XUQ=";
   };
 
-in lib.mkIf cfg.ai {
+in
+lib.mkIf cfg.ai {
   home.packages = [
     (pkgs.opencode.overrideAttrs (old: {
       version = "1.2.20-add-dir";
       src = opencode-src;
-      patches = (old.patches or []) ++ [
+      patches = (old.patches or [ ]) ++ [
         (pkgs.fetchpatch {
           url = "https://github.com/anomalyco/opencode/pull/8943.diff";
           hash = "sha256-YQio9KtusTn0lozSxgPXY++w7njKQzRx0F0RBnZ8tzU=";

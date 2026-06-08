@@ -1,4 +1,10 @@
-{ config, pkgs, lib, inputs, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  inputs,
+  ...
+}:
 
 {
   imports = [
@@ -38,14 +44,18 @@
 
     interfaces = {
       enp0s31f6 = {
-        ipv4.addresses = [{
-          address = "78.46.83.190";
-          prefixLength = 32;
-        }];
-        ipv6.addresses = [{
-          address = "fe80::7165:daea:8bc3:9f16";
-          prefixLength = 64;
-        }];
+        ipv4.addresses = [
+          {
+            address = "78.46.83.190";
+            prefixLength = 32;
+          }
+        ];
+        ipv6.addresses = [
+          {
+            address = "fe80::7165:daea:8bc3:9f16";
+            prefixLength = 64;
+          }
+        ];
       };
     };
 
@@ -67,7 +77,11 @@
 
   users.users.wantguns = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" "docker" ];
+    extraGroups = [
+      "wheel"
+      "networkmanager"
+      "docker"
+    ];
     shell = pkgs.zsh;
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHcueIcj4fgzD6cUUGqituoupjexNNF1Hjrr+dyJ+gvA gunwant.jain@C02GH2V9MD6M.local"
@@ -82,14 +96,18 @@
     resolved = {
       enable = true;
       dnssec = "allow-downgrade";
-      fallbackDns = [ "1.1.1.1" "8.8.8.8" ];
+      fallbackDns = [
+        "1.1.1.1"
+        "8.8.8.8"
+      ];
     };
   };
 
-  hardware = { enableRedistributableFirmware = true; };
+  hardware = {
+    enableRedistributableFirmware = true;
+  };
   programs.mosh.enable = true;
-  environment.systemPackages = with pkgs;
-  [
+  environment.systemPackages = with pkgs; [
     rclone
     kubectl
     k9s
@@ -108,12 +126,12 @@
   ];
 
   sops.secrets = {
-      "wg/alnitak/private" = {
-        owner = "root";
-        group = "systemd-network";
-        mode = "0640";
-        restartUnits = [ "systemd-networkd.service" ];
-      };
+    "wg/alnitak/private" = {
+      owner = "root";
+      group = "systemd-network";
+      mode = "0640";
+      restartUnits = [ "systemd-networkd.service" ];
+    };
   };
 
   system.stateVersion = "24.11";

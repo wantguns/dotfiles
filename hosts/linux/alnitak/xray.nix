@@ -1,4 +1,10 @@
-{ config, pkgs, lib, inputs, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  inputs,
+  ...
+}:
 {
   networking.firewall = {
     allowedTCPPorts = [
@@ -12,7 +18,7 @@
   };
 
   sops.secrets = {
-    "xray/alnitak" = {};
+    "xray/alnitak" = { };
   };
 
   services.xray = {

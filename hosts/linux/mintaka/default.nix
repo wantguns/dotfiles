@@ -1,4 +1,10 @@
-{ config, pkgs, lib, inputs, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  inputs,
+  ...
+}:
 
 {
   boot = {
@@ -20,12 +26,17 @@
     hostName = "mintaka";
     hostId = "30daa5e6";
     interfaces = {
-      enp2s0.ipv6.addresses = [{
-        address = "192.168.0.130";
-        prefixLength = 32;
-      }];
+      enp2s0.ipv6.addresses = [
+        {
+          address = "192.168.0.130";
+          prefixLength = 32;
+        }
+      ];
     };
-    nameservers = [ "1.1.1.1" "8.8.8.8" ];
+    nameservers = [
+      "1.1.1.1"
+      "8.8.8.8"
+    ];
     firewall = {
       checkReversePath = false;
       trustedInterfaces = [
@@ -51,7 +62,11 @@
 
   users.users.wantguns = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" "docker" ];
+    extraGroups = [
+      "wheel"
+      "networkmanager"
+      "docker"
+    ];
     shell = pkgs.zsh;
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHcueIcj4fgzD6cUUGqituoupjexNNF1Hjrr+dyJ+gvA gunwant.jain@C02GH2V9MD6M.local"
@@ -64,30 +79,34 @@
     resolved = {
       enable = true;
       dnssec = "allow-downgrade";
-      fallbackDns = [ "1.1.1.1" "8.8.8.8" ];
+      fallbackDns = [
+        "1.1.1.1"
+        "8.8.8.8"
+      ];
     };
   };
 
-  hardware = { enableRedistributableFirmware = true; };
-  environment.systemPackages = with pkgs;
-  [
+  hardware = {
+    enableRedistributableFirmware = true;
+  };
+  environment.systemPackages = with pkgs; [
     wireguard-tools
   ];
 
   sops.secrets = {
-      "wg/mintaka/private" = {
-        owner = "root";
-        group = "systemd-network";
-        mode = "0640";
-        restartUnits = [ "systemd-networkd.service" ];
-      };
-      "wg/shiba/private" = {};
-      "wg/meissa/private" = {};
-      "wg/pyco/private" = {};
-      "wg/kps/private" = {};
-      "wg/ps/private" = {};
-      "wg/wantguns-bindos/private" = {};
-      "wg/lota/private" = {};
+    "wg/mintaka/private" = {
+      owner = "root";
+      group = "systemd-network";
+      mode = "0640";
+      restartUnits = [ "systemd-networkd.service" ];
+    };
+    "wg/shiba/private" = { };
+    "wg/meissa/private" = { };
+    "wg/pyco/private" = { };
+    "wg/kps/private" = { };
+    "wg/ps/private" = { };
+    "wg/wantguns-bindos/private" = { };
+    "wg/lota/private" = { };
   };
 
   system.stateVersion = "24.11";

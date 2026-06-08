@@ -5,7 +5,10 @@ with lib;
 {
   options.features = {
     theme = lib.mkOption {
-      type = lib.types.enum [ "moonfly" "gruvbox-light" ];
+      type = lib.types.enum [
+        "moonfly"
+        "gruvbox-light"
+      ];
       default = "moonfly";
       description = "Selected terminal theme";
     };

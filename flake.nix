@@ -15,17 +15,30 @@
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = inputs@{ self, nixpkgs, darwin, home-manager, ... }:
+  outputs =
+    inputs@{
+      self,
+      nixpkgs,
+      darwin,
+      home-manager,
+      ...
+    }:
     let
-      lib = nixpkgs.lib.extend (final: prev: {
-        my = import ./lib {
-          inherit inputs;
-          lib = prev;
-        };
-      });
+      lib = nixpkgs.lib.extend (
+        final: prev: {
+          my = import ./lib {
+            inherit inputs;
+            lib = prev;
+          };
+        }
+      );
 
-      systems =
-        [ "x86_64-linux" "x86_64-darwin" "aarch64-linux" "aarch64-darwin" ];
+      systems = [
+        "x86_64-linux"
+        "x86_64-darwin"
+        "aarch64-linux"
+        "aarch64-darwin"
+      ];
       forAllSystems = nixpkgs.lib.genAttrs systems;
 
       hosts = {
@@ -183,40 +196,52 @@
 
       forAllHosts = f: builtins.mapAttrs f hosts;
 
-    in {
+    in
+    {
       inherit hosts;
 
-      darwinConfigurations =
-        builtins.mapAttrs (name: hostConfig: lib.my.mkHost (hostConfig // {
-          specialArgs.hosts = wgInfo.wgHosts;
-        }))
-        (lib.filterAttrs (name: hostConfig: lib.my.isDarwin hostConfig.system)
-          hosts);
+      darwinConfigurations = builtins.mapAttrs (
+        name: hostConfig:
+        lib.my.mkHost (
+          hostConfig
+          // {
+            specialArgs.hosts = wgInfo.wgHosts;
+          }
+        )
+      ) (lib.filterAttrs (name: hostConfig: lib.my.isDarwin hostConfig.system) hosts);
 
-      nixosConfigurations =
-        builtins.mapAttrs (name: hostConfig: lib.my.mkHost (hostConfig // {
-          specialArgs.hosts = wgInfo.wgHosts;
-        }))
-        (lib.filterAttrs (name: hostConfig: lib.my.isLinux hostConfig.system)
-          hosts);
+      nixosConfigurations = builtins.mapAttrs (
+        name: hostConfig:
+        lib.my.mkHost (
+          hostConfig
+          // {
+            specialArgs.hosts = wgInfo.wgHosts;
+          }
+        )
+      ) (lib.filterAttrs (name: hostConfig: lib.my.isLinux hostConfig.system) hosts);
 
       homeConfigurations = forAllHosts lib.my.mkHomeConfig;
+
+      formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.nixfmt);
 
       apps = forAllSystems (system: {
         deploy = {
           type = "app";
           program = "${
-              import ./lib/deploy.nix {
-                pkgs = nixpkgs.legacyPackages.${system};
-                inherit nixpkgs;
-              }
-            }/bin/deploy";
+            import ./lib/deploy.nix {
+              pkgs = nixpkgs.legacyPackages.${system};
+              inherit nixpkgs;
+            }
+          }/bin/deploy";
         };
       });
 
-      packages = forAllSystems (system:
-        let pkgs = nixpkgs.legacyPackages.${system};
-        in wgInfo.buildPackages { inherit pkgs; }
+      packages = forAllSystems (
+        system:
+        let
+          pkgs = nixpkgs.legacyPackages.${system};
+        in
+        wgInfo.buildPackages { inherit pkgs; }
       );
     };
 }

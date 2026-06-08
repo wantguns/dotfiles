@@ -1,4 +1,10 @@
-{ config, pkgs, lib, inputs, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  inputs,
+  ...
+}:
 
 {
   imports = [
@@ -17,7 +23,10 @@
 
   networking = {
     hostName = "bellatrix";
-    nameservers = [ "1.1.1.1" "8.8.8.8" ];
+    nameservers = [
+      "1.1.1.1"
+      "8.8.8.8"
+    ];
 
     firewall = {
       allowedTCPPorts = [
@@ -36,7 +45,11 @@
 
   users.users.wantguns = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" "docker" ];
+    extraGroups = [
+      "wheel"
+      "networkmanager"
+      "docker"
+    ];
     shell = pkgs.zsh;
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHcueIcj4fgzD6cUUGqituoupjexNNF1Hjrr+dyJ+gvA gunwant.jain@C02GH2V9MD6M.local"
@@ -55,7 +68,10 @@
     resolved = {
       enable = true;
       dnssec = "allow-downgrade";
-      fallbackDns = [ "1.1.1.1" "8.8.8.8" ];
+      fallbackDns = [
+        "1.1.1.1"
+        "8.8.8.8"
+      ];
     };
 
     openssh = {
@@ -64,9 +80,11 @@
         GatewayPorts = "yes";
       };
     };
-};
+  };
 
-  hardware = { enableRedistributableFirmware = true; };
+  hardware = {
+    enableRedistributableFirmware = true;
+  };
   programs.mosh.enable = true;
 
   sops.secrets."wg/bellatrix/private" = {

@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 
 {
-  sops.secrets."zfs/alnitak-mediapool-shared-encrypted" = {};
+  sops.secrets."zfs/alnitak-mediapool-shared-encrypted" = { };
 
   systemd.services.ensure-mediapool-encrypted = {
     description = "Ensure mediapool/media-encrypted exists and key is loaded";

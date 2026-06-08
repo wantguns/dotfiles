@@ -1,13 +1,22 @@
-{ lib
-, config
-, pkgs
-, hosts
-, thisHostName
-, ...
+{
+  lib,
+  config,
+  pkgs,
+  hosts,
+  thisHostName,
+  ...
 }:
 
 let
-  inherit (lib) mkIf filterAttrs attrValues mapAttrs mkOption types head;
+  inherit (lib)
+    mkIf
+    filterAttrs
+    attrValues
+    mapAttrs
+    mkOption
+    types
+    head
+    ;
   thisHost = hosts.${thisHostName};
 
   cfg = config.services.orionWireguard;
@@ -24,39 +33,44 @@ let
     let
       publicPeers = filterAttrs (_: v: v.ips ? public) otherPeers;
       gatewayHostname =
-        if thisHost.ips.orion ? gateway
-        then thisHost.ips.orion.gateway
-        else (head (lib.attrNames publicPeers));
+        if thisHost.ips.orion ? gateway then
+          thisHost.ips.orion.gateway
+        else
+          (head (lib.attrNames publicPeers));
     in
-    attrValues (mapAttrs (_peerName: peer:
-      if !(peer ? ips && peer.ips ? orion) then null else
-      let
-        peerWGAddress = peer.ips.orion.address;
-        isPeerPublic = peer.ips ? public;
+    attrValues (
+      mapAttrs (
+        _peerName: peer:
+        if !(peer ? ips && peer.ips ? orion) then
+          null
+        else
+          let
+            peerWGAddress = peer.ips.orion.address;
+            isPeerPublic = peer.ips ? public;
 
-        endpoint = if isPeerPublic then "${peer.ips.public}:${toString listenPort}" else null;
-        persistentKeepalive = if isPublic != isPeerPublic then 25 else null;
+            endpoint = if isPeerPublic then "${peer.ips.public}:${toString listenPort}" else null;
+            persistentKeepalive = if isPublic != isPeerPublic then 25 else null;
 
-        allowedIPs =
-          if isPublic then
-            [ "${peerWGAddress}/32" ]
+            allowedIPs =
+              if isPublic then
+                [ "${peerWGAddress}/32" ]
+              else if isPeerPublic then
+                if peer.hostname == gatewayHostname then [ "10.69.0.0/16" ] else [ "${peerWGAddress}/32" ]
+              else
+                null;
+
+          in
+          if allowedIPs == null then
+            null
           else
-            if isPeerPublic then
-              if peer.hostname == gatewayHostname
-              then [ "10.69.0.0/16" ]
-              else [ "${peerWGAddress}/32" ]
-            else
-              null;
-
-      in
-        if allowedIPs == null then null else
-        (lib.filterAttrs (_: val: val != null) {
-          Endpoint = endpoint;
-          PersistentKeepalive = persistentKeepalive;
-          PublicKey = peer.ips.orion.publicKey;
-          AllowedIPs = allowedIPs;
-        })
-    ) otherPeers);
+            (lib.filterAttrs (_: val: val != null) {
+              Endpoint = endpoint;
+              PersistentKeepalive = persistentKeepalive;
+              PublicKey = peer.ips.orion.publicKey;
+              AllowedIPs = allowedIPs;
+            })
+      ) otherPeers
+    );
 in
 {
   options.services.orionWireguard = {

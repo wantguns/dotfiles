@@ -1,4 +1,5 @@
-{ config, pkgs, ... }: {
+{ config, pkgs, ... }:
+{
   networking.hostName = "meissa";
   environment.systemPackages = with pkgs; [
     raycast
@@ -21,23 +22,23 @@
     user = "wantguns";
 
     taps = [
-        "fastrepl/hyprnote"
+      "fastrepl/hyprnote"
     ];
     brews = [
-        "firefoxpwa"
-        "coreutils"
+      "firefoxpwa"
+      "coreutils"
     ];
     casks = [
-        "slack"
-        "discord"
-        "screen-studio"
-        "inkscape"
-        "hyprnote"
-        "spotify"
-        "helium-browser"
-        "calibre"
+      "slack"
+      "discord"
+      "screen-studio"
+      "inkscape"
+      "hyprnote"
+      "spotify"
+      "helium-browser"
+      "calibre"
     ];
-};
+  };
 
   users.users."wantguns" = {
     shell = pkgs.zsh;

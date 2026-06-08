@@ -1,6 +1,13 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
-let cfg = config.features; in
+let
+  cfg = config.features;
+in
 
 lib.mkIf cfg.kubernetes {
   programs.k9s = {
@@ -19,5 +26,8 @@ lib.mkIf cfg.kubernetes {
     };
   };
 
-  home.packages = with pkgs; [ kubectl kubernetes-helm ];
+  home.packages = with pkgs; [
+    kubectl
+    kubernetes-helm
+  ];
 }

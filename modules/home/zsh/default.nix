@@ -1,6 +1,14 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
-let cfg = config.features; in {
+let
+  cfg = config.features;
+in
+{
   config = lib.mkMerge [
     (lib.mkIf cfg.shell.zsh.enable {
       programs.zsh = {
