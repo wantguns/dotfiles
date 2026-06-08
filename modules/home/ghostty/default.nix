@@ -14,6 +14,7 @@ lib.mkIf cfg.ghostty {
 
       # disable ligatures
       font-feature = "-calt";
+      shell-integration-features = "ssh-env,ssh-terminfo,sudo";
 
       theme =
         if cfg.theme == "gruvbox-light" then "Gruvbox Light"
