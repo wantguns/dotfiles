@@ -16,8 +16,7 @@ in {
       pkgs = inputs.nixpkgs.legacyPackages.${system};
       extraSpecialArgs = { inherit inputs; };
       modules = [
-        ../modules/features/default.nix
-        ../modules/features/implementation.nix
+        ../modules/home/default.nix
         "${hostPath}/home.nix"
         { home = { inherit username homeDirectory; }; }
       ];

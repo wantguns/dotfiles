@@ -1,0 +1,21 @@
+{
+  imports = [
+    ./options.nix
+    ./common.nix
+    ./aerc
+    ./ai
+    ./alacritty
+    ./dev
+    ./emacs
+    ./firefox
+    ./fzf
+    ./ghostty
+    ./git
+    ./kubernetes
+    ./mpv
+    ./newsboat
+    ./nvim
+    ./tmux
+    ./zsh
+  ];
+}

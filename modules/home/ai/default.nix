@@ -1,0 +1,30 @@
+{ config, pkgs, lib, ... }:
+
+let
+  cfg = config.features;
+
+  opencode-src = pkgs.fetchFromGitHub {
+    owner = "anomalyco";
+    repo = "opencode";
+    tag = "v1.2.20";
+    hash = "sha256-FBmF7/uwZYY/qY1252Hz+XhXdE+Qp5axySAy5Jw7XUQ=";
+  };
+
+in lib.mkIf cfg.ai {
+  home.packages = [
+    (pkgs.opencode.overrideAttrs (old: {
+      version = "1.2.20-add-dir";
+      src = opencode-src;
+      patches = (old.patches or []) ++ [
+        (pkgs.fetchpatch {
+          url = "https://github.com/anomalyco/opencode/pull/8943.diff";
+          hash = "sha256-YQio9KtusTn0lozSxgPXY++w7njKQzRx0F0RBnZ8tzU=";
+        })
+      ];
+      node_modules = old.node_modules.overrideAttrs {
+        src = opencode-src;
+        outputHash = "sha256-OwlJRAeKnX5YMwQgaV4op40rjt5kxsP4WrOzpp9t90w=";
+      };
+    }))
+  ];
+}

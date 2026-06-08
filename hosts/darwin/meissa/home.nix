@@ -30,7 +30,6 @@
     tmux = true;
     fzf = true;
     aerc = true;
-    secrets = true;
     alacritty = true;
     ghostty = true;
     newsboat = true;

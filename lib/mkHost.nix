@@ -64,8 +64,7 @@ in {
           sharedModules = [ inputs.sops-nix.homeManagerModules.sops ];
           users.${username} = { ... }: {
             imports = [
-              ../modules/features/default.nix
-              ../modules/features/implementation.nix
+              ../modules/home/default.nix
               "${hostPath}/home.nix"
             ];
           };

@@ -21,7 +21,6 @@
     tmux = true;
     fzf = true;
     aerc = true;
-    secrets = true;
     alacritty = true;
     newsboat = true;
 

@@ -1,15 +1,13 @@
 urls-source "miniflux"
 miniflux-url "https://feed.wantguns.dev"
 
-miniflux-tokeneval "([[ \"$OSTYPE\" == \"linux\"* ]] && cat $XDG_RUNTIME_DIR/miniflux/apitoken) || ([[ \"$OSTYPE\" == \"darwin\"* ]] && cat $(getconf DARWIN_USER_TEMP_DIR)miniflux/apitoken)"
-
 miniflux-flag-star "a"
 miniflux-flag-save "b"
 miniflux-show-special-feeds "no"
 
 # general settings
 auto-reload yes
-max-items 50
+max-items 100
 text-width 80
 
 # externel browser
@@ -17,8 +15,6 @@ browser "w3m -cols 80 %u"
 
 bind-key j down
 bind-key k up
-bind-key j next articlelist
-bind-key k prev articlelist
 bind-key J next-feed articlelist
 bind-key K prev-feed articlelist
 bind-key G end
