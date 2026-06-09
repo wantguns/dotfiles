@@ -9,6 +9,7 @@
 {
   boot = {
     supportedFilesystems = [ "zfs" ];
+    zfs.forceImportRoot = false;
     zfs.requestEncryptionCredentials = false;
     loader = {
       systemd-boot.enable = true;
