@@ -132,7 +132,8 @@ in
         targetNamespace = "argocd";
         createNamespace = true;
         extraDeploy = [
-          ./manifests/argo-resources.yaml
+          ./manifests/argo-project.yaml
+          ./manifests/argo-metaapp.yaml
         ];
         values = {
           configs = {

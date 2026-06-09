@@ -15,6 +15,7 @@
 
   boot = {
     supportedFilesystems = [ "zfs" ];
+    zfs.forceImportRoot = false;
     loader = {
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
