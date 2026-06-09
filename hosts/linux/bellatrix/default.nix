@@ -67,11 +67,13 @@
   services = {
     resolved = {
       enable = true;
-      dnssec = "allow-downgrade";
-      fallbackDns = [
-        "1.1.1.1"
-        "8.8.8.8"
-      ];
+      settings.Resolve = {
+        DNSSEC = "allow-downgrade";
+        FallbackDNS = [
+          "1.1.1.1"
+          "8.8.8.8"
+        ];
+      };
     };
 
     openssh = {
