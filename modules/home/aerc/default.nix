@@ -63,6 +63,7 @@ lib.mkIf cfg.aerc {
       };
       ui = {
         "threading-enabled" = true;
+        "styleset-name" = "green";
         "column-subject" =
           "{{.ThreadPrefix}}{{if .ThreadFolded}}{{printf \"{%d}\" .ThreadCount}}{{end}}{{.Subject}}";
       };
@@ -75,6 +76,42 @@ lib.mkIf cfg.aerc {
         "image/*" = "catimg -w $(tput cols) -";
       };
     };
+    stylesets.green = ''
+      *.selected.bg = 2
+      *.selected.fg = 0
+
+      msglist_unread.bold = true
+      msglist_unread.fg = 2
+      msglist_unread.selected.bold = true
+      msglist_read.selected.bold = false
+
+      msglist_deleted.dim = true
+      msglist_pill.bg = 2
+      msglist_pill.fg = 0
+
+      border.bg = default
+      border.fg = 2
+      title.bg = 2
+      title.fg = 0
+      title.bold = true
+      header.fg = 2
+      header.bold = true
+
+      part_mimetype.fg = 2
+      selector_focused.bold = true
+      selector_focused.bg = 2
+      selector_focused.fg = 0
+
+      completion_pill.bg = 2
+
+      [viewer]
+      url.underline = true
+      url.fg = 2
+      header.bold = true
+      header.fg = 2
+      diff_add.fg = 2
+      diff_del.fg = 1
+    '';
   };
 
   sops.secrets = {
