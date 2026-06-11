@@ -50,8 +50,6 @@ vim.o.softtabstop = 4
 vim.o.shiftwidth = 4
 vim.o.expandtab = true
 
--- vim.cmd [[colorscheme moonfly]]
-
 -- [[ Basic Keymaps ]]
 
 -- Keymaps for better default experience

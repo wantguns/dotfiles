@@ -36,7 +36,18 @@ lib.mkIf cfg.editors.nvim.enable {
     viAlias = true;
     vimAlias = true;
     vimdiffAlias = true;
-    initLua = lib.mkBefore (builtins.readFile ./base.lua);
+    initLua = lib.mkMerge [
+      (lib.mkBefore (builtins.readFile ./base.lua))
+      (lib.mkIf cfg.editors.nvim.ui (builtins.readFile ./fugitive.lua))
+      (lib.mkIf cfg.editors.nvim.lsp (builtins.readFile ./lsp/base.lua))
+      (lib.mkIf (cfg.editors.nvim.lsp && cfg.dev.go) (builtins.readFile ./lsp/go.lua))
+      (lib.mkIf (cfg.editors.nvim.lsp && cfg.dev.rust) (builtins.readFile ./lsp/rust.lua))
+      (lib.mkIf (cfg.editors.nvim.lsp && cfg.dev.python) (builtins.readFile ./lsp/python.lua))
+      (lib.mkIf (cfg.editors.nvim.lsp && cfg.dev.terraform) (builtins.readFile ./lsp/terraform.lua))
+      (lib.mkIf (cfg.editors.nvim.lsp && cfg.dev.nodejs) (builtins.readFile ./lsp/nodejs.lua))
+      (lib.mkIf (cfg.editors.nvim.lsp && cfg.dev.lua) (builtins.readFile ./lsp/lua.lua))
+      (lib.mkIf (cfg.editors.nvim.lsp && cfg.dev.zig) (builtins.readFile ./lsp/zig.lua))
+    ];
 
     extraPackages = with pkgs; [
       (lib.mkIf cfg.editors.nvim.lsp tree-sitter)
@@ -46,6 +57,7 @@ lib.mkIf cfg.editors.nvim.enable {
       with pkgs.vimPlugins;
       [
         plenary-nvim
+        vim-sleuth
       ]
       ++ lib.optional (cfg.theme == "gruvbox-light") {
         plugin = gruvbox;
@@ -68,17 +80,7 @@ lib.mkIf cfg.editors.nvim.enable {
 
       ++ lib.optionals cfg.editors.nvim.ui [
         vim-fugitive
-        which-key-nvim
-        {
-          plugin = fromGitHub {
-            owner = "linrongbin16";
-            repo = "gitlinker.nvim";
-            rev = "7c1fae10e39fba627a433a0d7126683c79af289f";
-            sha256 = "J7WG0xoVI9NKrOrgA7zTdD/Q4gSh+Hhg/wAIh/1RmDA=";
-            doCheck = false;
-          };
-          config = builtins.readFile ./gitlink.lua;
-        }
+        vim-rhubarb
         {
           plugin = gitsigns-nvim;
           config = "require('gitsigns').setup()";
@@ -95,10 +97,6 @@ lib.mkIf cfg.editors.nvim.enable {
           plugin = telescope-nvim;
           config = builtins.readFile ./telescope.lua;
         }
-        {
-          plugin = telescope-nvim;
-          config = builtins.readFile ./telescope.lua;
-        }
       ]
 
       ++ lib.optionals cfg.editors.nvim.lsp [
@@ -107,21 +105,19 @@ lib.mkIf cfg.editors.nvim.enable {
           config = builtins.readFile ./treesitter.lua;
         }
         {
-          plugin = nvim-lspconfig;
-          config = builtins.readFile ./lsp.lua;
+          plugin = nvim-treesitter-textobjects;
+          config = builtins.readFile ./ts-textobjects.lua;
         }
         {
-          plugin = nvim-cmp;
-          config = builtins.readFile ./cmp.lua;
+          plugin = nvim-treesitter-context;
+          config = builtins.readFile ./ts-context.lua;
         }
-        cmp-nvim-lsp
+        {
+          plugin = blink-cmp;
+          config = builtins.readFile ./blink.lua;
+        }
       ]
 
-      ++ lib.optionals cfg.dev.terraform [
-        nvim-treesitter-parsers.terraform
-      ]
-
-      # Obsidian
       ++ lib.optional cfg.editors.nvim.obsidian {
         plugin = obsidian-nvim;
         config = builtins.readFile ./obsidian.lua;

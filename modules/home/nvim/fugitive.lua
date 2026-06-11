@@ -1,0 +1,5 @@
+-- fugitive :GBrowse — yank/open permalink to current line (or visual range)
+vim.keymap.set('n', '<leader>gy', '<cmd>.GBrowse!<CR>', { desc = 'Yank git link' })
+vim.keymap.set('v', '<leader>gy', ':GBrowse!<CR>', { desc = 'Yank git link' })
+vim.keymap.set('n', '<leader>gY', '<cmd>.GBrowse<CR>', { desc = 'Open git link' })
+vim.keymap.set('v', '<leader>gY', ':GBrowse<CR>', { desc = 'Open git link' })
