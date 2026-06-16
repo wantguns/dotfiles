@@ -12,7 +12,7 @@ in
 lib.mkIf cfg.ghostty {
   programs.ghostty = {
     enable = true;
-    package = pkgs.ghostty-bin;
+    package = if pkgs.stdenv.hostPlatform.isDarwin then pkgs.ghostty-bin else pkgs.ghostty;
     settings = {
       font-family = "Iosevka Term SS15";
       font-size = 16;

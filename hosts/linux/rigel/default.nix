@@ -1,0 +1,82 @@
+{
+  config,
+  pkgs,
+  lib,
+  inputs,
+  ...
+}:
+
+{
+  boot = {
+    supportedFilesystems = [ "zfs" ];
+    zfs.forceImportRoot = false;
+    zfs.requestEncryptionCredentials = false;
+    loader = {
+      systemd-boot = {
+        enable = true;
+        configurationLimit = 5;
+        # systemd-boot will auto-detect /boot/EFI/Microsoft/Boot/bootmgfw.efi
+        # and add a "Windows Boot Manager" entry to the menu.
+      };
+      efi.canTouchEfiVariables = true;
+      efi.efiSysMountPoint = "/boot";
+      timeout = 5;
+    };
+  };
+
+  # see: https://github.com/nix-community/disko/issues/581#issuecomment-2024231487
+  fileSystems."/home".options = [ "noauto" ];
+
+  networking = {
+    hostName = "rigel";
+    hostId = "7a3b9f12";
+    firewall = {
+      checkReversePath = false;
+      trustedInterfaces = [ "wg_orion" ];
+      extraInputRules = ''
+        ip saddr 10.69.0.0/16 accept
+      '';
+    };
+  };
+
+  time.timeZone = "Asia/Kolkata";
+
+  programs.zsh.enable = true;
+
+  users.users.wantguns = {
+    isNormalUser = true;
+    extraGroups = [
+      "wheel"
+      "networkmanager"
+    ];
+    shell = pkgs.zsh;
+    openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINMm/9RWSPMxyeMHglw6cyZBgtuke+7l5wc9dXmQkiii"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIIA5UkkDnsE/Td4aa0N+2pZ05xAHvPE8SMVk5zlHhxA"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAN+U9xlrIVyWY7DzhMO6Tf+JN04a9nzcdMc7nLOnWqq wantguns@mintaka"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKgRwW8BjH8SpuGBJhVZYC8Unu7sHNrDI1JYhQz0xIPD wantguns@meissa"
+    ];
+  };
+
+  services = {
+    resolved = {
+      enable = true;
+      settings.Resolve = {
+        DNSSEC = "allow-downgrade";
+        FallbackDNS = [
+          "1.1.1.1"
+          "8.8.8.8"
+        ];
+      };
+    };
+  };
+
+  hardware.enableRedistributableFirmware = true;
+  hardware.cpu.amd.updateMicrocode = true;
+
+  environment.systemPackages = with pkgs; [
+    wireguard-tools
+  ];
+
+  system.stateVersion = "26.05";
+}

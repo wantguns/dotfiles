@@ -101,6 +101,22 @@
           username = "wantguns";
           remoteBuild = false;
         };
+
+        "rigel" = lib.my.mkHostConfig {
+          hostname = "rigel";
+          system = "x86_64-linux";
+          username = "wantguns";
+          remoteBuild = false;
+          ips = {
+            orion = {
+              address = "10.69.0.5";
+              gateway = "bellatrix";
+              publicKey = "wGO+NOi86UaAp1x9RlpojaYXGAlDjThK1sxhZPLVSnI=";
+              # will fail for now as the seed key is not present on rigel
+              privateKeyFile = "/run/secrets/wg/rigel/private";
+            };
+          };
+        };
       };
 
       extraWgHosts = {
