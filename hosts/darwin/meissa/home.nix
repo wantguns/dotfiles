@@ -1,4 +1,9 @@
-{ config, pkgs, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 {
   features = {
 
@@ -52,18 +57,32 @@
     "dev/aion/.gitconfig".source = ./git/aion;
     "dev/aion/.gitmessage".source = ./git/aionmessage;
 
-    "Library/Application Support/Raycast/scripts/emacs-client.sh" = {
-      executable = true;
-      text = ''
-        #!/bin/bash
-        # @raycast.schemaVersion 1
-        # @raycast.title Emacs Client
-        # @raycast.mode silent
-
-        exec ${config.services.emacs.package}/bin/emacsclient -c -n
-      '';
-    };
+    # SSH host alias for the work GitHub account. The `Include ~/.ssh/config.d/*`
+    # line is added to ~/.ssh/config idempotently by home.activation.sshConfigInclude.
+    ".ssh/config.d/aion".text = ''
+      Host github-aion
+          HostName github.com
+          PreferredAuthentications publickey
+          IdentityFile ~/.ssh/gh-aion
+    '';
   };
+
+  # Ensure ~/.ssh/config has an `Include ~/.ssh/config.d/*` line near the top so
+  # nix-managed fragments under ~/.ssh/config.d/ are picked up. The rest of
+  # ~/.ssh/config remains manually managed; we only stamp this one line.
+  home.activation.sshConfigInclude = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+    cfg="$HOME/.ssh/config"
+    line='Include ~/.ssh/config.d/*'
+    mkdir -p "$HOME/.ssh" "$HOME/.ssh/config.d"
+    touch "$cfg"
+    chmod 600 "$cfg"
+    if ! grep -Fxq "$line" "$cfg"; then
+      tmp=$(mktemp)
+      { echo "$line"; echo; cat "$cfg"; } > "$tmp"
+      mv "$tmp" "$cfg"
+      chmod 600 "$cfg"
+    fi
+  '';
 
   programs.git = {
     settings = {
