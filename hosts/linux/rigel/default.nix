@@ -85,5 +85,14 @@
     sbctl
   ];
 
+  sops.secrets = {
+    "wg/rigel/private" = {
+      owner = "root";
+      group = "systemd-network";
+      mode = "0640";
+      restartUnits = [ "systemd-networkd.service" ];
+    };
+  };
+
   system.stateVersion = "26.05";
 }
