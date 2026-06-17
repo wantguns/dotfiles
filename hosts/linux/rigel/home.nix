@@ -14,7 +14,10 @@
       emacs.enable = true;
     };
 
-    ai = false;
+    ai = {
+      opencode = false;
+      pi = false;
+    };
 
     shell.zsh = {
       enable = true;

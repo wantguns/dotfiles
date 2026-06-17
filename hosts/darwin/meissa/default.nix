@@ -112,7 +112,6 @@
       ffmpeg
       zellij
       nmap
-      pi-coding-agent
 
       go
       python312

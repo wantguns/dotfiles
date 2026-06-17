@@ -26,7 +26,10 @@ with lib;
       };
     };
 
-    ai = mkEnableOption "enable experimental ai tooling";
+    ai = {
+      opencode = mkEnableOption "enable opencode";
+      pi = mkEnableOption "enable pi-coding-agent";
+    };
 
     shell = {
       zsh = {

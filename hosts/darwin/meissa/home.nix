@@ -7,7 +7,6 @@
 {
   features = {
 
-    # theme = "gruvbox-light";
     theme = "moonfly";
 
     editors = {
@@ -21,7 +20,10 @@
       emacs.enable = true;
     };
 
-    ai = true;
+    ai = {
+      opencode = false;
+      pi = true;
+    };
 
     shell.zsh = {
       enable = true;

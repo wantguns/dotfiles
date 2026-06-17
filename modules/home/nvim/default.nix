@@ -73,7 +73,7 @@ lib.mkIf cfg.editors.nvim.enable {
         config = "vim.cmd(\"colorscheme moonfly\")";
       }
 
-      ++ lib.optional cfg.ai {
+      ++ lib.optional cfg.ai.opencode {
         plugin = opencode-nvim;
         config = builtins.readFile ./opencode.lua;
       }
