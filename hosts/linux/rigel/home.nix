@@ -14,7 +14,7 @@
       emacs.enable = true;
     };
 
-    ai = true;
+    ai = false;
 
     shell.zsh = {
       enable = true;
