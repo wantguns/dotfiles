@@ -7,20 +7,24 @@
 }:
 
 {
+  imports = [
+    inputs.lanzaboote.nixosModules.lanzaboote
+  ];
+
   boot = {
     supportedFilesystems = [ "zfs" ];
     zfs.forceImportRoot = false;
     zfs.requestEncryptionCredentials = false;
     loader = {
-      systemd-boot = {
-        enable = true;
-        configurationLimit = 5;
-        # systemd-boot will auto-detect /boot/EFI/Microsoft/Boot/bootmgfw.efi
-        # and add a "Windows Boot Manager" entry to the menu.
-      };
+      systemd-boot.enable = lib.mkForce false;
       efi.canTouchEfiVariables = true;
       efi.efiSysMountPoint = "/boot";
       timeout = 5;
+    };
+    lanzaboote = {
+      enable = true;
+      pkiBundle = "/var/lib/sbctl";
+      configurationLimit = 5;
     };
   };
 
@@ -76,6 +80,7 @@
 
   environment.systemPackages = with pkgs; [
     wireguard-tools
+    sbctl
   ];
 
   system.stateVersion = "26.05";
