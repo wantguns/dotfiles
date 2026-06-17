@@ -63,6 +63,8 @@
   };
 
   services = {
+    fwupd.enable = true;
+
     resolved = {
       enable = true;
       settings.Resolve = {
