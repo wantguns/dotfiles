@@ -8,7 +8,7 @@
     disko.url = "github:nix-community/disko/latest";
     nixos-facter-modules.url = "github:numtide/nixos-facter-modules";
     sops-nix.url = "github:Mic92/sops-nix";
-    lanzaboote.url = "github:nix-community/lanzaboote/v1.0.0";
+    lanzaboote.url = "github:nix-community/lanzaboote/001e560fffc8f0235e9db20ebeb4ccde0ade1caf";
 
     darwin.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
