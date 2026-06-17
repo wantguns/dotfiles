@@ -114,7 +114,6 @@
               address = "10.69.0.5";
               gateway = "bellatrix";
               publicKey = "wGO+NOi86UaAp1x9RlpojaYXGAlDjThK1sxhZPLVSnI=";
-              # will fail for now as the seed key is not present on rigel
               privateKeyFile = "/run/secrets/wg/rigel/private";
             };
           };

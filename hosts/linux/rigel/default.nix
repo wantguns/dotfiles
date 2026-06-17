@@ -30,6 +30,8 @@
 
   # see: https://github.com/nix-community/disko/issues/581#issuecomment-2024231487
   fileSystems."/home".options = [ "noauto" ];
+  # prevent lockups while switching to a new iteration
+  systemd.network.wait-online.enable = false;
 
   networking = {
     hostName = "rigel";
