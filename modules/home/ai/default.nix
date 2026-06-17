@@ -24,7 +24,7 @@ lib.mkIf cfg.ai {
       patches = (old.patches or [ ]) ++ [
         (pkgs.fetchpatch {
           url = "https://github.com/anomalyco/opencode/pull/8943.diff";
-          hash = "sha256-YQio9KtusTn0lozSxgPXY++w7njKQzRx0F0RBnZ8tzU=";
+          hash = "sha256-kdFEf6TwahpX/8qoCq4eYbP9tJwLMv/OFQxO41X341Q=";
         })
       ];
       node_modules = old.node_modules.overrideAttrs {
