@@ -104,6 +104,13 @@
           remoteBuild = false;
         };
 
+        "together" = lib.my.mkHostConfig {
+          hostname = "together";
+          system = "aarch64-darwin";
+          username = "wantguns";
+          remoteBuild = false;
+        };
+
         "rigel" = lib.my.mkHostConfig {
           hostname = "rigel";
           system = "x86_64-linux";
