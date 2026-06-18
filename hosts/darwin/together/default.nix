@@ -10,6 +10,14 @@
   homebrew = {
     enable = true;
     user = "wantguns";
+
+    casks = [
+      "slack"
+      "discord"
+      "spotify"
+      "signal"
+      "zoom"
+    ];
   };
 
   users.users."wantguns" = {
