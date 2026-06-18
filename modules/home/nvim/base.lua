@@ -50,6 +50,9 @@ vim.o.softtabstop = 4
 vim.o.shiftwidth = 4
 vim.o.expandtab = true
 
+-- set cursorline
+vim.o.cursorline = true
+
 -- [[ Basic Keymaps ]]
 
 -- Keymaps for better default experience
