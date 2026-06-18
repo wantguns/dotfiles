@@ -2,7 +2,12 @@
 {
   system.stateVersion = 6;
 
-  system.primaryUser = "root";
+  # in Determinate, we trust
+  nix.enable = false;
+
+  # set this to wantguns so that the system settings get applied 
+  # when switching as wantguns
+  system.primaryUser = "wantguns";
 
   system.defaults = {
     dock = {
