@@ -61,6 +61,7 @@
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIIA5UkkDnsE/Td4aa0N+2pZ05xAHvPE8SMVk5zlHhxA"
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAN+U9xlrIVyWY7DzhMO6Tf+JN04a9nzcdMc7nLOnWqq wantguns@mintaka"
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKgRwW8BjH8SpuGBJhVZYC8Unu7sHNrDI1JYhQz0xIPD wantguns@meissa"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDDNUwRuKNdF4ry5+JRhOs6I1wSOk6a+xqkfrfZUXSUz wantguns@together"
     ];
   };
 
