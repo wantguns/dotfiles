@@ -17,6 +17,7 @@
       "spotify"
       "signal"
       "zoom"
+      "jellyfin-media-player"
     ];
   };
 
