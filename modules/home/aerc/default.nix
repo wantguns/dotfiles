@@ -26,7 +26,7 @@ lib.mkIf cfg.aerc {
       void = {
         source = "imaps://void@wantguns.dev@imap.migadu.com";
         source-cred-cmd = "cat ${config.sops.secrets."email/void@wantguns.dev/source".path}";
-        outgoing = "smtps://void@wantguns.dev@smtp.migadu.com";
+        outgoing = "smtp://void@wantguns.dev@smtp.migadu.com:587";
         outgoing-cred-cmd = "cat ${config.sops.secrets."email/void@wantguns.dev/source".path}";
         default = "INBOX";
         from = "Gunwant Jain <void@wantguns.dev>";
@@ -46,7 +46,7 @@ lib.mkIf cfg.aerc {
       work = {
         source = "imaps://mail@wantguns.dev@imap.migadu.com";
         source-cred-cmd = "cat ${config.sops.secrets."email/mail@wantguns.dev/source".path}";
-        outgoing = "smtps://mail@wantguns.dev@smtp.migadu.com";
+        outgoing = "smtp://mail@wantguns.dev@smtp.migadu.com:587";
         outgoing-cred-cmd = "cat ${config.sops.secrets."email/mail@wantguns.dev/outgoing".path}";
         default = "INBOX";
         from = "Gunwant Jain <mail@wantguns.dev>";
