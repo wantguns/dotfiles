@@ -22,7 +22,7 @@ lib.mkIf cfg.newsboat {
           mpv = lib.getExe config.programs.mpv.finalPackage;
         in
         ''
-          macro v set browser "${mpv} --ontop %u"; open-in-browser ; set browser "w3m %u"
+          macro v set browser "(${mpv} --ontop %u >/dev/null 2>&1 &)"; open-in-browser ; set browser "w3m %u"
         ''
       )
       + lib.optionalString cfg.firefox (
