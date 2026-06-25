@@ -36,7 +36,9 @@ vim.o.conceallevel = 2
 
 -- Decrease update time
 vim.o.updatetime = 250
-vim.o.timeoutlen = 300
+
+-- Increase wait time for key binds
+vim.o.timeoutlen = 5000
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noselect'
