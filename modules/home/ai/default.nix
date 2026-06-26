@@ -53,6 +53,7 @@ lib.mkMerge [
     };
 
     home.file.".pi/agent/extensions/plan-mode.ts".source = ./pi/plan-mode.ts;
+    home.file.".pi/agent/extensions/quote-reply.ts".source = ./pi/quote-reply.ts;
     home.file.".pi/agent/themes/moonfly.json".source = ./pi/themes/moonfly.json;
 
     home.file.".pi/web-search.json" = lib.mkIf pkgs.stdenv.hostPlatform.isDarwin {
