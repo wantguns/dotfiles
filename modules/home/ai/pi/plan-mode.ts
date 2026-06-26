@@ -1,10 +1,24 @@
-import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
+import type { ExtensionAPI, ExtensionContext } from "@earendil-works/pi-coding-agent";
 
 const BLOCKED_TOOLS = ["write", "edit", "bash"];
 const STATUS_KEY = "plan-mode";
 
 export default function (pi: ExtensionAPI) {
   let toolsBeforePlan: string[] | null = null;
+
+  const toggle = (ctx: ExtensionContext) => {
+    if (toolsBeforePlan) {
+      pi.setActiveTools(toolsBeforePlan);
+      toolsBeforePlan = null;
+      ctx.ui.setStatus(STATUS_KEY, undefined);
+      ctx.ui.notify("Plan mode OFF", "info");
+    } else {
+      toolsBeforePlan = pi.getActiveTools();
+      pi.setActiveTools(toolsBeforePlan.filter((t) => !BLOCKED_TOOLS.includes(t)));
+      ctx.ui.setStatus(STATUS_KEY, "PLAN (read-only)");
+      ctx.ui.notify("Plan mode ON", "info");
+    }
+  };
 
   pi.on("tool_call", (event) => {
     if (toolsBeforePlan && BLOCKED_TOOLS.includes(event.toolName)) {
@@ -17,18 +31,11 @@ export default function (pi: ExtensionAPI) {
 
   pi.registerCommand("plan", {
     description: "Toggle read-only plan mode (blocks write/edit/bash)",
-    handler: async (_args, ctx) => {
-      if (toolsBeforePlan) {
-        pi.setActiveTools(toolsBeforePlan);
-        toolsBeforePlan = null;
-        ctx.ui.setStatus(STATUS_KEY, undefined);
-        ctx.ui.notify("Plan mode OFF", "info");
-      } else {
-        toolsBeforePlan = pi.getActiveTools();
-        pi.setActiveTools(toolsBeforePlan.filter((t) => !BLOCKED_TOOLS.includes(t)));
-        ctx.ui.setStatus(STATUS_KEY, "PLAN (read-only)");
-        ctx.ui.notify("Plan mode ON", "info");
-      }
-    },
+    handler: async (_args, ctx) => toggle(ctx),
+  });
+
+  pi.registerShortcut("ctrl+x", {
+    description: "Toggle read-only plan mode",
+    handler: (ctx) => toggle(ctx),
   });
 }
