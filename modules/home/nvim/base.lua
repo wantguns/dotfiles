@@ -32,7 +32,7 @@ vim.o.scrolloff = 4
 
 vim.o.relativenumber = true
 
-vim.o.conceallevel = 2
+vim.o.conceallevel = 0
 
 -- Decrease update time
 vim.o.updatetime = 250
