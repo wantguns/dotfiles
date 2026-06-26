@@ -152,6 +152,18 @@
           };
         };
 
+        "together" = {
+          hostname = "together";
+          ips = {
+            orion = {
+              address = "10.69.0.6";
+              gateway = "bellatrix";
+              publicKey = "JcngR5ExmKtFjP3Ob75pW/I5fEIS6+ThVAZisyRLsm4=";
+              privateKeyFile = "/run/secrets/wg/together/private";
+            };
+          };
+        };
+
         "pyco" = {
           hostname = "pyco";
           ips = {

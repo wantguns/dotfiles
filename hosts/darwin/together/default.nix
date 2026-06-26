@@ -35,6 +35,9 @@
       ncdu
       tree
       wget
+      zola
+      chatterino2
+      wireguard-tools
     ];
   };
 
