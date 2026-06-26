@@ -46,10 +46,17 @@ lib.mkMerge [
           "npm:pi-mcp-adapter"
           "npm:context-mode"
           "npm:pi-subagents"
-          "npm:pi-terminal-theme"
         ];
-        theme = "terminal";
+        theme = "moonfly";
+        defaultModel = "claude-opus-4.8";
       };
+    };
+
+    home.file.".pi/agent/extensions/plan-mode.ts".source = ./pi/plan-mode.ts;
+    home.file.".pi/agent/themes/moonfly.json".source = ./pi/themes/moonfly.json;
+
+    home.file.".pi/web-search.json" = lib.mkIf pkgs.stdenv.hostPlatform.isDarwin {
+      text = builtins.toJSON { workflow = "none"; };
     };
   })
 ]
