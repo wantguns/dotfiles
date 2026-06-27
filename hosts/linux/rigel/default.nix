@@ -8,6 +8,7 @@
 
 {
   imports = [
+    "${inputs.self}/modules/desktop/niri.nix"
     inputs.lanzaboote.nixosModules.lanzaboote
   ];
 

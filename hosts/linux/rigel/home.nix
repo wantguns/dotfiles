@@ -38,6 +38,7 @@
     kubernetes = true;
     mpv = true;
     firefox = true;
+    niri = true;
 
     dev = {
       go = true;

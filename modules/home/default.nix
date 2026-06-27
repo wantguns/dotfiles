@@ -14,6 +14,7 @@
     ./kubernetes
     ./mpv
     ./newsboat
+    ./niri
     ./nvim
     ./tmux
     ./zsh
