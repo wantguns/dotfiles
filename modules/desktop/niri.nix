@@ -8,7 +8,7 @@ lib.mkIf (config.desktop.compositor == "niri") {
     enable = true;
     settings.default_session = {
       command = "${config.services.greetd.package}/bin/agreety --cmd niri-session";
-      user = "greeter";
+      user = "wantguns";
     };
   };
 

@@ -18,8 +18,8 @@ lib.mkIf (active && cfg.idle == "swayidle") {
           command = "/run/current-system/sw/bin/niri msg action power-off-monitors";
         }
       ];
-    events = lib.optionals hasLock [
-      { event = "before-sleep"; command = lockCmd; }
-    ];
+    events = lib.optionalAttrs hasLock {
+      before-sleep = lockCmd;
+    };
   };
 }

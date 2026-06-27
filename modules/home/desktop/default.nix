@@ -8,6 +8,7 @@
     ./components/idle.nix
     ./components/background.nix
     ./components/clipboard.nix
+    ./components/appearance.nix
     ./compositors/niri
   ];
 }
