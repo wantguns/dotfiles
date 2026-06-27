@@ -63,6 +63,5 @@ with lib;
     newsboat = mkEnableOption "newsboat rss reader";
     mpv = mkEnableOption "mpv and streamlink";
     firefox = mkEnableOption "firefox";
-    niri = mkEnableOption "niri wayland desktop";
   };
 }

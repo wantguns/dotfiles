@@ -16,3 +16,9 @@
 - Local file writes/edits to do the requested work are fine. The
   restriction is specifically on git state and anything that leaves
   the local working tree (network/remote/history).
+
+## Code formatting
+
+- Do NOT column-align or pad tokens to line up braces, values, or
+  comments. Use single spaces. Write `Mod+Q { close-window; }`, not
+  `Mod+Q        { close-window; }`. Applies to all configs/code.

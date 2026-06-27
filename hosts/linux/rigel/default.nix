@@ -8,7 +8,7 @@
 
 {
   imports = [
-    "${inputs.self}/modules/desktop/niri.nix"
+    "${inputs.self}/modules/desktop"
     inputs.lanzaboote.nixosModules.lanzaboote
   ];
 
@@ -47,6 +47,8 @@
   };
 
   time.timeZone = "Asia/Kolkata";
+
+  desktop.compositor = "niri";
 
   programs.zsh.enable = true;
 

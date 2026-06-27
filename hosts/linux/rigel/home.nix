@@ -32,13 +32,12 @@
     tmux = true;
     fzf = true;
     aerc = true;
-    alacritty = true;
+    alacritty = false;
     ghostty = true;
     newsboat = true;
     kubernetes = true;
     mpv = true;
     firefox = true;
-    niri = true;
 
     dev = {
       go = true;
