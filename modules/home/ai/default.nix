@@ -48,7 +48,6 @@ lib.mkMerge [
           "npm:pi-subagents"
         ];
         theme = "moonfly";
-        defaultModel = "claude-opus-4.8";
       };
     };
 

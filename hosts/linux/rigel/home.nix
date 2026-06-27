@@ -16,7 +16,7 @@
 
     ai = {
       opencode = false;
-      pi = false;
+      pi = true;
     };
 
     shell.zsh = {
