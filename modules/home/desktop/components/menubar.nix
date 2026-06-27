@@ -1,4 +1,4 @@
-{ config, osConfig, lib, ... }:
+{ config, osConfig, lib, pkgs, ... }:
 
 let
   cfg = config.features.desktop;
@@ -7,6 +7,12 @@ let
 in
 
 lib.mkIf (active && cfg.menubar == "waybar") {
+  # GUIs opened from the bar's click actions
+  home.packages = with pkgs; [
+    pavucontrol
+    networkmanagerapplet
+  ];
+
   programs.waybar = {
     enable = true;
     systemd.enable = true;
@@ -19,7 +25,9 @@ lib.mkIf (active && cfg.menubar == "waybar") {
       modules-center = [ "clock" ];
       modules-right = [ "tray" "network" "bluetooth" "wireplumber" ];
 
-      "niri/workspaces" = { };
+      "niri/workspaces" = {
+        format = "{index}";
+      };
 
       clock = {
         format = "{:%a %d %b  %H:%M}";
@@ -43,7 +51,8 @@ lib.mkIf (active && cfg.menubar == "waybar") {
       wireplumber = {
         format = "vol {volume}%";
         format-muted = "vol mute";
-        on-click = "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
+        on-click = "pavucontrol";
+        on-click-right = "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
         on-scroll-up = "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+";
         on-scroll-down = "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-";
       };
@@ -61,7 +70,9 @@ lib.mkIf (active && cfg.menubar == "waybar") {
         color: #c6c6c6;
       }
       #workspaces button {
-        padding: 0 8px;
+        padding: 0 5px;
+        margin: 0;
+        min-width: 0;
         color: #808080;
         background: transparent;
       }

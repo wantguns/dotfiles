@@ -1,5 +1,17 @@
 { ... }:
 {
+  fonts.fontconfig = {
+    antialias = true;
+    hinting = {
+      enable = true;
+      style = "slight";
+    };
+    subpixel = {
+      rgba = "none";
+      lcdfilter = "default";
+    };
+  };
+
   security.rtkit.enable = true;
 
   services.pipewire = {
