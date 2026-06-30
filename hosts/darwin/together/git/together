@@ -1,7 +1,7 @@
 ; vim: set ft=gitconfig:
 
 [user]
-	email = gunwant@together.ai # placeholder for noe
+	email = gjain@together.ai
 	name = Gunwant Jain
 
 [commit]

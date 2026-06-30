@@ -61,9 +61,6 @@
   };
 
   programs.git = {
-    settings = {
-      url."git@github-aion:togethercomputer".insteadOf = "https://github.com/togethercomputer";
-    };
     includes = [
       {
         condition = "gitdir:~/dev/together/";
