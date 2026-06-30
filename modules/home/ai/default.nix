@@ -37,9 +37,19 @@ lib.mkMerge [
   })
 
   (lib.mkIf cfg.pi {
+    sops.secrets."ai_api/claude_pi_together" = { };
+
     programs.pi-coding-agent = {
       enable = true;
+      context = ./pi/AGENTS.md;
       settings = {
+        defaultProvider = "anthropic";
+        defaultModel = "claude-opus-4.8";
+        defaultThinkingLevel = "medium";
+        skills = [
+          "~/.claude/skills"
+          "~/.codex/skills"
+        ];
         packages = [
           "npm:@termdraw/pi@0.4.1"
           "npm:pi-web-access@0.10.7"
@@ -51,7 +61,12 @@ lib.mkMerge [
       };
     };
 
-    home.file.".pi/agent/AGENTS.md".source = ./pi/AGENTS.md;
+    home.file.".pi/agent/auth.json".text = builtins.toJSON {
+      anthropic = {
+        type = "api_key";
+        key = "!cat ${config.sops.secrets."ai_api/claude_pi_together".path}";
+      };
+    };
     home.file.".pi/agent/extensions/plan-mode.ts".source = ./pi/plan-mode.ts;
     home.file.".pi/agent/extensions/quote-reply.ts".source = ./pi/quote-reply.ts;
     home.file.".pi/agent/themes/moonfly.json".source = ./pi/themes/moonfly.json;

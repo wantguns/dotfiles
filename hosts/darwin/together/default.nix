@@ -12,6 +12,7 @@
     user = "wantguns";
 
     casks = [
+      "google-chrome"
       "slack"
       "discord"
       "spotify"
