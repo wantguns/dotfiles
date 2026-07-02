@@ -32,5 +32,18 @@
       InitialKeyRepeat = 10;
       KeyRepeat = 1;
     };
+
+    controlcenter = {
+      BatteryShowPercentage = true;
+      NowPlaying = true;
+      Bluetooth = false;
+      Sound = false;
+      Display = false;
+      FocusModes = false;
+      AirDrop = false;
+    };
+    
+    # remove widgets on desktop
+    WindowManager.StandardHideWidgets = true;
   };
 }

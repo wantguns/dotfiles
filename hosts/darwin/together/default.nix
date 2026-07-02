@@ -3,7 +3,6 @@
   networking.hostName = "together";
 
   environment.systemPackages = with pkgs; [
-    raycast
     rectangle
   ];
 
@@ -12,6 +11,7 @@
     user = "wantguns";
 
     casks = [
+      "okta-verify"
       "google-chrome"
       "slack"
       "discord"
@@ -39,16 +39,13 @@
       zola
       chatterino2
       wireguard-tools
+      awscli2
+      colima
+      docker-client
+      docker-credential-helpers
     ];
   };
 
-  system.defaults.CustomUserPreferences = {
-    "com.apple.symbolichotkeys" = {
-      AppleSymbolicHotKeys = {
-        "64".enabled = false; # Disable 'Cmd + Space' for Spotlight Search
-      };
-    };
-  };
 
   security.pam.services.sudo_local.touchIdAuth = true;
 }
