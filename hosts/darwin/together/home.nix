@@ -55,9 +55,18 @@
     };
   };
 
+  home.sessionVariables = {
+    DOCKER_HOST = "unix://${config.home.homeDirectory}/.colima/default/docker.sock";
+    TESTCONTAINERS_DOCKER_SOCKET_OVERRIDE = "/var/run/docker.sock";
+  };
+
   home.file = {
     "dev/together/.gitconfig".source = ./git/together;
     "dev/together/.gitmessage".source = ./git/togethermessage;
+    ".finicky.js".text = builtins.replaceStrings
+      [ "@FIREFOX_APP@" ]
+      [ "${config.programs.firefox.finalPackage}/Applications/Firefox.app" ]
+      (builtins.readFile ./finicky.js);
   };
 
   programs.git = {

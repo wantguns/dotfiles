@@ -47,6 +47,7 @@ in
       home.packages = with pkgs; [
         nodejs
         pnpm
+        yarn
         typescript
         typescript-language-server
       ];

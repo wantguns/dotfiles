@@ -11,6 +11,8 @@
     user = "wantguns";
 
     casks = [
+      "linear"
+      "notion"
       "okta-verify"
       "google-chrome"
       "slack"
@@ -43,6 +45,9 @@
       colima
       docker-client
       docker-credential-helpers
+      pgcli
+      gh
+      redis
     ];
   };
 
