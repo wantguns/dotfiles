@@ -14,6 +14,7 @@
       "linear"
       "notion"
       "okta-verify"
+      "finicky"
       "google-chrome"
       "slack"
       "discord"
