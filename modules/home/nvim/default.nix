@@ -47,6 +47,7 @@ lib.mkIf cfg.editors.nvim.enable {
       (lib.mkIf (cfg.editors.nvim.lsp && cfg.dev.nodejs) (builtins.readFile ./lsp/nodejs.lua))
       (lib.mkIf (cfg.editors.nvim.lsp && cfg.dev.lua) (builtins.readFile ./lsp/lua.lua))
       (lib.mkIf (cfg.editors.nvim.lsp && cfg.dev.zig) (builtins.readFile ./lsp/zig.lua))
+      (lib.mkIf (cfg.editors.nvim.lsp && cfg.dev.bash) (builtins.readFile ./lsp/bash.lua))
     ];
 
     extraPackages = with pkgs; [

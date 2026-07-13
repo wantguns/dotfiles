@@ -67,5 +67,13 @@ in
         zls
       ];
     })
+
+    (lib.mkIf cfg.dev.bash {
+      home.packages = with pkgs; [
+        bash-language-server
+        shellcheck
+        shfmt
+      ];
+    })
   ];
 }

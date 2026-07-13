@@ -52,6 +52,7 @@
       nodejs = true;
       lua = true;
       zig = true;
+      bash = true;
     };
   };
 

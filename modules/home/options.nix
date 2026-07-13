@@ -49,6 +49,7 @@ with lib;
       nodejs = mkEnableOption "enable javascript/typescript environment";
       lua = mkEnableOption "enable lua environment";
       zig = mkEnableOption "enable zig environment";
+      bash = mkEnableOption "enable bash environment";
     };
 
     git = {
