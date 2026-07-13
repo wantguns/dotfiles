@@ -23,6 +23,13 @@ export default {
       browser: { name: "com.google.Chrome", appType: "bundleId" },
     },
     {
+      // any together.* domain (subdomains + tlds), e.g. cloud.together.ai
+      match: [
+        /(^|[./])together\.[a-z]{2,}/,
+      ],
+      browser: { name: "com.google.Chrome", appType: "bundleId" },
+    },
+    {
       match: (_url, { opener }) =>
         [
           "com.tinyspeck.slackmacgap",

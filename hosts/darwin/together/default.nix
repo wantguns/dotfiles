@@ -49,6 +49,15 @@
       pgcli
       gh
       redis
+      gettext
+      gomplate
+      # GNU sed exposed as `gsed` (avoids shadowing macOS /usr/bin/sed)
+      (runCommand "gsed" { } ''
+        mkdir -p $out/bin
+        ln -s ${gnused}/bin/sed $out/bin/gsed
+      '')
+      rustscan
+      openfortivpn
     ];
   };
 
