@@ -59,6 +59,10 @@ lib.mkIf cfg.editors.nvim.enable {
       [
         plenary-nvim
         vim-sleuth
+        {
+          plugin = auto-session;
+          config = "require('auto-session').setup({ suppressed_dirs = { '~/', '~/Downloads', '/' } })";
+        }
       ]
       ++ lib.optional (cfg.theme == "gruvbox-light") {
         plugin = gruvbox;
