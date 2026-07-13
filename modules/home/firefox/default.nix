@@ -106,6 +106,14 @@ lib.mkIf cfg.firefox {
             updates_disabled = true;
             private_browsing = true;
           };
+
+          "switchyomega@feliscatus.addons.mozilla.org" = {
+            install_url = moz "switchyomega";
+            name = "switchyomega";
+            installation_mode = "normal_installed";
+            updates_disabled = true;
+            private_browsing = true;
+          };
         };
 
       # Extension configuration

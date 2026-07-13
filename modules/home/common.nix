@@ -3,6 +3,7 @@
 {
   home = {
     stateVersion = "26.05";
+    sessionPath = [ "$HOME/.local/bin" ];
     packages = with pkgs; [
       (iosevka-bin.override { variant = "SS15"; })
       ripgrep
