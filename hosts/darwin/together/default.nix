@@ -51,6 +51,8 @@
       redis
       gettext
       gomplate
+      kubernetes-controller-tools
+      trunk-io
       # GNU sed exposed as `gsed` (avoids shadowing macOS /usr/bin/sed)
       (runCommand "gsed" { } ''
         mkdir -p $out/bin
@@ -58,6 +60,8 @@
       '')
       rustscan
       openfortivpn
+      shadowsocks-rust
+      xray
     ];
   };
 

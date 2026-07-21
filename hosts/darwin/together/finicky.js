@@ -30,6 +30,13 @@ export default {
       browser: { name: "com.google.Chrome", appType: "bundleId" },
     },
     {
+      // together's github org (github.com/togethercomputer/*) -> chrome
+      match: [
+        /github\.com\/togethercomputer(\/|$)/,
+      ],
+      browser: { name: "com.google.Chrome", appType: "bundleId" },
+    },
+    {
       match: (_url, { opener }) =>
         [
           "com.tinyspeck.slackmacgap",
