@@ -43,6 +43,7 @@ lib.mkMerge [
       enable = true;
       context = ./pi/AGENTS.md;
       settings = {
+        hideThinkingBlock = true;
         defaultProvider = "anthropic";
         defaultModel = "claude-opus-4.8";
         defaultThinkingLevel = "medium";
@@ -56,6 +57,8 @@ lib.mkMerge [
           "npm:pi-mcp-adapter@2.10.0"
           "npm:context-mode@1.0.162"
           "npm:pi-subagents@0.28.0"
+          "git:github.com/obra/superpowers@v6.1.1"
+          "git:github.com/DietrichGebert/ponytail@v4.8.4"
         ];
         theme = "moonfly";
       };
@@ -73,6 +76,38 @@ lib.mkMerge [
 
     home.file.".pi/web-search.json" = lib.mkIf pkgs.stdenv.hostPlatform.isDarwin {
       text = builtins.toJSON { workflow = "none"; };
+    };
+
+    home.file.".config/mcp/mcp.json".text = builtins.toJSON {
+      mcpServers = {
+        linear = {
+          url = "https://mcp.linear.app/mcp";
+          auth = "oauth";
+          excludeTools = [
+            "create_comment"
+            "create_issue"
+            "update_issue"
+            "create_issue_label"
+            "create_project"
+            "update_project"
+            "create_document"
+          ];
+        };
+        notion = {
+          url = "https://mcp.notion.com/mcp";
+          auth = "oauth";
+          excludeTools = [
+            "notion-create-pages"
+            "notion-update-page"
+            "notion-move-pages"
+            "notion-duplicate-page"
+            "notion-create-database"
+            "notion-update-data-source"
+            "notion-create-view"
+            "notion-create-comment"
+          ];
+        };
+      };
     };
   })
 ]
