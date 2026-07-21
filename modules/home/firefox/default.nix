@@ -107,9 +107,9 @@ lib.mkIf cfg.firefox {
             private_browsing = true;
           };
 
-          "switchyomega@feliscatus.addons.mozilla.org" = {
-            install_url = moz "switchyomega";
-            name = "switchyomega";
+          "suziwen1@gmail.com" = {
+            install_url = moz "zeroomega";
+            name = "zeroomega";
             installation_mode = "normal_installed";
             updates_disabled = true;
             private_browsing = true;
