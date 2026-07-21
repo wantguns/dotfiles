@@ -62,6 +62,7 @@ lib.mkIf cfg.aerc {
         "reply-to-self" = false;
       };
       ui = {
+        "message-list-split" = "horizontal 15";
         "threading-enabled" = true;
         "styleset-name" = "green";
         "column-subject" =
