@@ -44,8 +44,9 @@ lib.mkMerge [
       context = ./pi/AGENTS.md;
       settings = {
         hideThinkingBlock = true;
+        markdown.codeBlockIndent = "";
         defaultProvider = "anthropic";
-        defaultModel = "claude-opus-4.8";
+        defaultModel = "claude-opus-5";
         defaultThinkingLevel = "medium";
         skills = [
           "~/.claude/skills"
