@@ -53,7 +53,7 @@
       gomplate
       kubernetes-controller-tools
       trunk-io
-      # GNU sed exposed as `gsed` (avoids shadowing macOS /usr/bin/sed)
+      # GNU sed exposed as `gsed`
       (runCommand "gsed" { } ''
         mkdir -p $out/bin
         ln -s ${gnused}/bin/sed $out/bin/gsed
@@ -62,9 +62,26 @@
       openfortivpn
       shadowsocks-rust
       xray
+      argocd
+      kubevirt
+      netbird
+      netbird-ui
+      jujutsu
     ];
   };
 
 
   security.pam.services.sudo_local.touchIdAuth = true;
+
+  launchd.daemons.netbird = {
+    serviceConfig = {
+      ProgramArguments = [
+        "/bin/sh"
+        "-c"
+        "mkdir -p /var/run/netbird /var/lib/netbird && exec ${pkgs.netbird}/bin/netbird service run"
+      ];
+      RunAtLoad = true;
+      KeepAlive = true;
+    };
+  };
 }

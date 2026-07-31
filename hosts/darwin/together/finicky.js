@@ -44,6 +44,7 @@ export default {
           "notion.id",
           "com.linear",
           "com.okta.mobile",
+          "com.1password.1password",
         ].includes(opener?.bundleId ?? ""),
       browser: { name: "com.google.Chrome", appType: "bundleId" },
     },

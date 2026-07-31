@@ -78,4 +78,13 @@
       }
     ];
   };
+
+  launchd.agents.netbird-ui = {
+    enable = true;
+    config = {
+      ProgramArguments = [ "${pkgs.netbird-ui}/bin/netbird-ui" ];
+      RunAtLoad = true;
+      KeepAlive = true;
+    };
+  };
 }
