@@ -15,6 +15,13 @@ let
     hash = "sha256-FBmF7/uwZYY/qY1252Hz+XhXdE+Qp5axySAy5Jw7XUQ=";
   };
 
+  humanizer-src = pkgs.fetchFromGitHub {
+    owner = "blader";
+    repo = "humanizer";
+    tag = "v2.9.1";
+    hash = "sha256-qJIMwaas5Wnz270rUbPa4E5v2GQ62SQ1rKT0jmjYhyw=";
+  };
+
 in
 lib.mkMerge [
   (lib.mkIf cfg.opencode {
@@ -51,6 +58,7 @@ lib.mkMerge [
         skills = [
           "~/.claude/skills"
           "~/.codex/skills"
+          "${humanizer-src}"
         ];
         packages = [
           "npm:@termdraw/pi@0.4.1"
