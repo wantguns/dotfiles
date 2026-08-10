@@ -43,7 +43,7 @@ lib.mkIf cfg.aerc {
         cache-headers = true;
         copy-to = "Sent";
       };
-      work = {
+      personal = {
         source = "imaps://mail@wantguns.dev@imap.migadu.com";
         source-cred-cmd = "cat ${config.sops.secrets."email/mail@wantguns.dev/source".path}";
         outgoing = "smtp://mail@wantguns.dev@smtp.migadu.com:587";

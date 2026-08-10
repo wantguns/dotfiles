@@ -5,6 +5,8 @@
   ...
 }:
 {
+  imports = [ ./aerc.nix ];
+
   features = {
 
     theme = "moonfly";
