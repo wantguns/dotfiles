@@ -62,12 +62,12 @@ lib.mkMerge [
         ];
         packages = [
           "npm:@termdraw/pi@0.4.1"
-          "npm:pi-web-access@0.10.7"
-          "npm:pi-mcp-adapter@2.10.0"
-          "npm:context-mode@1.0.162"
-          "npm:pi-subagents@0.28.0"
-          "git:github.com/obra/superpowers@v6.1.1"
-          "git:github.com/DietrichGebert/ponytail@v4.8.4"
+          "npm:pi-web-access@0.21.0"
+          "npm:pi-mcp-adapter@2.22.0"
+          "npm:context-mode@1.0.169"
+          "npm:pi-subagents@0.46.0"
+          "git:github.com/obra/superpowers@v6.2.0"
+          "git:github.com/DietrichGebert/ponytail@v4.9.0"
         ];
         theme = "moonfly";
       };
