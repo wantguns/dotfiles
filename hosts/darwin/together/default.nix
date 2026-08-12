@@ -65,7 +65,6 @@
       argocd
       kubevirt
       netbird
-      netbird-ui
       jujutsu
     ];
   };
