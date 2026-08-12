@@ -18,6 +18,7 @@ lib.mkIf cfg.kubernetes {
           headless = true;
           logoless = true;
         };
+        logger.tail = 5000;
         skin = "transparent";
       };
     };
