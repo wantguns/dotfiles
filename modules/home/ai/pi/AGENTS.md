@@ -190,6 +190,28 @@ Transform tasks into verifiable goals:
 For multi-step tasks, state a brief plan, each step with a verify
 check.
 
+### 5. Comments
+
+Default to zero comments. Names and logs carry the meaning.
+
+Before writing one, try these and stop at the first that works:
+rename the variable or function, add a log line, extract the block
+into a named function. A log proves what happened at runtime; a
+comment only asserts what someone believed when they wrote it.
+
+Comment only what the code cannot state itself: the polarity or
+unit of a bare return, an external constraint (an API that lies, a
+vendor bug, an ordering requirement imposed elsewhere), or a
+deliberate shortcut naming its ceiling and upgrade path.
+
+Never restate the line below it, narrate control flow the code
+already makes explicit, describe what changed versus a previous
+version, or banner an obvious block.
+
+One line each. If it takes three lines to defend a simplification,
+cut it or fix the code. When editing, fix or delete comments your
+change made wrong; a stale comment is worse than none.
+
 These guidelines are working if: fewer unnecessary changes in
 diffs, fewer rewrites due to overcomplication, and clarifying
 questions come before implementation rather than after mistakes.
