@@ -34,7 +34,6 @@
 
     git = {
       enable = true;
-      delta = true;
     };
 
     tmux = true;

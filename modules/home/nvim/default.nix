@@ -87,6 +87,10 @@ lib.mkIf cfg.editors.nvim.enable {
         vim-fugitive
         vim-rhubarb
         {
+          plugin = diffs-nvim;
+          config = "vim.g.diffs = { integrations = { fugitive = true, gitsigns = true } }";
+        }
+        {
           plugin = gitsigns-nvim;
           config = "require('gitsigns').setup()";
         }
