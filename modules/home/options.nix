@@ -29,6 +29,11 @@ with lib;
     ai = {
       opencode = mkEnableOption "enable opencode";
       pi = mkEnableOption "enable pi-coding-agent";
+      extraSkills = mkOption {
+        type = types.listOf types.str;
+        default = [ ];
+        description = "Additional pi skill paths, for host-local or private sources";
+      };
     };
 
     shell = {

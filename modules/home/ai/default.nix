@@ -59,7 +59,8 @@ lib.mkMerge [
           "~/.claude/skills"
           "~/.codex/skills"
           "${humanizer-src}"
-        ];
+        ]
+        ++ cfg.extraSkills;
         packages = [
           "npm:@termdraw/pi@0.4.1"
           "npm:pi-web-access@0.21.0"

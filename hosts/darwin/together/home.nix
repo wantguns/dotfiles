@@ -25,6 +25,9 @@
     ai = {
       opencode = false;
       pi = true;
+      extraSkills = [
+        "${config.home.homeDirectory}/dev/together/tcloud-knowledge-base/pi-skills"
+      ];
     };
 
     shell.zsh = {
