@@ -4,6 +4,15 @@
   lib,
   ...
 }:
+let
+  # cd ~/dev/together/tc && rm -f result tc && nix hash path .
+  tc-src = builtins.fetchTree {
+    type = "path";
+    path = "/Users/wantguns/dev/together/tc";
+    narHash = "sha256-zQ/Lif7ShKA0GxJvJDm18AEMSEdqDpPzliZDqdFe5+c=";
+  };
+  tc = pkgs.callPackage "${tc-src}/package.nix" { };
+in
 {
   imports = [ ./aerc.nix ];
 
@@ -60,6 +69,8 @@
     };
   };
 
+  home.packages = [ tc ];
+
   home.sessionVariables = {
     DOCKER_HOST = "unix://${config.home.homeDirectory}/.colima/default/docker.sock";
     TESTCONTAINERS_DOCKER_SOCKET_OVERRIDE = "/var/run/docker.sock";
@@ -68,10 +79,11 @@
   home.file = {
     "dev/together/.gitconfig".source = ./git/together;
     "dev/together/.gitmessage".source = ./git/togethermessage;
-    ".finicky.js".text = builtins.replaceStrings
-      [ "@FIREFOX_APP@" ]
-      [ "${config.programs.firefox.finalPackage}/Applications/Firefox.app" ]
-      (builtins.readFile ./finicky.js);
+    ".finicky.js".text =
+      builtins.replaceStrings
+        [ "@FIREFOX_APP@" ]
+        [ "${config.programs.firefox.finalPackage}/Applications/Firefox.app" ]
+        (builtins.readFile ./finicky.js);
   };
 
   programs.git = {
