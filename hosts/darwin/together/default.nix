@@ -10,9 +10,9 @@
     enable = true;
     user = "wantguns";
 
+    onActivation.cleanup = "zap";
+
     casks = [
-      "linear"
-      "notion"
       "okta-verify"
       "finicky"
       "google-chrome"
@@ -22,6 +22,7 @@
       "signal"
       "zoom"
       "jellyfin-media-player"
+      "openshot-video-editor"
     ];
   };
 
