@@ -61,7 +61,7 @@ lib.mkIf cfg.editors.nvim.enable {
         vim-sleuth
         {
           plugin = auto-session;
-          config = "require('auto-session').setup({ suppressed_dirs = { '~/', '~/Downloads', '/' } })";
+          config = builtins.readFile ./auto-session.lua;
         }
       ]
       ++ lib.optional (cfg.theme == "gruvbox-light") {
