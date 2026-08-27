@@ -106,16 +106,6 @@ lib.mkMerge [
         notion = {
           url = "https://mcp.notion.com/mcp";
           auth = "oauth";
-          excludeTools = [
-            "notion-create-pages"
-            "notion-update-page"
-            "notion-move-pages"
-            "notion-duplicate-page"
-            "notion-create-database"
-            "notion-update-data-source"
-            "notion-create-view"
-            "notion-create-comment"
-          ];
         };
       };
     };
