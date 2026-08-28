@@ -23,10 +23,12 @@ lib.mkIf cfg.tmux {
         plugin = tmuxPlugins.continuum;
         extraConfig = ''
           set -g @continuum-restore 'on'
-          set -g @continuum-save-interval '60' # minutes
+          set -g @continuum-save-interval '15' # minutes
         '';
       }
     ];
-    extraConfig = builtins.readFile ./tmux.conf;
+    extraConfig = builtins.replaceStrings [ "@CONTINUUM_SAVE@" ] [
+      "#(${pkgs.tmuxPlugins.continuum}/share/tmux-plugins/continuum/scripts/continuum_save.sh)"
+    ] (builtins.readFile ./tmux.conf);
   };
 }
