@@ -17,7 +17,7 @@ in
         autosuggestion.enable = true;
         enableCompletion = true;
 
-        completionInit = "autoload -U compinit && compinit -u";
+        completionInit = "autoload -U compinit && compinit -C";
 
         history = {
           append = true;
@@ -34,6 +34,11 @@ in
           file = "powerlevel10k.zsh-theme";
         };
       };
+
+      home.activation.zshCompdump = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+        rm -f "$HOME/.zcompdump"
+        ${config.programs.zsh.package}/bin/zsh -i -c exit </dev/null >/dev/null 2>&1 || true
+      '';
     })
 
     (lib.mkIf (cfg.shell.zsh.enable && cfg.shell.zsh.powerlevel10k) {
