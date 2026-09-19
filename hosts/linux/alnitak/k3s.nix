@@ -65,6 +65,12 @@ in
       gateway-api = {
         source = gatewayApiCrds;
       };
+      argo-project = {
+        source = ./manifests/argo-project.yaml;
+      };
+      argo-metaapp = {
+        source = ./manifests/argo-metaapp.yaml;
+      };
     };
 
     autoDeployCharts = {
@@ -79,6 +85,11 @@ in
         values = {
           operator = {
             replicas = 1;
+            prometheus = {
+              serviceMonitor = {
+                enabled = true;
+              };
+            };
           };
 
           k8sServiceHost = "10.69.0.1";
@@ -99,8 +110,28 @@ in
             };
           };
 
+          prometheus = {
+            enabled = true;
+            serviceMonitor = {
+              enabled = true;
+            };
+          };
+
           hubble = {
             enabled = true;
+            metrics = {
+              enabled = [
+                "dns"
+                "drop"
+                "tcp"
+                "flow"
+                "port-distribution"
+                "icmp"
+              ];
+              serviceMonitor = {
+                enabled = true;
+              };
+            };
             relay = {
               enabled = true;
             };
@@ -110,6 +141,11 @@ in
           };
 
           envoy = {
+            prometheus = {
+              serviceMonitor = {
+                enabled = true;
+              };
+            };
             securityContext = {
               capabilities = {
                 keepCapNetBindService = true;
@@ -131,10 +167,6 @@ in
         hash = "sha256-Vm42yonj7KPyV1derzzfAFjzBEiSXUmkFROO4CPJk5w=";
         targetNamespace = "argocd";
         createNamespace = true;
-        extraDeploy = [
-          ./manifests/argo-project.yaml
-          ./manifests/argo-metaapp.yaml
-        ];
         values = {
           configs = {
             params = {
