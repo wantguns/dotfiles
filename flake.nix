@@ -229,7 +229,7 @@
           ips = {
             orion = {
               address = "10.69.0.245";
-              gateway = "alnitak";
+              gateway = "bellatrix";
               publicKey = "qva6E7fe7955deH1ra0clTiRpJUPGJ6EWqwgzB2QQHY=";
               privateKeyFile = "/run/secrets/wg/parul-uu/private";
             };
