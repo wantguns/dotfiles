@@ -16,6 +16,7 @@
     ./newsboat
     ./desktop
     ./nvim
+    ./ssh
     ./tmux
     ./zsh
   ];

@@ -76,7 +76,11 @@ in
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;
-              extraSpecialArgs = { inherit inputs; };
+              extraSpecialArgs = {
+                inherit inputs;
+                hosts = lib.recursiveUpdate inputs.self.hosts (hostConfig.specialArgs.hosts or { });
+                thisHostName = hostname;
+              };
               sharedModules = [ inputs.sops-nix.homeManagerModules.sops ];
               users.${username} =
                 { ... }:
