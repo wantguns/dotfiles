@@ -3,6 +3,14 @@
 [user]
 	email = gjain@together.ai
 	name = Gunwant Jain
+	signingkey = ~/.ssh/id_ed25519
+
+[gpg]
+	format = ssh
+
+[gpg "ssh"]
+	program = ssh-keygen
 
 [commit]
+	gpgsign = true
 	template = "/Users/wantguns/dev/together/.gitmessage"
