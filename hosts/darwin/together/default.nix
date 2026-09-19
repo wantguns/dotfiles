@@ -2,10 +2,6 @@
 {
   networking.hostName = "together";
 
-  environment.systemPackages = with pkgs; [
-    rectangle
-  ];
-
   homebrew = {
     enable = true;
     user = "wantguns";
@@ -13,6 +9,7 @@
     onActivation.cleanup = "zap";
 
     casks = [
+      "rectangle"
       "okta-verify"
       "finicky"
       "google-chrome"
@@ -23,6 +20,9 @@
       "zoom"
       "jellyfin-media-player"
       "openshot-video-editor"
+      "obs"
+      "cloudflare-warp"
+      "iina"
     ];
   };
 
@@ -67,6 +67,8 @@
       kubevirt
       netbird
       jujutsu
+      argo-workflows
+      _1password-cli
     ];
   };
 
