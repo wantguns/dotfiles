@@ -37,6 +37,16 @@ export default {
       browser: { name: "com.google.Chrome", appType: "bundleId" },
     },
     {
+      // cloudflare zero trust / warp enrolment and login
+      match: [
+        /cloudflareaccess\.com/,
+        /cloudflareclient\.com/,
+        /teams\.cloudflare\.com/,
+        /one\.dash\.cloudflare\.com/,
+      ],
+      browser: { name: "com.google.Chrome", appType: "bundleId" },
+    },
+    {
       match: (_url, { opener }) =>
         [
           "com.tinyspeck.slackmacgap",
@@ -45,6 +55,7 @@ export default {
           "com.linear",
           "com.okta.mobile",
           "com.1password.1password",
+          "com.cloudflare.1dot1dot1dot1.macos",
         ].includes(opener?.bundleId ?? ""),
       browser: { name: "com.google.Chrome", appType: "bundleId" },
     },
