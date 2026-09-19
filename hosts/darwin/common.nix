@@ -46,4 +46,13 @@
     # remove widgets on desktop
     WindowManager.StandardHideWidgets = true;
   };
+
+  system.defaults.CustomUserPreferences = {
+    "com.apple.symbolichotkeys" = {
+      AppleSymbolicHotKeys = {
+        "60".enabled = false; # Disable 'Ctrl + Space' for previous input source
+        "61".enabled = false; # Disable 'Ctrl + Opt + Space' for next input source
+      };
+    };
+  };
 }
