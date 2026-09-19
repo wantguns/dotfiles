@@ -59,12 +59,6 @@
       "networkmanager"
     ];
     shell = pkgs.zsh;
-    openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIZXnfEw3pyp3l0hAtdjExzZBlzIzFY12L1kMI3ckF0c wantguns@bellatrix"
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMQ0qLuDtERCe8zPmAOfJjJzENQl8SJURTwqZnXfdGsn wantguns@alnitak"
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAN+U9xlrIVyWY7DzhMO6Tf+JN04a9nzcdMc7nLOnWqq wantguns@mintaka"
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDDNUwRuKNdF4ry5+JRhOs6I1wSOk6a+xqkfrfZUXSUz wantguns@together"
-    ];
   };
 
   services = {
