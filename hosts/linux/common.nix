@@ -33,6 +33,7 @@
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIO+/xFhcRE1yok1XSvG2G6kc8cqaTgKQq45IfubZ9hMG wantguns@rigel"
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDDNUwRuKNdF4ry5+JRhOs6I1wSOk6a+xqkfrfZUXSUz wantguns@together"
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOnYnZfddsSHguC/HhSAhGyj28jFJjAOZm3R8hL2Xigo wantguns@together"
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICHiqoKB2VjaTocFiTJkeUSlBdNoUdz+LOqEuyuSGRnc wantguns@together"
   ];
 
   nix = {
