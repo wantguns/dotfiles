@@ -23,6 +23,7 @@
       "obs"
       "cloudflare-warp"
       "iina"
+      "granola"
     ];
   };
 
@@ -69,6 +70,7 @@
       jujutsu
       argo-workflows
       _1password-cli
+      typst
     ];
   };
 

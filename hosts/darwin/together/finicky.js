@@ -6,6 +6,10 @@ export default {
   },
   handlers: [
     {
+      match: /^https?:\/\/([^/]+\.)?granola\.(ai|so)([:/?#]|$)/,
+      browser: { name: "com.google.Chrome", appType: "bundleId" },
+    },
+    {
       match: [
         /amazonaws\.com/,
         /aws\.amazon\.com/,
