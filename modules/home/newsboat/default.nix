@@ -28,7 +28,7 @@ lib.mkIf cfg.newsboat {
       + lib.optionalString cfg.firefox (
         let
           firefox =
-            if pkgs.stdenv.isDarwin then
+            if pkgs.stdenv.hostPlatform.isDarwin then
               "open ${config.programs.firefox.finalPackage}/Applications/Firefox.app --args"
             else
               lib.getExe config.programs.firefox.finalPackage;
