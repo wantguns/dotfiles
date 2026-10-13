@@ -4,6 +4,7 @@
   home = {
     stateVersion = "26.05";
     sessionPath = [ "$HOME/.local/bin" ];
+    shellAliases.n = "nvim ~/dev/source";
     packages = with pkgs; [
       (iosevka-bin.override { variant = "SS15"; })
       ripgrep
