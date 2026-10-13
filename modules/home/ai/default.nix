@@ -54,7 +54,7 @@ lib.mkMerge [
         hideThinkingBlock = true;
         markdown.codeBlockIndent = "";
         defaultProvider = "anthropic";
-        defaultModel = "claude-opus-5";
+        defaultModel = "claude-opus-5-5";
         defaultThinkingLevel = "medium";
         skills = [
           "~/.claude/skills"
