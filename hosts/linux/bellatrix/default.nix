@@ -54,6 +54,7 @@
 
     packages = with pkgs; [
       shadowsocks-rust
+      uv
     ];
   };
 

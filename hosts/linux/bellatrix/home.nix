@@ -26,7 +26,7 @@
 
     dev = {
       go = false;
-      python = false;
+      python = true;
     };
   };
 }
