@@ -56,6 +56,8 @@ lib.mkMerge [
         defaultProvider = "anthropic";
         defaultModel = "claude-opus-5-5";
         defaultThinkingLevel = "medium";
+        defaultTools = [ "+codemode" ];
+        codemode.mode = "on";
         skills = [
           "~/.claude/skills"
           "~/.codex/skills"
@@ -64,13 +66,12 @@ lib.mkMerge [
         ++ cfg.extraSkills;
         packages = [
           "npm:@termdraw/pi@0.4.1"
-          "npm:pi-web-access@0.28.0"
-          "npm:pi-mcp-adapter@2.32.1"
+          "npm:pi-web-access@0.40.0"
           "npm:context-mode@1.0.169"
-          "git:github.com/obra/superpowers@v6.3.0"
-          "git:github.com/DietrichGebert/ponytail@v4.9.0"
+          "git:github.com/obra/superpowers@v7.0.0"
+          "git:github.com/DietrichGebert/ponytail@v5.2.0"
         ];
-        theme = "moonfly";
+        theme = "system";
       };
     };
 
@@ -105,24 +106,8 @@ lib.mkMerge [
       text = builtins.toJSON { workflow = "none"; };
     };
 
-    home.file.".config/mcp/mcp.json".text = builtins.toJSON {
-      mcpServers = {
-        linear = {
-          url = "https://mcp.linear.app/mcp";
-          auth = "oauth";
-        };
-        notion = {
-          url = "https://mcp.notion.com/mcp";
-          auth = "oauth";
-        };
-        grafana = {
-          url = "https://mcp.grafana.com/mcp";
-          auth = "oauth";
-          headers = {
-            "X-Grafana-URL" = "https://togetherai.grafana.net";
-          };
-        };
-      };
-    };
+    home.file.".pi/agent/mcp.json".text = lib.mkDefault (builtins.toJSON {
+      mcpServers = { };
+    });
   })
 ]

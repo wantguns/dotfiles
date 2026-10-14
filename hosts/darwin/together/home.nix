@@ -14,7 +14,10 @@ let
   tc = pkgs.callPackage "${tc-src}/package.nix" { };
 in
 {
-  imports = [ ./aerc.nix ];
+  imports = [
+    ./aerc.nix
+    ./pi.nix
+  ];
 
   features = {
 
@@ -34,9 +37,6 @@ in
     ai = {
       opencode = false;
       pi = true;
-      extraSkills = [
-        "${config.home.homeDirectory}/dev/together/tcloud-knowledge-base/pi-skills"
-      ];
     };
 
     shell.zsh = {
