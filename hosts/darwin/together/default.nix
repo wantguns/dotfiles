@@ -6,7 +6,12 @@
     enable = true;
     user = "wantguns";
 
-    onActivation.cleanup = "zap";
+    greedyCasks = true;
+    onActivation = {
+      autoUpdate = true;
+      upgrade = true;
+      cleanup = "zap";
+    };
 
     casks = [
       "rectangle"
@@ -21,7 +26,7 @@
       "jellyfin-media-player"
       "openshot-video-editor"
       "obs"
-      "cloudflare-warp"
+      # "cloudflare-warp"
       "iina"
       "granola"
     ];
