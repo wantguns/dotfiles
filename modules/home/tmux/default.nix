@@ -27,8 +27,12 @@ lib.mkIf cfg.tmux {
         '';
       }
     ];
-    extraConfig = builtins.replaceStrings [ "@CONTINUUM_SAVE@" ] [
-      "#(${pkgs.tmuxPlugins.continuum}/share/tmux-plugins/continuum/scripts/continuum_save.sh)"
-    ] (builtins.readFile ./tmux.conf);
   };
+
+  # Load before plugins (1000); HM appends extraConfig after Continuum starts restoring.
+  xdg.configFile."tmux/tmux.conf".text = lib.mkOrder 900 (
+    builtins.replaceStrings [ "@CONTINUUM_SAVE@" ] [
+      "#(${pkgs.tmuxPlugins.continuum}/share/tmux-plugins/continuum/scripts/continuum_save.sh)"
+    ] (builtins.readFile ./tmux.conf)
+  );
 }
