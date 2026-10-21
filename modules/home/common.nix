@@ -4,6 +4,7 @@
   home = {
     stateVersion = "26.05";
     sessionPath = [ "$HOME/.local/bin" ];
+    sessionVariables.NH_SSHOPTS = "-o ControlMaster=no -o ControlPath=none -o ControlPersist=no";
     shellAliases.n = "nvim ~/dev/source";
     packages = with pkgs; [
       (iosevka-bin.override { variant = "SS15"; })
