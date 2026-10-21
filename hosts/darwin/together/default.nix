@@ -26,7 +26,6 @@
       "jellyfin-media-player"
       "openshot-video-editor"
       "obs"
-      # "cloudflare-warp"
       "iina"
       "granola"
     ];

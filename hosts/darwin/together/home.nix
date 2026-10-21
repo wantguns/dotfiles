@@ -9,7 +9,7 @@ let
   tc-src = builtins.fetchTree {
     type = "path";
     path = "/Users/wantguns/dev/together/tc";
-    narHash = "sha256-HZBTNXpiGeHBQQqS9LQZ//9QhVj1U2mhLOUstbubs2Y=";
+    narHash = "sha256-TtvKuY7E5IlkLDZrVeEbXeF81v6Bz1GrJ6G2M640hhA=";
   };
   tc = pkgs.callPackage "${tc-src}/package.nix" { };
 in
