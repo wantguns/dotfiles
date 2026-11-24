@@ -86,6 +86,11 @@ in
         (builtins.readFile ./finicky.js);
   };
 
+  programs.direnv = {
+    enable = true;
+    nix-direnv.enable = true;
+  };
+
   programs.git = {
     includes = [
       {

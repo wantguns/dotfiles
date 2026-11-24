@@ -27,17 +27,7 @@ export default {
       browser: { name: "com.google.Chrome", appType: "bundleId" },
     },
     {
-      // any together.* domain (subdomains + tlds), e.g. cloud.together.ai
-      match: [
-        /(^|[./])together\.[a-z]{2,}/,
-      ],
-      browser: { name: "com.google.Chrome", appType: "bundleId" },
-    },
-    {
-      // together's github org (github.com/togethercomputer/*) -> chrome
-      match: [
-        /github\.com\/togethercomputer(\/|$)/,
-      ],
+      match: /together/i,
       browser: { name: "com.google.Chrome", appType: "bundleId" },
     },
     {

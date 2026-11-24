@@ -75,6 +75,9 @@
       argo-workflows
       _1password-cli
       typst
+      scdoc
+      codespell
+      mtr
     ];
   };
 
