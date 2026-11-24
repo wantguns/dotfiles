@@ -21,7 +21,7 @@ lib.mkIf cfg.ghostty {
 
       # disable ligatures
       font-feature = "-calt";
-      shell-integration-features = "ssh-env,ssh-terminfo,sudo";
+      shell-integration-features = "ssh-env,sudo";
 
       # prevent option key to generate special characters, and be used as M-
       macos-option-as-alt = true;
