@@ -52,6 +52,8 @@ lib.mkMerge [
       context = ./pi/AGENTS.md;
       settings = {
         hideThinkingBlock = true;
+        outputPad = 0;
+        tuiMode = "regular";
         markdown.codeBlockIndent = "";
         defaultProvider = "anthropic";
         defaultModel = "claude-opus-5-5";

@@ -17,6 +17,60 @@
   restriction is specifically on git state and anything that leaves
   the local working tree (network/remote/history).
 
+## Commit messages
+
+Apply these rules whenever drafting, reviewing, or creating a commit
+message. They do not grant permission to commit or rewrite history.
+For commit messages, they take precedence over general prose guidance
+below. Follow explicit project contribution rules where they differ;
+otherwise use these defaults consistently across repositories.
+
+- Read the project's contribution guidelines and recent commit
+  messages before choosing its subject prefix, casing, and trailers.
+  Do not impose Conventional Commits unless the project uses them.
+- Keep each commit focused on one logical change. Do not bundle
+  unrelated work or include someone else's staged changes.
+- Use a short, capitalized subject in the imperative: "Fix", not
+  "Fixed" or "Fixes". Omit the final period. Aim for 50 characters or
+  fewer, including any prefix, without sacrificing clarity.
+- Separate the subject from the body with exactly one blank line.
+  Omit the body only when the subject fully explains a trivial change.
+- Explain the problem, motivation, and why this approach was chosen.
+  Contrast previous and new behavior when useful. Include relevant
+  constraints or tradeoffs, not a file-by-file narration of the diff.
+- Wrap body prose at 72 columns. Separate paragraphs with blank lines.
+  Use hyphen bullets with hanging indents when a list helps. Do not
+  break URLs, identifiers, or required trailer formats to fit a width.
+- Describe only the actual changes. Do not invent issue references,
+  test results, signoffs, approvals, or other attribution trailers.
+- Include the user's `Signed-off-by:` trailer in every drafted or
+  created commit message. Resolve `git config --get commit.template`
+  in the target repository, expand its path, and copy the exact
+  signoff from that template. Respect conditional Git includes so
+  work and personal repositories use their respective identities.
+  Preserve the trailer if already present; do not duplicate it.
+  If the template or signoff is missing or ambiguous, ask the user
+  rather than guessing. Use `git commit --signoff` only when the
+  effective committer identity matches the template's signoff.
+  This trailer is separate from cryptographic commit signing.
+- When a commit relates to a known Linear ticket, reference it in the
+  body or footer, never in the subject. Use `Fixes <ticket-id>` only
+  when the commit resolves the ticket; use `Part of <ticket-id>` for
+  partial work and `Related to <ticket-id>` for related context.
+  Reference each applicable ticket. Never invent or guess ticket IDs;
+  ask if the work is ticketed but its ID is unknown.
+- Include applicable Linear tickets in the PR description/document
+  too, with links and the same distinction between fixes, partial
+  work, and related context. A PR reference does not replace the
+  ticket reference in each applicable commit message.
+- Before an authorized commit, review the staged diff and run
+  `git diff --cached --check`. Check that the message describes that
+  exact diff, and verify its subject, blank line, and body wrapping.
+
+Sources:
+- https://git-scm.com/book/en/v2/Distributed-Git-Contributing-to-a-Project#_commit_guidelines
+- https://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html
+
 ## Code formatting
 
 - Do NOT column-align or pad tokens to line up braces, values, or
