@@ -18,8 +18,8 @@ let
   humanizer-src = pkgs.fetchFromGitHub {
     owner = "blader";
     repo = "humanizer";
-    tag = "v2.9.1";
-    hash = "sha256-qJIMwaas5Wnz270rUbPa4E5v2GQ62SQ1rKT0jmjYhyw=";
+    tag = "v4.0.0";
+    hash = "sha256-brVRFNvqMttKMZdlxrgmU01VOlxbyU6zQ8zd6qT4eZ8=";
   };
 
 in
@@ -68,10 +68,10 @@ lib.mkMerge [
         ++ cfg.extraSkills;
         packages = [
           "npm:@termdraw/pi@0.4.1"
-          "npm:pi-web-access@0.40.0"
-          "npm:context-mode@1.0.169"
-          "git:github.com/obra/superpowers@v7.0.0"
-          "git:github.com/DietrichGebert/ponytail@v5.2.0"
+          "npm:pi-web-access@0.48.0"
+          "npm:context-mode@2.2.1"
+          "git:github.com/obra/superpowers@v7.0.2"
+          "git:github.com/DietrichGebert/ponytail@v5.3.3"
         ];
         theme = "system";
       };
