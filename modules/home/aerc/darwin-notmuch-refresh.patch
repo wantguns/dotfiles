@@ -1,0 +1,15 @@
+--- a/lib/watchers/fsevents.go
++++ b/lib/watchers/fsevents.go
+@@ -27 +27 @@
+-			Flags:   fsevents.WatchRoot,
++			Flags:   fsevents.WatchRoot | fsevents.FileEvents,
+@@ -51,0 +52,5 @@
++					Path:      ev.Path,
++				}
++			case ev.Flags&fsevents.ItemModified > 0:
++				w.ch <- &FSEvent{
++					Operation: FSModify,
+--- a/lib/watchers/watchers.go
++++ b/lib/watchers/watchers.go
+@@ -23,0 +24 @@
++	FSModify
