@@ -2,6 +2,8 @@
   config,
   pkgs,
   lib,
+  hosts,
+  thisHostName,
   ...
 }:
 let
@@ -79,6 +81,10 @@ in
   home.file = {
     "dev/together/.gitconfig".source = ./git/together;
     "dev/together/.gitmessage".source = ./git/togethermessage;
+    ".ssh/config.d/orion-identity".text = ''
+      Host ${lib.concatStringsSep " " (lib.remove thisHostName (lib.attrNames hosts))} *.wantguns.dev
+        IdentityFile ~/.ssh/id_orion
+    '';
     ".finicky.js".text =
       builtins.replaceStrings
         [ "@FIREFOX_APP@" ]
