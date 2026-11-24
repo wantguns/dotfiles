@@ -31,10 +31,7 @@
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIZXnfEw3pyp3l0hAtdjExzZBlzIzFY12L1kMI3ckF0c wantguns@bellatrix"
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAN+U9xlrIVyWY7DzhMO6Tf+JN04a9nzcdMc7nLOnWqq wantguns@mintaka"
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIO+/xFhcRE1yok1XSvG2G6kc8cqaTgKQq45IfubZ9hMG wantguns@rigel"
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDDNUwRuKNdF4ry5+JRhOs6I1wSOk6a+xqkfrfZUXSUz wantguns@together"
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOnYnZfddsSHguC/HhSAhGyj28jFJjAOZm3R8hL2Xigo wantguns@together"
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICHiqoKB2VjaTocFiTJkeUSlBdNoUdz+LOqEuyuSGRnc wantguns@together"
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFdRBQ5k0RXLsR8uuvC92vQe3J2Fpf02E7/gjpQDTXur wantguns@together"
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIO2VHmAhY1ImJmK7ulwWAXZtrYmTpygDy2jZb0DC5Vpo wantguns@together"
   ];
 
   nix = {
