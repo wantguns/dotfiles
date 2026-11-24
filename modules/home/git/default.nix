@@ -31,6 +31,12 @@ lib.mkIf cfg.git.enable {
 
       url."git@github.com:".insteadOf = "https://github.com/";
     };
+    includes = [
+      {
+        condition = "gitdir:~/dev/source/";
+        contents.receive.denyCurrentBranch = "updateInstead";
+      }
+    ];
   };
 
   programs.delta = {
