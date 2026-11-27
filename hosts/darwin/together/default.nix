@@ -30,6 +30,7 @@
       "obs"
       "iina"
       "granola"
+      "mactoy"
     ];
   };
 
@@ -75,11 +76,26 @@
       netbird
       jujutsu
       argo-workflows
+      (buildGoModule rec {
+        pname = "argocd-agentctl";
+        version = "0.10.0";
+        src = fetchFromGitHub {
+          owner = "argoproj-labs";
+          repo = "argocd-agent";
+          rev = "v${version}";
+          hash = "sha256-Jg9AuVQ+FyFO86vEEVztbIOMowl9NTdbEY/UJsjs4M4=";
+        };
+        vendorHash = "sha256-2swgVy+RxsmYGFZoVQTz5T4a8eOhexaIorfNSfl780o=";
+        subPackages = [ "cmd/ctl" ];
+        postInstall = "mv $out/bin/ctl $out/bin/argocd-agentctl";
+      })
       _1password-cli
       typst
       scdoc
       codespell
       mtr
+      kubelogin-oidc
+      kubeseal
     ];
   };
 

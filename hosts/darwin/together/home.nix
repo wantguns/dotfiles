@@ -3,6 +3,7 @@
   pkgs,
   lib,
   hosts,
+  orion,
   thisHostName,
   ...
 }:
@@ -82,7 +83,9 @@ in
     "dev/together/.gitconfig".source = ./git/together;
     "dev/together/.gitmessage".source = ./git/togethermessage;
     ".ssh/config.d/orion-identity".text = ''
-      Host ${lib.concatStringsSep " " (lib.remove thisHostName (lib.attrNames hosts))} *.wantguns.dev
+      Host ${
+        lib.concatStringsSep " " (lib.remove thisHostName (lib.attrNames (hosts // orion)))
+      } *.wantguns.dev
         IdentityFile ~/.ssh/id_orion
     '';
     ".finicky.js".text =
