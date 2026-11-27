@@ -14,6 +14,11 @@ input {
     focus-follows-mouse
 }
 
+output "Lenovo Group Limited P34WD-40 V30HB00B" {
+    mode "3440x1440@119.991"
+    variable-refresh-rate
+}
+
 layout {
     gaps 8
     center-focused-column "never"
