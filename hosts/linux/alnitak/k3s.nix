@@ -5,12 +5,6 @@
   inputs,
   ...
 }:
-let
-  gatewayApiCrds = pkgs.fetchurl {
-    url = "https://github.com/kubernetes-sigs/gateway-api/releases/download/v1.4.0/standard-install.yaml";
-    sha256 = "sha256-akAp5mFEbWSt2GagDs3EDBQhm2h3erYUxc2qwK20gfE=";
-  };
-in
 {
   networking.firewall = {
     allowedTCPPorts = [
@@ -60,12 +54,6 @@ in
       "--node-label openebs.io/nodeid=alnitak"
       "--debug"
     ];
-
-    manifests = {
-      gateway-api = {
-        source = gatewayApiCrds;
-      };
-    };
 
     autoDeployCharts = {
       cilium = {
