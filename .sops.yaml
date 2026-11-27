@@ -8,6 +8,8 @@ keys:
   - &root_rigel age1vs330ap47fuywf4vnl6ngr5xtju06n47n06fv8pc6frpm53e895sl596tj
   - &wantguns_rigel age1gq8g3032g9r6u0c5krvdm8r3n6u4ktc3wea7xlsl7l7c378nwp2sq6x90j
   - &together age1wyygsrsw40junla2efh4ff8j6ew7vktrtytdukt3tuavx0stccfqqdczh9
+  - &root_betelgeuse age1m2l6grfnvfqlp4ynawcmgz0grcqewjnngzp4hgtd427g4cxdrp5quezt8x
+  - &wantguns_betelgeuse age1ungr8nzugytsrywr8eh80405wk5gxhcm9w3nzuqd89cverguwy6s8ryd2z
 creation_rules:
   - path_regex: secrets/[^/]+\.(yaml|json|env|ini)$
     key_groups:
@@ -21,3 +23,5 @@ creation_rules:
       - *root_rigel
       - *wantguns_rigel
       - *together
+      - *root_betelgeuse
+      - *wantguns_betelgeuse

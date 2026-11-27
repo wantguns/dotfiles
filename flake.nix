@@ -85,6 +85,12 @@
           system = "x86_64-linux";
           username = "wantguns";
         };
+
+        "betelgeuse" = lib.my.mkHostConfig {
+          hostname = "betelgeuse";
+          system = "x86_64-linux";
+          username = "wantguns";
+        };
       };
 
       orion = lib.my.wg.mkOrion {
@@ -116,6 +122,11 @@
         together = {
           address = "10.69.0.6";
           publicKey = "JcngR5ExmKtFjP3Ob75pW/I5fEIS6+ThVAZisyRLsm4=";
+          hub = "alnitak";
+        };
+        betelgeuse = {
+          address = "10.69.0.7";
+          publicKey = "AneUMJP1+ctkucuBaCt98W9/ogOhKWqxtoMoE0QW9jM=";
           hub = "alnitak";
         };
         shiba = {
