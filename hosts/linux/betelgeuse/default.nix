@@ -83,6 +83,7 @@
     wireguard-tools
     sbctl
     efibootmgr
+    framework-tool
   ];
 
   environment.shellAliases.windows = ''sudo efibootmgr --bootnext "$(efibootmgr | sed -n 's/^Boot\([0-9A-F]\{4\}\)\** Windows Boot Manager.*/\1/p' | head -n1)" && systemctl reboot'';
