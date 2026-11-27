@@ -9,6 +9,7 @@
 {
   imports = [
     "${inputs.self}/modules/desktop"
+    inputs.lanzaboote.nixosModules.lanzaboote
   ];
 
   boot = {
@@ -16,11 +17,15 @@
     zfs.forceImportRoot = false;
     zfs.requestEncryptionCredentials = false;
     loader = {
-      systemd-boot.enable = true;
-      systemd-boot.configurationLimit = 5;
+      systemd-boot.enable = lib.mkForce false;
       efi.canTouchEfiVariables = true;
       efi.efiSysMountPoint = "/boot";
       timeout = 5;
+    };
+    lanzaboote = {
+      enable = true;
+      pkiBundle = "/var/lib/sbctl";
+      configurationLimit = 5;
     };
   };
 
