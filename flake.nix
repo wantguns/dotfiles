@@ -48,248 +48,137 @@
           hostname = "C02GH2V9MD6M";
           system = "x86_64-darwin";
           username = "gunwant.jain1";
-          remoteBuild = false;
         };
 
         "mintaka" = lib.my.mkHostConfig {
           hostname = "mintaka";
           system = "x86_64-linux";
           username = "wantguns";
-          remoteBuild = true;
-          ips = {
-            private = "192.168.0.130";
-            orion = {
-              address = "10.69.0.3";
-              gateway = "bellatrix";
-              publicKey = "U6ePNi8mX6KbE/p8e1xip2JkGjdIGWqIvnxSDL8MFg0=";
-              privateKeyFile = "/run/secrets/wg/mintaka/private";
-            };
-          };
         };
 
         "bellatrix" = lib.my.mkHostConfig {
           hostname = "bellatrix";
           system = "aarch64-linux";
           username = "wantguns";
-          remoteBuild = true;
-          ips = {
-            public = "152.67.3.218";
-            orion = {
-              address = "10.69.0.2";
-              publicKey = "h8gz2dL5bESUFaBshKZdkDXZYi1Nt/T4X04nVNBIygA=";
-              privateKeyFile = "/run/secrets/wg/bellatrix/private";
-            };
-          };
         };
 
         "alnitak" = lib.my.mkHostConfig {
           hostname = "alnitak";
           system = "x86_64-linux";
           username = "wantguns";
-          remoteBuild = true;
-          ips = {
-            public = "78.46.83.190";
-            orion = {
-              address = "10.69.0.1";
-              publicKey = "5pvq7XBbZ59aeJsCtc6r0wpet3z2sFyp1M/TQaXJqlc=";
-              privateKeyFile = "/run/secrets/wg/alnitak/private";
-            };
-          };
         };
 
         "meissa" = lib.my.mkHostConfig {
           hostname = "meissa";
           system = "aarch64-darwin";
           username = "wantguns";
-          remoteBuild = false;
         };
 
         "together" = lib.my.mkHostConfig {
           hostname = "together";
           system = "aarch64-darwin";
           username = "wantguns";
-          remoteBuild = false;
         };
 
         "rigel" = lib.my.mkHostConfig {
           hostname = "rigel";
           system = "x86_64-linux";
           username = "wantguns";
-          remoteBuild = false;
-          ips = {
-            orion = {
-              address = "10.69.0.5";
-              gateway = "bellatrix";
-              publicKey = "wGO+NOi86UaAp1x9RlpojaYXGAlDjThK1sxhZPLVSnI=";
-              privateKeyFile = "/run/secrets/wg/rigel/private";
-            };
-          };
         };
       };
 
-      extraWgHosts = {
-        "shiba" = {
-          hostname = "shiba";
-          ips = {
-            orion = {
-              address = "10.69.0.10";
-              gateway = "bellatrix";
-              publicKey = "fIiyno6ZKuLLa38OZ2tcs0/Gn6MvQV7Y8wzlsN1ybQw=";
-              privateKeyFile = "/run/secrets/wg/shiba/private";
-            };
-          };
+      orion = lib.my.wg.mkOrion {
+        alnitak = {
+          address = "10.69.0.1";
+          publicKey = "5pvq7XBbZ59aeJsCtc6r0wpet3z2sFyp1M/TQaXJqlc=";
+          endpoint = "78.46.83.190";
         };
-
-        "meissa" = {
-          hostname = "meissa";
-          ips = {
-            orion = {
-              address = "10.69.0.4";
-              gateway = "bellatrix";
-              publicKey = "vRTc+GClR3/TbRHiJUzZEHWwY7fYOWfcQ78ZdczH4g4=";
-              privateKeyFile = "/run/secrets/wg/meissa/private";
-            };
-          };
+        bellatrix = {
+          address = "10.69.0.2";
+          publicKey = "h8gz2dL5bESUFaBshKZdkDXZYi1Nt/T4X04nVNBIygA=";
+          endpoint = "152.67.3.218";
         };
-
-        "together" = {
-          hostname = "together";
-          ips = {
-            orion = {
-              address = "10.69.0.6";
-              gateway = "bellatrix";
-              publicKey = "JcngR5ExmKtFjP3Ob75pW/I5fEIS6+ThVAZisyRLsm4=";
-              privateKeyFile = "/run/secrets/wg/together/private";
-            };
-          };
+        mintaka = {
+          address = "10.69.0.3";
+          publicKey = "U6ePNi8mX6KbE/p8e1xip2JkGjdIGWqIvnxSDL8MFg0=";
+          hub = "bellatrix";
         };
-
-        "pyco" = {
-          hostname = "pyco";
-          ips = {
-            orion = {
-              address = "10.69.0.240";
-              gateway = "bellatrix";
-              publicKey = "gnqKE+4medjdlrwILRw2IkuOqdQCn0IZRyc4xxXRmQU=";
-              privateKeyFile = "/run/secrets/wg/pyco/private";
-            };
-          };
+        meissa = {
+          address = "10.69.0.4";
+          publicKey = "vRTc+GClR3/TbRHiJUzZEHWwY7fYOWfcQ78ZdczH4g4=";
+          hub = "bellatrix";
         };
-
-        "ps" = {
-          hostname = "ps";
-          ips = {
-            orion = {
-              address = "10.69.0.241";
-              gateway = "bellatrix";
-              publicKey = "NBkzNoi4GQoiseWx5ND5IbyuaUmgpXN8B/briQb7/zA=";
-              privateKeyFile = "/run/secrets/wg/ps/private";
-            };
-          };
+        rigel = {
+          address = "10.69.0.5";
+          publicKey = "wGO+NOi86UaAp1x9RlpojaYXGAlDjThK1sxhZPLVSnI=";
+          hub = "bellatrix";
         };
-
-        "kps" = {
-          hostname = "ps";
-          ips = {
-            orion = {
-              address = "10.69.0.242";
-              gateway = "bellatrix";
-              publicKey = "kQXPl3IWivlFsI2tnnnV7wWvqtVEjgfnJjbwaGhCpxs=";
-              privateKeyFile = "/run/secrets/wg/kps/private";
-            };
-          };
+        together = {
+          address = "10.69.0.6";
+          publicKey = "JcngR5ExmKtFjP3Ob75pW/I5fEIS6+ThVAZisyRLsm4=";
+          hub = "alnitak";
         };
-
-        "wantguns-bindos" = {
-          hostname = "wantguns-bindos";
-          ips = {
-            orion = {
-              address = "10.69.0.243";
-              gateway = "bellatrix";
-              publicKey = "YESuRKUuLz/xVCf2JP43TvDDHt3/fcDSmnhjW6vSNHs=";
-              privateKeyFile = "/run/secrets/wg/wantguns-bindos/private";
-            };
-          };
+        shiba = {
+          address = "10.69.0.10";
+          publicKey = "fIiyno6ZKuLLa38OZ2tcs0/Gn6MvQV7Y8wzlsN1ybQw=";
+          hub = "bellatrix";
         };
-
-        "lota" = {
-          hostname = "lota";
-          ips = {
-            orion = {
-              address = "10.69.0.244";
-              gateway = "bellatrix";
-              publicKey = "ZVBqI7QHC3XWLjLxlIAIeuvfjqzAKjJ9us6oHDUW4D0=";
-              privateKeyFile = "/run/secrets/wg/lota/private";
-            };
-          };
+        pyco = {
+          address = "10.69.0.240";
+          publicKey = "gnqKE+4medjdlrwILRw2IkuOqdQCn0IZRyc4xxXRmQU=";
+          hub = "bellatrix";
         };
-
-        "parul-uu" = {
-          hostname = "parul-uu";
-          ips = {
-            orion = {
-              address = "10.69.0.245";
-              gateway = "bellatrix";
-              publicKey = "qva6E7fe7955deH1ra0clTiRpJUPGJ6EWqwgzB2QQHY=";
-              privateKeyFile = "/run/secrets/wg/parul-uu/private";
-            };
-          };
+        ps = {
+          address = "10.69.0.241";
+          publicKey = "NBkzNoi4GQoiseWx5ND5IbyuaUmgpXN8B/briQb7/zA=";
+          hub = "bellatrix";
         };
-
+        kps = {
+          address = "10.69.0.242";
+          publicKey = "kQXPl3IWivlFsI2tnnnV7wWvqtVEjgfnJjbwaGhCpxs=";
+          hub = "bellatrix";
+        };
+        wantguns-bindos = {
+          address = "10.69.0.243";
+          publicKey = "YESuRKUuLz/xVCf2JP43TvDDHt3/fcDSmnhjW6vSNHs=";
+          hub = "bellatrix";
+        };
+        lota = {
+          address = "10.69.0.244";
+          publicKey = "ZVBqI7QHC3XWLjLxlIAIeuvfjqzAKjJ9us6oHDUW4D0=";
+          hub = "bellatrix";
+        };
+        parul-uu = {
+          address = "10.69.0.245";
+          publicKey = "qva6E7fe7955deH1ra0clTiRpJUPGJ6EWqwgzB2QQHY=";
+          hub = "bellatrix";
+        };
       };
-
-      wgInfo = lib.my.wg.mkInfo {
-        inherit hosts extraWgHosts;
-      };
-
-      forAllHosts = f: builtins.mapAttrs f hosts;
 
     in
     {
-      inherit hosts;
+      inherit hosts orion;
 
-      darwinConfigurations = builtins.mapAttrs (
-        name: hostConfig:
-        lib.my.mkHost (
-          hostConfig
-          // {
-            specialArgs.hosts = wgInfo.wgHosts;
-          }
-        )
-      ) (lib.filterAttrs (name: hostConfig: lib.my.isDarwin hostConfig.system) hosts);
+      darwinConfigurations = builtins.mapAttrs (_: lib.my.mkHost) (
+        lib.filterAttrs (_: host: lib.my.isDarwin host.system) hosts
+      );
 
-      nixosConfigurations = builtins.mapAttrs (
-        name: hostConfig:
-        lib.my.mkHost (
-          hostConfig
-          // {
-            specialArgs.hosts = wgInfo.wgHosts;
-          }
-        )
-      ) (lib.filterAttrs (name: hostConfig: lib.my.isLinux hostConfig.system) hosts);
-
-      homeConfigurations = forAllHosts lib.my.mkHomeConfig;
+      nixosConfigurations = builtins.mapAttrs (_: lib.my.mkHost) (
+        lib.filterAttrs (_: host: lib.my.isLinux host.system) hosts
+      );
 
       formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.nixfmt);
 
       apps = forAllSystems (system: {
-        deploy = {
+        wg-config = {
           type = "app";
-          program = "${
-            import ./lib/deploy.nix {
+          program = lib.getExe (
+            import ./modules/network/wg-config.nix {
+              inherit lib orion;
               pkgs = nixpkgs.legacyPackages.${system};
-              inherit nixpkgs;
             }
-          }/bin/deploy";
+          );
         };
       });
-
-      packages = forAllSystems (
-        system:
-        let
-          pkgs = nixpkgs.legacyPackages.${system};
-        in
-        wgInfo.buildPackages { inherit pkgs; }
-      );
     };
 }

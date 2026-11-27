@@ -1,30 +1,21 @@
 {
-  config,
   lib,
   hosts,
+  orion,
   thisHostName,
   ...
 }:
 
 let
-  # orion is the wireguard mesh every host is on, so prefer it. public and
-  # private are fallbacks for hosts not (yet) on the mesh.
-  addressOf =
-    host: host.ips.orion.address or host.ips.public or host.ips.private or null;
-
-  reachable = lib.filterAttrs (
-    name: host: name != thisHostName && (addressOf host) != null
-  ) hosts;
-
-  block = name: host: ''
+  block = name: peer: ''
     Host ${name}
-      HostName ${addressOf host}
-      ${lib.optionalString (host ? username) "User ${host.username}"}
+      HostName ${peer.address}
+      ${lib.optionalString (hosts ? ${name}) "User ${hosts.${name}.username}"}
   '';
 in
 {
   home.file.".ssh/config.d/hosts".text = lib.concatStringsSep "\n" (
-    lib.mapAttrsToList block reachable
+    lib.mapAttrsToList block (removeAttrs orion [ thisHostName ])
   );
 
   home.activation.sshConfigInclude = lib.hm.dag.entryAfter [ "writeBoundary" ] ''

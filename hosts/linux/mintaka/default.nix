@@ -98,13 +98,6 @@
       mode = "0640";
       restartUnits = [ "systemd-networkd.service" ];
     };
-    "wg/shiba/private" = { };
-    "wg/meissa/private" = { };
-    "wg/pyco/private" = { };
-    "wg/kps/private" = { };
-    "wg/ps/private" = { };
-    "wg/wantguns-bindos/private" = { };
-    "wg/lota/private" = { };
   };
 
   system.stateVersion = "24.11";

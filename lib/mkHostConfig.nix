@@ -17,8 +17,6 @@ in
           throw "Unsupported system: ${config.system}";
 
       defaults = {
-        remoteBuild = false;
-        justHome = false;
         platform = platform;
       };
     in

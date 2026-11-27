@@ -59,10 +59,9 @@ in
       inherit system;
       specialArgs = {
         inherit inputs;
-        hosts = inputs.self.hosts;
+        inherit (inputs.self) hosts orion;
         thisHostName = hostname;
-      }
-      // hostConfig.specialArgs or { };
+      };
       modules =
         baseModules
         ++ linuxModules
@@ -78,7 +77,7 @@ in
               useUserPackages = true;
               extraSpecialArgs = {
                 inherit inputs;
-                hosts = lib.recursiveUpdate inputs.self.hosts (hostConfig.specialArgs.hosts or { });
+                inherit (inputs.self) hosts orion;
                 thisHostName = hostname;
               };
               sharedModules = [ inputs.sops-nix.homeManagerModules.sops ];

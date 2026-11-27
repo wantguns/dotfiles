@@ -1,76 +1,49 @@
 {
   lib,
   config,
-  pkgs,
-  hosts,
+  orion,
   thisHostName,
   ...
 }:
 
 let
-  inherit (lib)
-    mkIf
-    filterAttrs
-    attrValues
-    mapAttrs
-    mkOption
-    types
-    head
-    ;
-  thisHost = hosts.${thisHostName};
+  inherit (lib) mkIf mkOption types;
 
   cfg = config.services.orionWireguard;
-
   wgIf = cfg.interfaceName;
   listenPort = 51820;
   overlayPrefixLen = 16;
-  isPublic = thisHost.ips ? public;
 
-  allPeers = hosts;
-  otherPeers = filterAttrs (n: _: n != thisHostName) allPeers;
+  me = orion.${thisHostName};
+  isHub = me ? endpoint;
+  cidr = peer: "${peer.address}/32";
+  spokesOf = hub: lib.filter (peer: (peer.hub or null) == hub) (lib.attrValues orion);
 
-  wireguardPeers =
-    let
-      publicPeers = filterAttrs (_: v: v.ips ? public) otherPeers;
-      gatewayHostname =
-        if thisHost.ips.orion ? gateway then
-          thisHost.ips.orion.gateway
-        else
-          (head (lib.attrNames publicPeers));
-    in
-    attrValues (
-      mapAttrs (
-        _peerName: peer:
-        if !(peer ? ips && peer.ips ? orion) then
-          null
-        else
-          let
-            peerWGAddress = peer.ips.orion.address;
-            isPeerPublic = peer.ips ? public;
+  peerFor =
+    name: peer:
+    if !isHub then
+      lib.optionalAttrs (name == me.hub) {
+        Endpoint = "${peer.endpoint}:${toString listenPort}";
+        PersistentKeepalive = 25;
+        PublicKey = peer.publicKey;
+        AllowedIPs = [ "10.69.0.0/${toString overlayPrefixLen}" ];
+      }
+    else if peer ? endpoint then
+      {
+        Endpoint = "${peer.endpoint}:${toString listenPort}";
+        PublicKey = peer.publicKey;
+        AllowedIPs = [ (cidr peer) ] ++ map cidr (spokesOf name);
+      }
+    else
+      lib.optionalAttrs (peer.hub == thisHostName) {
+        PersistentKeepalive = 25;
+        PublicKey = peer.publicKey;
+        AllowedIPs = [ (cidr peer) ];
+      };
 
-            endpoint = if isPeerPublic then "${peer.ips.public}:${toString listenPort}" else null;
-            persistentKeepalive = if isPublic != isPeerPublic then 25 else null;
-
-            allowedIPs =
-              if isPublic then
-                [ "${peerWGAddress}/32" ]
-              else if isPeerPublic then
-                if peer.hostname == gatewayHostname then [ "10.69.0.0/16" ] else [ "${peerWGAddress}/32" ]
-              else
-                null;
-
-          in
-          if allowedIPs == null then
-            null
-          else
-            (lib.filterAttrs (_: val: val != null) {
-              Endpoint = endpoint;
-              PersistentKeepalive = persistentKeepalive;
-              PublicKey = peer.ips.orion.publicKey;
-              AllowedIPs = allowedIPs;
-            })
-      ) otherPeers
-    );
+  wireguardPeers = lib.filter (peer: peer != { }) (
+    lib.mapAttrsToList peerFor (removeAttrs orion [ thisHostName ])
+  );
 in
 {
   options.services.orionWireguard = {
@@ -84,22 +57,17 @@ in
   config = {
     assertions = [
       {
-        assertion =
-          (thisHost ? ips)
-          && (thisHost.ips ? orion)
-          && (thisHost.ips.orion ? address)
-          && (thisHost.ips.orion ? publicKey)
-          && (thisHost.ips.orion ? privateKeyFile);
-        message = "Host ${thisHostName}: missing one of ips.orion.{address,publicKey,privateKeyFile}.";
+        assertion = orion ? ${thisHostName};
+        message = "Host ${thisHostName} is not in the orion table in flake.nix.";
       }
     ];
 
     networking.useNetworkd = true;
     systemd.network.enable = true;
 
-    networking.firewall.allowedUDPPorts = mkIf isPublic [ listenPort ];
+    networking.firewall.allowedUDPPorts = mkIf isHub [ listenPort ];
 
-    boot.kernel.sysctl."net.ipv4.ip_forward" = 1;
+    boot.kernel.sysctl."net.ipv4.ip_forward" = mkIf isHub 1;
 
     systemd.network.netdevs."50-${wgIf}" = {
       netdevConfig = {
@@ -107,16 +75,16 @@ in
         Kind = "wireguard";
       };
       wireguardConfig = {
-        PrivateKeyFile = thisHost.ips.orion.privateKeyFile;
-        ListenPort = mkIf isPublic listenPort;
+        PrivateKeyFile = config.sops.secrets."wg/${thisHostName}/private".path;
+        ListenPort = mkIf isHub listenPort;
       };
-      wireguardPeers = lib.filter (p: p != null) wireguardPeers;
+      inherit wireguardPeers;
     };
 
     systemd.network.networks."50-${wgIf}" = {
       matchConfig.Name = wgIf;
-      address = [ "${thisHost.ips.orion.address}/${toString overlayPrefixLen}" ];
-      networkConfig.IPv4Forwarding = true;
+      address = [ "${me.address}/${toString overlayPrefixLen}" ];
+      networkConfig.IPv4Forwarding = mkIf isHub true;
     };
   };
 }
