@@ -65,12 +65,6 @@ in
       gateway-api = {
         source = gatewayApiCrds;
       };
-      argo-project = {
-        source = ./manifests/argo-project.yaml;
-      };
-      argo-metaapp = {
-        source = ./manifests/argo-metaapp.yaml;
-      };
     };
 
     autoDeployCharts = {
@@ -155,25 +149,6 @@ in
                   "NET_BIND_SERVICE"
                 ];
               };
-            };
-          };
-        };
-      };
-
-      argocd = {
-        name = "argo-cd";
-        repo = "https://argoproj.github.io/argo-helm";
-        version = "9.0.5";
-        hash = "sha256-Vm42yonj7KPyV1derzzfAFjzBEiSXUmkFROO4CPJk5w=";
-        targetNamespace = "argocd";
-        createNamespace = true;
-        values = {
-          configs = {
-            params = {
-              "server.insecure" = true;
-            };
-            cm = {
-              "timeout.reconciliation" = "60s";
             };
           };
         };
